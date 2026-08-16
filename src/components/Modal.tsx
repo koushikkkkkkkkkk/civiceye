@@ -52,7 +52,7 @@ export function Modal({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-slate-950/50 backdrop-blur-sm dark:bg-slate-950/70"
+            className="absolute inset-0 bg-slate-950/50 backdrop-blur-sm dark:bg-black/80"
             aria-label="Close dialog"
           />
           <motion.div
@@ -61,7 +61,7 @@ export function Modal({
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: 'spring', stiffness: 320, damping: 28 }}
             className={cn(
-              'relative w-full overflow-hidden rounded-3xl border border-white/60 bg-white shadow-glow dark:border-white/10 dark:bg-slate-900',
+              'relative w-full overflow-hidden rounded-3xl border border-white/60 bg-white shadow-glow dark:border-neutral-800 dark:bg-[#161618]',
               size,
             )}
           >

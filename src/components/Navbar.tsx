@@ -155,7 +155,7 @@ export function Navbar() {
                     initial={{ opacity: 0, y: 8, scale: 0.97 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ duration: 0.16 }}
-                    className="absolute right-0 top-12 z-50 w-64 overflow-hidden rounded-2xl border border-white/60 bg-white/95 shadow-glow backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/95"
+                    className="absolute right-0 top-12 z-50 w-64 overflow-hidden rounded-2xl border border-white/60 bg-white/95 shadow-glow backdrop-blur-xl dark:border-neutral-800 dark:bg-[#161618]/95"
                   >
                     <div className="border-b border-slate-100 px-4 py-3 dark:border-white/10">
                       <p className="truncate text-sm font-bold text-slate-900 dark:text-white">

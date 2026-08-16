@@ -49,7 +49,7 @@ export function Drawer({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-slate-950/50 backdrop-blur-sm dark:bg-slate-950/70"
+            className="absolute inset-0 bg-slate-950/50 backdrop-blur-sm dark:bg-black/80"
             aria-label="Close panel"
           />
           <motion.div
@@ -58,7 +58,7 @@ export function Drawer({
             exit={fromLeft ? { x: '-100%' } : { x: '100%' }}
             transition={{ type: 'spring', stiffness: 320, damping: 34 }}
             className={cn(
-              'absolute inset-y-0 flex flex-col border-white/60 bg-white shadow-2xl dark:border-white/10 dark:bg-slate-900',
+              'absolute inset-y-0 flex flex-col border-white/60 bg-white shadow-2xl dark:border-neutral-800 dark:bg-[#161618]',
               fromLeft ? 'left-0 border-r' : 'right-0 border-l',
               width,
             )}

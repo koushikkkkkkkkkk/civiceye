@@ -32,7 +32,7 @@ const SOCIALS = [
 export function Footer() {
   const { meta, isAmrita } = useBrand();
   return (
-    <footer className="relative mt-auto border-t border-slate-200/70 bg-white/70 backdrop-blur dark:border-white/5 dark:bg-slate-950/80">
+    <footer className="relative mt-auto border-t border-slate-200/70 bg-white/70 backdrop-blur dark:border-neutral-800 dark:bg-black/90">
       <div className="section-pad py-12 sm:py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}

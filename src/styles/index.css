@@ -70,7 +70,7 @@
   }
 
   html.dark body {
-    @apply bg-slate-950 text-slate-200;
+    @apply bg-black text-slate-100;
   }
 
   ::selection {
@@ -87,26 +87,42 @@
   }
 
   html.dark :focus-visible {
-    @apply ring-offset-slate-950;
+    @apply ring-offset-black;
   }
 }
 
 @layer components {
   /* Glassmorphism surfaces */
   .glass {
-    @apply border border-white/60 bg-white/70 backdrop-blur-xl;
+    @apply border border-white/40 bg-white/60 backdrop-blur-2xl;
   }
 
   .dark .glass {
-    @apply border-white/10 bg-white/[0.06];
+    @apply border-[#313131] bg-[#1F1F1F]/80 backdrop-blur-2xl;
   }
 
   .glass-strong {
-    @apply border border-white/70 bg-white/85 backdrop-blur-2xl;
+    @apply border border-white/60 bg-white/80 backdrop-blur-3xl;
   }
 
   .dark .glass-strong {
-    @apply border-white/10 bg-slate-900/85;
+    @apply border-[#313131] bg-[#272727]/90 backdrop-blur-3xl;
+  }
+
+  .glass-card {
+    @apply relative overflow-hidden rounded-3xl border border-white/50 bg-white/60 shadow-[0_20px_50px_rgba(0,0,0,0.06)] backdrop-blur-2xl transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] dark:border-[#313131] dark:bg-[#1F1F1F] dark:shadow-[0_25px_60px_rgba(0,0,0,0.7)];
+  }
+
+  .glass-card-hover {
+    @apply hover:-translate-y-1 hover:border-primary-500/40 hover:shadow-[0_30px_70px_rgba(165,22,54,0.15)] dark:hover:border-rose-500/40 dark:hover:shadow-[0_30px_70px_rgba(229,43,80,0.25)];
+  }
+
+  .glass-panel {
+    @apply border border-white/50 bg-white/70 backdrop-blur-3xl dark:border-white/15 dark:bg-black/60;
+  }
+
+  .glass-pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/60 px-4 py-2 backdrop-blur-xl transition-all dark:border-white/15 dark:bg-white/[0.08];
   }
 
   .card {
@@ -114,7 +130,7 @@
   }
 
   .dark .card {
-    @apply border-white/10 bg-slate-900/60;
+    @apply border-neutral-800 bg-[#161618] shadow-black/60;
   }
 
   .text-gradient {
@@ -218,7 +234,7 @@
   }
 
   .dark .btn-secondary {
-    @apply border-white/15 bg-white/[0.06] text-slate-200 hover:border-primary-400/50 hover:text-white;
+    @apply border-neutral-800 bg-[#1c1c1e] text-slate-200 hover:border-primary-400/50 hover:bg-[#2c2c2e] hover:text-white;
   }
 
   .btn-ghost {
@@ -238,7 +254,7 @@
   }
 
   .dark .chip {
-    @apply border-white/10 bg-white/[0.06] text-slate-300;
+    @apply border-neutral-800 bg-[#1c1c1e] text-slate-300;
   }
 
   .input-base {
@@ -246,7 +262,7 @@
   }
 
   .dark .input-base {
-    @apply border-white/15 bg-white/[0.05] text-slate-100 placeholder:text-slate-500;
+    @apply border-neutral-800 bg-[#1c1c1e] text-slate-100 placeholder:text-zinc-500 focus:border-primary-500;
   }
 
   .label-base {
@@ -261,8 +277,12 @@
     @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
 
+  .font-serif-display {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", system-ui, sans-serif;
+  }
+
   .heading-xl {
-    @apply text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl;
+    @apply text-5xl font-black tracking-wide text-slate-900 sm:text-6xl lg:text-7xl;
   }
 
   .dark .heading-xl {
@@ -270,7 +290,7 @@
   }
 
   .heading-lg {
-    @apply text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl;
+    @apply text-3xl font-black tracking-wide text-slate-900 sm:text-4xl lg:text-5xl;
   }
 
   .dark .heading-lg {
