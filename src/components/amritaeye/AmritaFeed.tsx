@@ -1,268 +1,236 @@
 import { useMemo, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Sparkles, MapPin, ThumbsUp, AlertCircle, LayoutGrid, List } from 'lucide-react';
-import { CATEGORIES } from '@/data/categories';
-import { useReports } from '@/hooks/useReports';
-import type { CategoryId, Report, ReportStatus } from '@/types';
+import { Link } from 'react-router-dom';
+import { categoryById } from '@/data/categories';
+import type { Report, ReportStatus } from '@/types';
 
 interface AmritaFeedProps {
   campusReports: Report[];
 }
 
+type FeedFilter = 'all' | 'pending' | 'resolved';
+
+const FILTERS: Array<{ value: FeedFilter; label: string }> = [
+  { value: 'all', label: 'All Reports' },
+  { value: 'pending', label: 'Pending' },
+  { value: 'resolved', label: 'Resolved' },
+];
+
+const STATUS_LABELS: Record<ReportStatus, string> = {
+  pending: 'Pending',
+  verified: 'Verified',
+  'in-progress': 'In progress',
+  resolved: 'Resolved',
+  rejected: 'Rejected',
+};
+
+const STATUS_COLORS: Record<ReportStatus, string> = {
+  pending: '#800020',
+  verified: '#737373',
+  'in-progress': '#64748b',
+  resolved: '#171717',
+  rejected: '#a3a3a3',
+};
+
+function StatusLight({ status }: { status: ReportStatus }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 10 10" className="h-2.5 w-2.5 shrink-0">
+      <circle cx="5" cy="5" r="3.5" fill={STATUS_COLORS[status]} />
+    </svg>
+  );
+}
+
+function formatReportDate(value: string) {
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) return 'Date unavailable';
+
+  return new Intl.DateTimeFormat('en-IN', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  }).format(date);
+}
+
 export function AmritaFeed({ campusReports }: AmritaFeedProps) {
-  const { voteUp } = useReports();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<CategoryId | 'all'>('all');
-  const [selectedStatus] = useState<ReportStatus | 'all'>('all');
-  const [layoutMode, setLayoutMode] = useState<'list' | 'grid'>('list');
+  const [activeFilter, setActiveFilter] = useState<FeedFilter>('all');
 
   const filteredReports = useMemo(() => {
-    return campusReports.filter((r) => {
-      const matchesSearch =
-        searchQuery === '' ||
-        r.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        r.locationName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        r.description.toLowerCase().includes(searchQuery.toLowerCase());
+    if (activeFilter === 'all') return campusReports;
+    return campusReports.filter((report) => report.status === activeFilter);
+  }, [activeFilter, campusReports]);
 
-      const matchesCategory = selectedCategory === 'all' || r.category === selectedCategory;
-      const matchesStatus = selectedStatus === 'all' || r.status === selectedStatus;
-
-      return matchesSearch && matchesCategory && matchesStatus;
-    });
-  }, [campusReports, searchQuery, selectedCategory, selectedStatus]);
+  const reportCounts = useMemo(
+    () => ({
+      all: campusReports.length,
+      pending: campusReports.filter((report) => report.status === 'pending').length,
+      resolved: campusReports.filter((report) => report.status === 'resolved').length,
+    }),
+    [campusReports],
+  );
 
   return (
-    <section className="relative overflow-hidden bg-[#F5F5F7] dark:bg-[#181818] py-28 sm:py-36 border-b border-[#E5E5E5] dark:border-[#313131] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]">
-      <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 space-y-12">
-        
-        {/* Bolder Section Header with Glass Search Bar & Layout Controls */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col gap-10 sm:flex-row sm:items-end sm:justify-between"
-        >
-          <div className="space-y-4">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="inline-flex items-center gap-2 rounded-full border border-rose-500/30 bg-rose-500/10 px-5 py-2 text-xs font-bold uppercase tracking-wider text-[#A51636] dark:text-[#E52B50] backdrop-blur-xl"
+    <section
+      aria-labelledby="campus-reports-title"
+      className="border-b border-neutral-200 bg-white"
+    >
+      <div className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-24 lg:px-12 xl:px-16">
+        <div className="grid gap-8 border-b border-neutral-200 pb-8 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-7">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500">
+              Public issue log
+            </p>
+            <h2
+              id="campus-reports-title"
+              className="mt-3 text-3xl font-semibold tracking-[-0.035em] text-neutral-900 sm:text-4xl"
             >
-              <Sparkles className="h-4 w-4" /> Live Incident Stream
-            </motion.div>
-            <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#1D1D1F] dark:text-white leading-[1.05]">
-              Active Campus Reports
+              Campus reports
             </h2>
-            <p className="text-lg sm:text-xl font-semibold text-[#A51636] dark:text-[#E52B50] leading-snug tracking-normal">
-              Browse, confirm, and track infrastructure issues across campus
+            <p className="mt-3 max-w-xl text-sm leading-6 text-neutral-500 sm:text-base">
+              Recent submissions from students and staff, with their current maintenance status.
             </p>
           </div>
 
-          <div className="flex items-center gap-4">
-            {/* Frosted Glass Search Bar */}
-            <div className="relative flex-1 min-w-[300px]">
-              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400 dark:text-zinc-400" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search campus issues..."
-                className="w-full rounded-2xl border border-white/60 dark:border-white/15 bg-white/70 dark:bg-white/[0.06] pl-12 pr-5 py-4 text-sm font-semibold text-[#1D1D1F] dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 backdrop-blur-2xl transition-all shadow-lg focus:border-[#A51636] dark:focus:border-[#E52B50] focus:outline-none focus:ring-2 focus:ring-[#A51636]/20"
-              />
-            </div>
-
-            {/* Impeccable Animated Layout Mode Toggle */}
-            <div className="flex items-center rounded-2xl border border-white/60 dark:border-white/15 bg-white/60 dark:bg-white/[0.06] p-2 backdrop-blur-2xl shadow-lg">
-              <motion.button
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.92 }}
-                onClick={() => setLayoutMode('list')}
-                className={`rounded-xl p-3 transition-all ${
-                  layoutMode === 'list'
-                    ? 'bg-[#A51636] dark:bg-[#C81D42] text-white shadow-md'
-                    : 'text-slate-600 dark:text-zinc-400 hover:text-[#1D1D1F] dark:hover:text-white'
-                }`}
-                title="Linear magazine layout"
-                aria-label="Linear magazine layout"
-              >
-                <List className="h-5 w-5" />
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.92 }}
-                onClick={() => setLayoutMode('grid')}
-                className={`rounded-xl p-3 transition-all ${
-                  layoutMode === 'grid'
-                    ? 'bg-[#A51636] dark:bg-[#C81D42] text-white shadow-md'
-                    : 'text-slate-600 dark:text-zinc-400 hover:text-[#1D1D1F] dark:hover:text-white'
-                }`}
-                title="2-Column grid layout"
-                aria-label="2-Column grid layout"
-              >
-                <LayoutGrid className="h-5 w-5" />
-              </motion.button>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Category Filter Pills (Animated Framer Motion Buttons) */}
-        <div
-          role="group"
-          aria-label="Filter campus reports by category"
-          className="flex flex-wrap items-center gap-4"
-        >
-          <motion.button
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setSelectedCategory('all')}
-            className={`rounded-2xl px-6 py-3.5 text-sm font-bold tracking-tight transition-all duration-300 backdrop-blur-xl focus-visible:outline-none ${
-              selectedCategory === 'all'
-                ? 'bg-[#A51636] dark:bg-[#C81D42] text-white shadow-lg shadow-[#A51636]/30 dark:shadow-rose-950/80 scale-105'
-                : 'border border-white/60 dark:border-white/15 bg-white/60 dark:bg-white/[0.06] text-[#1D1D1F] dark:text-white hover:bg-white/90 dark:hover:bg-white/15'
-            }`}
+          <div
+            role="group"
+            aria-label="Filter campus reports by status"
+            className="flex items-center gap-6 overflow-x-auto lg:col-span-5 lg:justify-end"
           >
-            All Categories ({campusReports.length})
-          </motion.button>
-          {CATEGORIES.map((cat) => {
-            const count = campusReports.filter((r) => r.category === cat.id).length;
-            if (count === 0 && selectedCategory !== cat.id) return null;
-            return (
-              <motion.button
-                key={cat.id}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`rounded-2xl px-6 py-3.5 text-sm font-bold tracking-tight transition-all duration-300 backdrop-blur-xl focus-visible:outline-none ${
-                  selectedCategory === cat.id
-                    ? 'bg-[#A51636] dark:bg-[#C81D42] text-white shadow-lg shadow-[#A51636]/30 dark:shadow-rose-950/80 scale-105'
-                    : 'border border-white/60 dark:border-white/15 bg-white/60 dark:bg-white/[0.06] text-[#1D1D1F] dark:text-white hover:bg-white/90 dark:hover:bg-white/15'
-                }`}
-              >
-                {cat.label} ({count})
-              </motion.button>
-            );
-          })}
+            {FILTERS.map((filter) => {
+              const isActive = activeFilter === filter.value;
+
+              return (
+                <button
+                  key={filter.value}
+                  type="button"
+                  onClick={() => setActiveFilter(filter.value)}
+                  aria-pressed={isActive}
+                  className={`shrink-0 rounded-none border-b-2 pb-2 text-sm font-medium transition-colors ${
+                    isActive
+                      ? 'border-neutral-900 text-neutral-900'
+                      : 'border-transparent text-neutral-500 hover:text-neutral-900'
+                  }`}
+                >
+                  {filter.label}
+                  <span className="ml-2 font-mono text-xs text-neutral-400">
+                    {reportCounts[filter.value].toString().padStart(2, '0')}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Dynamic Glassmorphic Card Feed (AnimatePresence Layout Animations) */}
         {filteredReports.length > 0 ? (
-          <motion.div
-            layout
-            className={
-              layoutMode === 'grid'
-                ? 'grid grid-cols-1 md:grid-cols-2 gap-8'
-                : 'space-y-6'
-            }
-          >
-            <AnimatePresence mode="popLayout">
-              {filteredReports.map((report, idx) => {
-                const categoryMeta = CATEGORIES.find((c) => c.id === report.category);
+          <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {filteredReports.map((report) => {
+              const category = categoryById(report.category);
 
-                return (
-                  <motion.div
-                    key={report.id}
-                    layout
-                    initial={{ opacity: 0, y: 24, scale: 0.97 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
-                    transition={{
-                      duration: 0.4,
-                      delay: Math.min(idx * 0.06, 0.3),
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                    whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                    className={`glass-card glass-card-hover group flex flex-col p-6 sm:p-8 ${
-                      layoutMode === 'list' ? 'sm:flex-row gap-6 items-stretch' : 'gap-6 items-start'
-                    }`}
-                  >
-                    {/* Thumbnail Image with Glass Overlay */}
-                    <div
-                      className={`relative shrink-0 overflow-hidden rounded-2xl bg-black/10 dark:bg-white/5 border border-white/20 dark:border-white/10 shadow-inner ${
-                        layoutMode === 'list' ? 'h-56 w-full sm:w-72' : 'h-64 w-full'
-                      }`}
-                    >
-                      <img
-                        src={report.image}
-                        alt={report.title}
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute top-3 left-3 flex items-center gap-2">
-                        <span className="rounded-xl px-3.5 py-1 text-xs font-black uppercase tracking-wider border border-white/40 bg-black/50 text-white backdrop-blur-md shadow-md">
-                          {report.status}
-                        </span>
-                      </div>
+              return (
+                <article
+                  key={report.id}
+                  className="group flex min-w-0 flex-col rounded-md border border-neutral-200 bg-white transition-colors hover:border-neutral-400"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-t-md border-b border-neutral-200 bg-neutral-100">
+                    <img
+                      src={report.image}
+                      alt={`Evidence for ${report.title}`}
+                      loading="lazy"
+                      className="h-full w-full object-cover grayscale-[20%] transition-[filter] duration-300 group-hover:grayscale-0"
+                    />
+                    <div className="absolute bottom-0 left-0 border-r border-t border-neutral-200 bg-white px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-neutral-600">
+                      {category.short}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-1 flex-col p-5 sm:p-6">
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="font-mono text-[11px] text-neutral-400">
+                        {report.code ?? `AMR-${report.id.slice(0, 6).toUpperCase()}`}
+                      </span>
+                      <span className="inline-flex items-center gap-2 text-xs font-medium text-neutral-600">
+                        <StatusLight status={report.status} />
+                        {STATUS_LABELS[report.status]}
+                      </span>
                     </div>
 
-                    {/* Content Body */}
-                    <div className="flex flex-1 flex-col justify-between h-full w-full space-y-4 py-1">
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-3">
-                          <span className="rounded-xl bg-[#A51636]/15 dark:bg-[#E52B50]/20 border border-[#A51636]/30 dark:border-[#E52B50]/40 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-[#A51636] dark:text-[#E52B50] backdrop-blur-md">
-                            {categoryMeta?.label || report.category}
-                          </span>
-                          {report.verified && (
-                            <span className="rounded-xl bg-emerald-500/15 border border-emerald-500/30 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-emerald-600 dark:text-emerald-400 backdrop-blur-md">
-                              ✓ Verified
-                            </span>
-                          )}
-                        </div>
+                    <h3 className="mt-5 text-xl font-semibold leading-7 tracking-[-0.02em] text-neutral-900">
+                      {report.title}
+                    </h3>
+                    <p className="mt-2 line-clamp-2 text-sm leading-6 text-neutral-500">
+                      {report.description}
+                    </p>
 
-                        <h3 className="text-2xl sm:text-3xl font-black tracking-wide text-[#1D1D1F] dark:text-white leading-tight transition-colors group-hover:text-[#A51636] dark:group-hover:text-[#E52B50]">
-                          {report.title}
-                        </h3>
-                        <p className="text-base font-medium text-slate-700 dark:text-zinc-300 leading-relaxed line-clamp-2">
-                          {report.description}
-                        </p>
-                      </div>
-
-                      {/* Location & Upvotes Glass Footer */}
-                      <div className="flex items-center justify-between border-t border-black/10 dark:border-white/10 pt-4 text-sm font-semibold text-slate-600 dark:text-zinc-400">
-                        <span className="flex items-center gap-2 truncate max-w-[240px]">
-                          <MapPin className="h-4 w-4 text-[#A51636] dark:text-[#E52B50] shrink-0" />
-                          <span className="truncate font-bold text-slate-800 dark:text-zinc-200">{report.locationName}</span>
-                        </span>
-
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.92 }}
-                          onClick={() => voteUp(report.id)}
-                          className="flex items-center gap-2.5 rounded-full border border-white/50 dark:border-white/20 bg-white/70 dark:bg-white/10 px-5 py-2.5 text-sm font-extrabold text-[#1D1D1F] dark:text-white backdrop-blur-xl shadow-md transition-all hover:bg-[#A51636] hover:text-white hover:border-[#A51636] dark:hover:bg-[#C81D42] dark:hover:border-[#C81D42]"
-                          aria-label={`Upvote report ${report.title}`}
-                        >
-                          <ThumbsUp className="h-4 w-4" />
-                          <span>{report.upvotes} Upvotes</span>
-                        </motion.button>
-                      </div>
+                    <div className="mt-6 flex items-start gap-2 border-t border-neutral-200 pt-4 text-sm leading-5 text-neutral-600">
+                      <svg
+                        aria-hidden="true"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        className="mt-0.5 h-4 w-4 shrink-0"
+                      >
+                        <path
+                          d="M15.25 8.25c0 4-5.25 8-5.25 8s-5.25-4-5.25-8a5.25 5.25 0 1 1 10.5 0Z"
+                          stroke="currentColor"
+                          strokeWidth="1.4"
+                        />
+                        <circle
+                          cx="10"
+                          cy="8.25"
+                          r="1.75"
+                          stroke="currentColor"
+                          strokeWidth="1.4"
+                        />
+                      </svg>
+                      <span>{report.locationName}</span>
                     </div>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </motion.div>
+
+                    <div className="mt-auto flex items-center justify-between gap-4 pt-6">
+                      <time dateTime={report.date} className="text-xs text-neutral-400">
+                        {formatReportDate(report.date)}
+                      </time>
+                      <Link
+                        to={`/report/${report.id}`}
+                        aria-label={`View report: ${report.title}`}
+                        className="inline-flex items-center gap-2 rounded-none text-sm font-semibold text-neutral-900 underline decoration-neutral-300 underline-offset-4 transition-colors hover:decoration-neutral-900"
+                      >
+                        View report
+                        <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4">
+                          <path
+                            d="M4 10h11m-4-4 4 4-4 4"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="square"
+                            strokeLinejoin="miter"
+                          />
+                        </svg>
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
         ) : (
-          /* Empty Feed Glass Card View with Entrance Animation */
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="glass-card flex flex-col items-center justify-center p-16 text-center space-y-4"
-          >
-            <AlertCircle className="h-12 w-12 text-[#A51636] dark:text-[#E52B50]" />
-            <h3 className="text-2xl font-extrabold text-[#1D1D1F] dark:text-white">No campus reports found</h3>
-            <p className="text-base font-normal text-slate-600 dark:text-zinc-400 max-w-sm">
-              Try searching for a different keyword or resetting your category filters.
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                setSearchQuery('');
-                setSelectedCategory('all');
-              }}
-              className="rounded-full bg-[#A51636] dark:bg-[#C81D42] px-8 py-3 text-base font-extrabold text-white shadow-lg shadow-[#A51636]/30 transition-all hover:bg-[#8c122d]"
+          <div className="mt-8 flex min-h-56 flex-col items-start justify-center rounded-md border border-neutral-200 bg-[#f5f5f5] p-8 sm:p-10">
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              fill="none"
+              className="h-6 w-6 text-neutral-400"
             >
-              Reset Filters
-            </motion.button>
-          </motion.div>
+              <path d="M5 7h14M5 12h9M5 17h6" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+            <h3 className="mt-5 text-lg font-semibold text-neutral-900">No reports in this view</h3>
+            <p className="mt-2 text-sm leading-6 text-neutral-500">
+              Select another status to return to the public issue log.
+            </p>
+            <button
+              type="button"
+              onClick={() => setActiveFilter('all')}
+              className="mt-5 rounded-none text-sm font-semibold text-neutral-900 underline decoration-neutral-300 underline-offset-4 hover:decoration-neutral-900"
+            >
+              Show all reports
+            </button>
+          </div>
         )}
       </div>
     </section>
