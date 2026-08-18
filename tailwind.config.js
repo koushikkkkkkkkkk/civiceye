@@ -41,7 +41,7 @@ export default {
         sans: ['Geist', 'Manrope', 'system-ui', 'sans-serif'],
         display: ['Manrope', 'Geist', 'sans-serif'],
         mono: ['"Geist Mono"', 'monospace'],
-        serif: ['Manrope', 'sans-serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
       },
       boxShadow: {
         soft: '0 8px 30px rgba(15, 23, 42, 0.08)',

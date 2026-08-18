@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
 
 const faqs = [
   {
@@ -29,92 +27,62 @@ const faqs = [
   }
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { y: 32, filter: 'blur(4px)', opacity: 0 },
-  visible: {
-    y: 0,
-    filter: 'blur(0px)',
-    opacity: 1,
-    transition: {
-      duration: 0.8,
-      ease: [0.32, 0.72, 0, 1]
-    }
-  }
-};
-
 export function AmritaFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={itemVariants}
-        className="text-center mb-12"
-      >
-        <h2 className="text-3xl sm:text-4xl font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] mb-4">
+    <section className="bg-transparent border-t border-[#A51636]/10 dark:border-[#E52B50]/10">
+      <div className="mx-auto max-w-[800px] px-6 py-28 sm:py-36">
+        <h2 className="mb-16 text-[32px] sm:text-[40px] font-bold leading-[1.2] tracking-tight text-neutral-900 dark:text-white">
           Frequently asked questions
         </h2>
-      </motion.div>
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        className="space-y-4"
-      >
-        {faqs.map((faq, index) => {
-          const isOpen = openIndex === index;
-          return (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="border border-gray-200 dark:border-[#272727] rounded-2xl overflow-hidden bg-white dark:bg-[#181818]"
-            >
-              <button
-                onClick={() => setOpenIndex(isOpen ? null : index)}
-                className="w-full text-left px-6 py-5 flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-[#A51636]"
-              >
-                <span className="text-lg font-semibold text-[#1d1d1f] dark:text-[#f5f5f7]">
-                  {faq.question}
-                </span>
-                <ChevronDown
-                  className={`w-5 h-5 text-gray-500 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
-                    isOpen ? 'rotate-180' : ''
-                  }`}
-                />
-              </button>
-              <AnimatePresence>
-                {isOpen && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+        <div className="flex flex-col border-t border-neutral-200 dark:border-neutral-800">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <div key={index} className="border-b border-neutral-200 dark:border-neutral-800">
+                <button
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${index}`}
+                  className="flex w-full items-center justify-between py-8 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-[#111113] focus-visible:outline-none"
+                >
+                  <span className={`text-[20px] font-semibold leading-[1.3] transition-colors ${isOpen ? 'text-[#A51636] dark:text-[#E52B50]' : 'text-neutral-900 dark:text-white'}`}>
+                    {faq.question}
+                  </span>
+                  <svg
+                    className={`ml-6 h-6 w-6 shrink-0 transition-transform duration-300 ${
+                      isOpen ? 'rotate-180 text-[#A51636] dark:text-[#E52B50]' : 'text-neutral-400'
+                    }`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
                   >
-                    <div className="px-6 pb-5 text-base text-gray-600 dark:text-gray-400">
-                      {faq.answer}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          );
-        })}
-      </motion.div>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+                <div
+                  id={`faq-answer-${index}`}
+                  role="region"
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                    isOpen ? 'max-h-96 pb-8 opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <p className="text-[16px] leading-[1.5] text-neutral-600 dark:text-neutral-400 px-4 border-l-2 border-[#A51636] dark:border-[#E52B50]">
+                    {faq.answer}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </section>
   );
 }

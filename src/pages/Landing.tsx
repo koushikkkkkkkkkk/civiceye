@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import {
   ArrowRight,
   CheckCircle2,
@@ -8,17 +7,12 @@ import {
   Navigation,
   Play,
   ShieldCheck,
-  Sparkles,
   Zap,
 } from 'lucide-react';
 import { useReports } from '@/hooks/useReports';
 import { useBrand } from '@/hooks/useBrand';
-import { SectionHeading } from '@/components/SectionHeading';
-import { FeatureCard } from '@/components/FeatureCard';
-import { Reveal } from '@/components/Reveal';
-import { StatCard } from '@/components/StatCard';
 import { MapView } from '@/components/map/MapView';
-import { FEATURES, HOW_IT_WORKS } from '@/data/features';
+import { HOW_IT_WORKS, FEATURES } from '@/data/features';
 import { CommunityReviews } from '@/components/CommunityReviews';
 import { CATEGORIES } from '@/data/categories';
 import { compactNumber } from '@/utils/format';
@@ -28,7 +22,6 @@ export function Landing() {
   const { reports } = useReports();
   const { isAmrita } = useBrand();
 
-  // Only show the active brand's reports (city vs campus).
   const scoped = useMemo(
     () => reports.filter((r) => r.scope === (isAmrita ? 'campus' : 'city')),
     [reports, isAmrita],
@@ -45,118 +38,66 @@ export function Landing() {
   const showcase = useMemo(() => scoped.slice(0, 40), [scoped]);
 
   return (
-    <>
+    <div className="bg-white dark:bg-black">
       {/* ------------------------------------------------ Hero */}
-      <section className="relative overflow-hidden pb-16 pt-28 sm:pb-24 sm:pt-36">
-        {/* Animated background */}
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-primary-50/80 via-white to-white dark:from-primary-950/40 dark:via-slate-950 dark:to-slate-950" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.14),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(16,185,129,0.12),transparent_45%),radial-gradient(circle_at_50%_90%,rgba(99,102,241,0.08),transparent_50%)]" />
-          {/* Grid overlay */}
-          <div
-            className="absolute inset-0 opacity-[0.35] dark:opacity-[0.12]"
-            style={{
-              backgroundImage:
-                'linear-gradient(to right, rgba(100,116,139,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.12) 1px, transparent 1px)',
-              backgroundSize: '56px 56px',
-              maskImage: 'radial-gradient(ellipse 80% 60% at 50% 35%, black, transparent)',
-              WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 35%, black, transparent)',
-            }}
-          />
-          <motion.div
-            animate={{ y: [0, -24, 0], x: [0, 16, 0] }}
-            transition={{ duration: 14, repeat: Number.POSITIVE_INFINITY, ease: 'easeInOut' }}
-            className="absolute -left-24 top-24 h-72 w-72 rounded-full brand-glow-a blur-3xl"
-          />
-          <motion.div
-            animate={{ y: [0, 28, 0], x: [0, -20, 0] }}
-            transition={{ duration: 18, repeat: Number.POSITIVE_INFINITY, ease: 'easeInOut' }}
-            className="absolute -right-20 top-40 h-80 w-80 rounded-full brand-glow-b blur-3xl"
-          />
-        </div>
-
-        <div className="section-pad">
-          <div className="grid items-center gap-14 lg:grid-cols-2">
+      <section className="border-b border-neutral-200 dark:border-neutral-800 pt-32 pb-24 sm:pt-40">
+        <div className="mx-auto max-w-[1920px] px-5 sm:px-8 lg:px-12 xl:px-16">
+          <div className="grid items-center gap-16 lg:grid-cols-2">
             {/* Copy */}
             <div>
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 rounded-full border border-primary-200/70 bg-primary-500/10 px-4 py-1.5 text-xs font-bold text-primary-700 dark:border-primary-400/20 dark:bg-primary-400/10 dark:text-primary-300"
-              >
-                <Sparkles className="h-3.5 w-3.5" />
-                Prototype · live demo data
-              </motion.div>
+              <div className="inline-flex items-center gap-2 rounded-sm border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-800 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-neutral-600 dark:text-neutral-300">
+                Prototype \u00b7 live demo data
+              </div>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.08 }}
-                className="heading-xl mt-6"
-              >
+              <h1 className="mt-8 text-[4rem] font-semibold leading-[0.95] tracking-[-0.05em] text-neutral-900 dark:text-white sm:text-7xl lg:text-[5rem]">
                 Making cities better,
-                <span className="text-gradient block">one report at a time.</span>
-              </motion.h1>
+                <br />
+                <span className="text-neutral-400">one report at a time.</span>
+              </h1>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.16 }}
-                className="mt-6 max-w-xl text-base leading-relaxed text-slate-500 dark:text-slate-400 sm:text-lg"
-              >
+              <p className="mt-8 max-w-xl text-lg leading-8 text-neutral-500 dark:text-neutral-400">
                 New to the city, or lived here for years? Someone's already flagged the pothole,
                 the dark street, the flooded junction. Spot something yourself? Snap it, pin it,
                 and let your neighbours + local authorities take it from there.
-              </motion.p>
+              </p>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.24 }}
-                className="mt-8 flex flex-wrap items-center gap-3"
-              >
-                <Link to="/report" className="btn-primary !px-7 !py-3.5 text-base">
+              <div className="mt-10 flex flex-wrap items-center gap-3">
+                <Link
+                  to="/report"
+                  className="inline-flex min-h-12 items-center justify-center gap-3 rounded-md bg-[#800020] px-8 text-sm font-semibold text-white transition-colors hover:bg-[#600018] active:scale-[0.98]"
+                >
                   Report an issue
-                  <ArrowRight className="h-5 w-5" />
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link to="/map" className="btn-secondary !px-7 !py-3.5 text-base">
+                <Link
+                  to="/map"
+                  className="inline-flex min-h-12 items-center justify-center gap-3 rounded-md border border-neutral-300 bg-white dark:bg-black px-8 text-sm font-semibold text-neutral-900 dark:text-white transition-colors hover:border-neutral-900 hover:bg-neutral-50 dark:bg-neutral-900 active:scale-[0.98]"
+                >
                   <Play className="h-4 w-4" />
                   Explore the map
                 </Link>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-medium text-slate-400 dark:text-slate-500"
-              >
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
+              <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-[11px] font-semibold uppercase tracking-wider text-neutral-400">
+                <span className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-neutral-900 dark:text-white" />
                   Free for citizens
                 </span>
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
-                  ‍Verified by neighbours
+                <span className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-neutral-900 dark:text-white" />
+                  Verified by neighbours
                 </span>
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
+                <span className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-neutral-900 dark:text-white" />
                   Shared with authorities
                 </span>
-              </motion.div>
+              </div>
             </div>
 
-            {/* Hero visual: live map preview */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.94, y: 24 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="relative"
-            >
-              <div className="absolute -inset-6 rounded-[2.5rem] brand-panel blur-2xl" />
-              <div className="card relative overflow-hidden !rounded-3xl p-2 shadow-glow">
-                <div className="pointer-events-none relative h-[320px] overflow-hidden rounded-2xl sm:h-[400px]">
+            {/* Hero visual */}
+            <div className="relative">
+              <div className="rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black p-3 shadow-sm">
+                <div className="pointer-events-none relative h-[400px] overflow-hidden rounded-sm bg-[#f5f5f5] dark:bg-[#111]">
                   <MapView
                     reports={showcase}
                     center={{ lat: 12.97, lng: 77.6 }}
@@ -167,150 +108,161 @@ export function Landing() {
                     heatmap
                     className="h-full w-full"
                   />
-                  {/* Decorative scanline */}
-                  <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary-500 via-emerald-500 to-primary-500 opacity-60" />
-                  <div className="absolute bottom-3 right-3 rounded-xl bg-white/85 px-3 py-1.5 text-[10px] font-bold text-slate-600 backdrop-blur dark:bg-slate-900/85 dark:text-slate-300">
-                    LIVE · {compactNumber(stats.total)} reports
+                  <div className="absolute bottom-4 right-4 rounded-sm bg-white/90 px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-neutral-900 dark:text-white backdrop-blur border border-neutral-200 dark:border-neutral-800">
+                    LIVE \u00b7 {compactNumber(stats.total)} reports
                   </div>
                 </div>
               </div>
 
-              {/* Floating chips */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY, ease: 'easeInOut' }}
-                className="glass-strong absolute -left-3 top-10 hidden items-center gap-2 rounded-2xl px-4 py-2.5 shadow-glow sm:flex"
-              >
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/15 text-emerald-500">
+              <div className="absolute -left-6 top-16 hidden items-center gap-4 rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black px-5 py-4 shadow-sm sm:flex">
+                <span className="flex h-10 w-10 items-center justify-center bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white">
                   <ShieldCheck className="h-4 w-4" />
                 </span>
                 <div>
-                  <p className="text-xs font-bold text-slate-800 dark:text-white">
+                  <p className="text-sm font-semibold text-neutral-900 dark:text-white">
                     {compactNumber(stats.verified)} verified
                   </p>
-                  <p className="text-[10px] text-slate-400">by the community</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">by the community</p>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                animate={{ y: [0, 12, 0] }}
-                transition={{
-                  duration: 6,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: 'easeInOut',
-                  delay: 0.6,
-                }}
-                className="glass-strong absolute -right-2 bottom-16 hidden items-center gap-2 rounded-2xl px-4 py-2.5 shadow-glow sm:flex"
-              >
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-500/15 text-primary-600 dark:text-primary-400">
+              <div className="absolute -right-4 bottom-24 hidden items-center gap-4 rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black px-5 py-4 shadow-sm sm:flex">
+                <span className="flex h-10 w-10 items-center justify-center bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white">
                   <Zap className="h-4 w-4" />
                 </span>
                 <div>
-                  <p className="text-xs font-bold text-slate-800 dark:text-white">
+                  <p className="text-sm font-semibold text-neutral-900 dark:text-white">
                     {compactNumber(stats.totalVotes)} votes cast
                   </p>
-                  <p className="text-[10px] text-slate-400">across all reports</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">across all reports</p>
                 </div>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ------------------------------------------------ Stats */}
-      <section className="border-y border-slate-200/70 bg-white/70 py-12 backdrop-blur dark:border-white/5 dark:bg-white/[0.02] sm:py-16">
-        <div className="section-pad">
-          <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-            <StatCard
-              icon={MapPin}
-              label="Active reports"
-              value={stats.total}
-              sub="in the prototype database"
-              gradient="brand-grad-1"
-              index={0}
-            />
-            <StatCard
-              icon={ShieldCheck}
-              label="Verified reports"
-              value={stats.verified}
-              sub="confirmed by neighbours"
-              gradient="brand-grad-2"
-              index={1}
-            />
-            <StatCard
-              icon={CheckCircle2}
-              label="Resolved"
-              value={stats.resolved}
-              sub="marked fixed by authorities"
-              gradient="brand-grad-3"
-              index={2}
-            />
-            <StatCard
-              icon={Zap}
-              label="Citizen votes"
-              value={compactNumber(stats.totalVotes)}
-              sub="community validation"
-              gradient="brand-grad-4"
-              index={3}
-            />
+      <section className="border-b border-neutral-200 dark:border-neutral-800 bg-[#f5f5f5] dark:bg-[#111] py-16">
+        <div className="mx-auto max-w-[1920px] px-5 sm:px-8 lg:px-12 xl:px-16">
+          <div className="grid grid-cols-2 gap-px border border-neutral-200 dark:border-neutral-800 bg-neutral-200 rounded-md overflow-hidden lg:grid-cols-4">
+            <div className="bg-white dark:bg-black p-6 sm:p-8 flex flex-col space-y-3">
+              <div className="flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
+                <MapPin className="h-4 w-4 text-neutral-900 dark:text-white" />
+                <span>Active reports</span>
+              </div>
+              <div className="text-4xl font-semibold tracking-[-0.03em] text-neutral-900 dark:text-white tabular-nums">
+                {stats.total}
+              </div>
+              <p className="text-[11px] font-medium text-neutral-400">in the database</p>
+            </div>
+            <div className="bg-white dark:bg-black p-6 sm:p-8 flex flex-col space-y-3">
+              <div className="flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
+                <ShieldCheck className="h-4 w-4 text-neutral-900 dark:text-white" />
+                <span>Verified reports</span>
+              </div>
+              <div className="text-4xl font-semibold tracking-[-0.03em] text-neutral-900 dark:text-white tabular-nums">
+                {stats.verified}
+              </div>
+              <p className="text-[11px] font-medium text-neutral-400">confirmed by neighbours</p>
+            </div>
+            <div className="bg-white dark:bg-black p-6 sm:p-8 flex flex-col space-y-3">
+              <div className="flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
+                <CheckCircle2 className="h-4 w-4 text-neutral-900 dark:text-white" />
+                <span>Resolved</span>
+              </div>
+              <div className="text-4xl font-semibold tracking-[-0.03em] text-neutral-900 dark:text-white tabular-nums">
+                {stats.resolved}
+              </div>
+              <p className="text-[11px] font-medium text-neutral-400">fixed by authorities</p>
+            </div>
+            <div className="bg-white dark:bg-black p-6 sm:p-8 flex flex-col space-y-3">
+              <div className="flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
+                <Zap className="h-4 w-4 text-neutral-900 dark:text-white" />
+                <span>Citizen votes</span>
+              </div>
+              <div className="text-4xl font-semibold tracking-[-0.03em] text-neutral-900 dark:text-white tabular-nums">
+                {compactNumber(stats.totalVotes)}
+              </div>
+              <p className="text-[11px] font-medium text-neutral-400">community validation</p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ------------------------------------------------ How it works */}
-      <section className="section-pad py-16 sm:py-24">
-        <SectionHeading
-          eyebrow="How it works"
-          title="Five steps from spotted to sorted"
-          description="A reporting flow designed to take less than a minute — with AI and the community doing the heavy lifting."
-        />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-          {HOW_IT_WORKS.map((step, i) => (
-            <Reveal key={step.step} delay={i * 0.08}>
-              <div className="card relative h-full p-5 transition-transform duration-300 hover:-translate-y-1">
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl brand-grad-1 text-base font-extrabold text-white shadow-glow">
+      <section className="border-b border-neutral-200 dark:border-neutral-800 py-24">
+        <div className="mx-auto max-w-[1920px] px-5 sm:px-8 lg:px-12 xl:px-16">
+          <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
+            How it works
+          </div>
+          <h2 className="mb-6 text-3xl font-semibold tracking-[-0.035em] text-neutral-900 dark:text-white sm:text-4xl">
+            Five steps from spotted to sorted
+          </h2>
+          <p className="mb-16 max-w-2xl text-lg text-neutral-500 dark:text-neutral-400">
+            A reporting flow designed to take less than a minute \u2014 with AI and the community doing the heavy lifting.
+          </p>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+            {HOW_IT_WORKS.map((step, i) => (
+              <div key={step.step} className="relative flex flex-col p-6 border border-neutral-200 dark:border-neutral-800 rounded-md bg-neutral-50 dark:bg-neutral-900">
+                <div className="mb-6 flex h-10 w-10 items-center justify-center rounded bg-neutral-900 text-sm font-semibold text-white">
                   {step.step}
                 </div>
-                <h3 className="text-sm font-bold text-slate-900 dark:text-white">{step.title}</h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+                <h3 className="mb-3 text-sm font-semibold text-neutral-900 dark:text-white">{step.title}</h3>
+                <p className="text-xs leading-5 text-neutral-500 dark:text-neutral-400">
                   {step.description}
                 </p>
                 {i < HOW_IT_WORKS.length - 1 ? (
-                  <ArrowRight className="absolute -right-3.5 top-1/2 hidden h-5 w-5 -translate-y-1/2 text-primary-300 dark:text-primary-700 lg:block" />
+                  <ArrowRight className="absolute -right-5 top-1/2 hidden h-4 w-4 -tranneutral-y-1/2 text-neutral-300 lg:block" />
                 ) : null}
               </div>
-            </Reveal>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ------------------------------------------------ Features */}
-      <section className="border-y border-slate-200/70 bg-white/60 py-16 dark:border-white/5 dark:bg-white/[0.02] sm:py-24">
-        <div className="section-pad">
-          <SectionHeading
-            eyebrow="Features"
-            title="A complete civic toolkit"
-            description="From AI-powered photo analysis to authority dashboards — every piece a real product needs."
-          />
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {FEATURES.map((f, i) => (
-              <FeatureCard key={f.title} feature={f} index={i} />
-            ))}
+      <section className="border-b border-neutral-200 dark:border-neutral-800 bg-[#f5f5f5] dark:bg-[#111] py-24">
+        <div className="mx-auto max-w-[1920px] px-5 sm:px-8 lg:px-12 xl:px-16">
+          <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
+            Features
           </div>
-          <Reveal className="mt-10 text-center">
-            <Link to="/features" className="btn-secondary">
+          <h2 className="mb-6 text-3xl font-semibold tracking-[-0.035em] text-neutral-900 dark:text-white sm:text-4xl">
+            A complete civic toolkit
+          </h2>
+          <p className="mb-16 max-w-2xl text-lg text-neutral-500 dark:text-neutral-400">
+            From AI-powered photo analysis to authority dashboards \u2014 every piece a real product needs.
+          </p>
+          
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {FEATURES.map((f) => {
+              const Icon = f.icon;
+              return (
+                <div key={f.title} className="flex flex-col rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black p-8 shadow-sm">
+                  <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-sm bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800">
+                    <Icon className="h-4 w-4" />
+                  </div>
+                  <h3 className="mb-3 text-lg font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white">{f.title}</h3>
+                  <p className="text-sm leading-6 text-neutral-500 dark:text-neutral-400">{f.description}</p>
+                </div>
+              );
+            })}
+          </div>
+          <div className="mt-12 text-center">
+            <Link to="/features" className="inline-flex min-h-12 items-center justify-center gap-3 rounded-md border border-neutral-300 bg-white dark:bg-black px-8 text-sm font-semibold text-neutral-900 dark:text-white transition-colors hover:border-neutral-900 hover:bg-neutral-50 dark:bg-neutral-900 active:scale-[0.98]">
               Explore all features
               <ArrowRight className="h-4 w-4" />
             </Link>
-          </Reveal>
+          </div>
         </div>
       </section>
 
       {/* ------------------------------------------------ Category marquee */}
-      <section className="overflow-hidden border-b border-slate-200/70 py-8 dark:border-white/5">
-        <div className="pointer-events-none flex w-max animate-marquee gap-3">
+      <section className="overflow-hidden border-b border-neutral-200 dark:border-neutral-800 py-10 bg-white dark:bg-black">
+        <div className="pointer-events-none flex w-max animate-marquee gap-6">
           {[...CATEGORIES, ...CATEGORIES].map((c, i) => (
-            <span key={`${c.id}-${i}`} className="chip shrink-0 !px-4 !py-2 text-sm">
+            <span key={`${c.id}-${i}`} className="inline-flex items-center rounded-sm border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-neutral-600 dark:text-neutral-300">
               {c.label}
             </span>
           ))}
@@ -321,33 +273,32 @@ export function Landing() {
       <CommunityReviews />
 
       {/* ------------------------------------------------ Map CTA */}
-      <section className="section-pad pb-16 sm:pb-24">
-        <Reveal>
-          <div className="relative overflow-hidden rounded-3xl brand-cta p-10 shadow-glow sm:p-16">
-            <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
-            <div className="relative grid items-center gap-8 lg:grid-cols-2">
+      <section className="py-24 bg-white dark:bg-black">
+        <div className="mx-auto max-w-[1920px] px-5 sm:px-8 lg:px-12 xl:px-16">
+          <div className="rounded-md border border-neutral-200 dark:border-neutral-800 bg-neutral-900 p-10 sm:p-16 shadow-sm overflow-hidden">
+            <div className="grid items-center gap-12 lg:grid-cols-2">
               <div>
-                <p className="text-sm font-bold uppercase tracking-widest text-white/70">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
                   Live map
                 </p>
-                <h2 className="mt-3 text-3xl font-extrabold text-white sm:text-4xl">
+                <h2 className="mt-6 text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.04em] text-white sm:text-5xl">
                   See the danger before you hit it
                 </h2>
-                <p className="mt-4 max-w-lg text-sm leading-relaxed text-white/85 sm:text-base">
-                  Heatmaps, filters and severity pins help you pick safer routes — and show
+                <p className="mt-6 max-w-lg text-lg leading-8 text-neutral-400">
+                  Heatmaps, filters and severity pins help you pick safer routes \u2014 and show
                   authorities exactly where to send crews first.
                 </p>
                 <Link
                   to="/map"
-                  className="mt-7 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-primary-700 shadow-soft transition-all hover:-translate-y-0.5"
+                  className="mt-10 inline-flex min-h-12 items-center justify-center gap-3 rounded-md bg-white dark:bg-black px-8 text-sm font-semibold text-neutral-900 dark:text-white transition-colors hover:bg-neutral-100 dark:bg-neutral-800 active:scale-[0.98]"
                 >
                   <Navigation className="h-4 w-4" />
                   Open interactive map
                 </Link>
               </div>
               <div className="hidden lg:block">
-                <div className="card overflow-hidden !rounded-2xl p-1.5">
-                  <div className="pointer-events-none h-64 overflow-hidden rounded-xl">
+                <div className="rounded-sm border border-neutral-700 bg-black p-2">
+                  <div className="pointer-events-none h-72 overflow-hidden rounded-sm bg-[#111]">
                     <MapView
                       reports={showcase.slice(0, 24)}
                       center={{ lat: 12.935, lng: 77.624 }}
@@ -356,15 +307,15 @@ export function Landing() {
                       selectedId={null}
                       onSelect={() => undefined}
                       heatmap
-                      className="h-full w-full"
+                      className="h-full w-full grayscale contrast-125 brightness-75"
                     />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </Reveal>
+        </div>
       </section>
-    </>
+    </div>
   );
 }

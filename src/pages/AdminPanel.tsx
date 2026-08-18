@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { CheckCheck, Flag, Inbox, School, ShieldCheck, Trash2, UserRound, Users } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useBrand } from '@/hooks/useBrand';
@@ -14,7 +13,7 @@ import { timeAgo } from '@/utils/format';
 import { cn } from '@/utils/cn';
 import { supabase } from '@/lib/supabase';
 
-/** Staff / admin panel — flagged posts, take-downs, user details. */
+/** Staff / admin panel \u2014 strictly structural HIG layout. */
 export function AdminPanel() {
   const { user } = useAuth();
   const { brand } = useBrand();
@@ -58,7 +57,6 @@ export function AdminPanel() {
     }
   }, [isAdmin, loadFlags]);
 
-  // User detail: map userId → profile email/name.
   const profileByUserId = useMemo(() => {
     const map = new Map<string, { email: string; full_name: string | null }>();
     for (const p of profiles) map.set(p.id, { email: p.email, full_name: p.full_name });
@@ -67,18 +65,18 @@ export function AdminPanel() {
 
   if (!isAdmin) {
     return (
-      <div className="section-pad py-24 text-center">
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-rose-500/10 text-rose-500">
+      <div className="bg-white dark:bg-black min-h-screen py-32 text-center">
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-sm bg-[#f5f5f5] dark:bg-[#111] text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800">
           <ShieldCheck className="h-8 w-8" />
         </div>
-        <h1 className="mt-4 text-xl font-extrabold text-slate-900 dark:text-white">
+        <h1 className="mt-8 text-2xl font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white">
           Staff only
         </h1>
-        <p className="mx-auto mt-2 max-w-sm text-sm text-slate-500 dark:text-slate-400">
+        <p className="mx-auto mt-4 max-w-sm text-sm text-neutral-500 dark:text-neutral-400">
           This panel is for verified {brand === 'amrita' ? 'Amrita campus' : 'city'} staff
           members. If you're a teacher or listed admin, sign in with that account.
         </p>
-        <Link to="/login" className="btn-primary mt-6">
+        <Link to="/login" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-[#800020] px-8 text-sm font-semibold text-white transition-colors hover:bg-[#600018] active:scale-[0.98] mt-8">
           Sign in as staff
         </Link>
       </div>
@@ -89,8 +87,8 @@ export function AdminPanel() {
     if (!flag.report?.id) return;
     setBusy(flag.id);
     try {
-      await removeReport(flag.report.id); // RLS allows admins to delete
-      await flagService.remove(flag.id); // clear the flag too
+      await removeReport(flag.report.id);
+      await flagService.remove(flag.id);
       toast.success('Post taken down', 'The flagged post has been removed.');
       await loadFlags();
     } catch (err) {
@@ -126,163 +124,162 @@ export function AdminPanel() {
   };
 
   return (
-    <div className="pb-16 pt-[calc(var(--nav-height)+2.5rem)] sm:pt-[calc(var(--nav-height)+3.5rem)]">
-      <div className="section-pad">
-        <p className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-primary-600 dark:text-primary-400">
-          <ShieldCheck className="h-4 w-4" />
+    <div className="bg-white dark:bg-black pb-24 pt-32 sm:pt-40">
+      <div className="mx-auto max-w-[1920px] px-5 sm:px-8 lg:px-12 xl:px-16">
+        <div className="mb-4 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
+          <ShieldCheck className="h-4 w-4 text-neutral-900 dark:text-white" />
           Staff &amp; Admin
-        </p>
-        <h1 className="heading-xl mt-2">Moderation panel</h1>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-500 dark:text-slate-400 sm:text-base">
+        </div>
+        <h1 className="text-4xl font-semibold tracking-[-0.04em] text-neutral-900 dark:text-white sm:text-5xl">Moderation panel</h1>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-500 dark:text-neutral-400">
           Posts reported by civilians show up here. Take down anything inappropriate, or dismiss
           flags that are unfounded.
         </p>
 
-        <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
-          <div className="card p-5">
-            <p className="text-3xl font-extrabold text-slate-900 dark:text-white">{flags.length}</p>
-            <p className="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">
+        <div className="mt-12 grid grid-cols-2 gap-px border border-neutral-200 dark:border-neutral-800 bg-neutral-200 rounded-md overflow-hidden lg:grid-cols-4">
+          <div className="bg-white dark:bg-black p-6 sm:p-8 flex flex-col space-y-3">
+            <div className="text-4xl font-semibold tracking-[-0.03em] text-neutral-900 dark:text-white tabular-nums">
+              {flags.length}
+            </div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
               Open flags
             </p>
           </div>
-          <div className="card p-5">
-            <p className="text-3xl font-extrabold text-slate-900 dark:text-white">{reports.length}</p>
-            <p className="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">
+          <div className="bg-white dark:bg-black p-6 sm:p-8 flex flex-col space-y-3">
+            <div className="text-4xl font-semibold tracking-[-0.03em] text-neutral-900 dark:text-white tabular-nums">
+              {reports.length}
+            </div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
               Total posts ({brand === 'amrita' ? 'campus' : 'city'})
             </p>
           </div>
         </div>
 
         {/* Flags inbox */}
-        <div className="mt-6">
-          <h2 className="mb-3 flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
-            <Flag className="h-4.5 w-4.5 text-rose-500" />
+        <div className="mt-16">
+          <h2 className="mb-6 flex items-center gap-2 text-lg font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white">
+            <Flag className="h-5 w-5 text-[#800020]" />
             Flagged posts
           </h2>
 
           {flagsLoading ? (
-            <div className="space-y-3">
+            <div className="space-y-4">
               {Array.from({ length: 2 }, (_, i) => (
-                <div key={i} className="card p-4">
-                  <div className="skeleton h-3 w-40" />
-                  <div className="skeleton mt-2 h-3 w-full" />
+                <div key={i} className="rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black p-6">
+                  <div className="h-4 w-40 rounded bg-neutral-100 dark:bg-neutral-800" />
+                  <div className="mt-4 h-4 w-full rounded bg-neutral-100 dark:bg-neutral-800" />
                 </div>
               ))}
             </div>
           ) : flags.length === 0 ? (
-            <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300/80 py-14 text-center dark:border-white/10">
-              <Inbox className="mb-3 h-8 w-8 text-slate-300 dark:text-slate-600" />
-              <p className="text-sm font-bold text-slate-700 dark:text-slate-200">
+            <div className="flex flex-col items-center justify-center rounded-md border border-dashed border-neutral-300 py-16 text-center">
+              <Inbox className="mb-4 h-8 w-8 text-neutral-300" />
+              <p className="text-sm font-semibold text-neutral-900 dark:text-white">
                 No flags right now
               </p>
-              <p className="mt-1 text-xs text-slate-400">
+              <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
                 Reported posts will appear here for review.
               </p>
             </div>
           ) : (
-            <div className="space-y-3">
+            <div className="space-y-4">
               {flags.map((flag) => {
                 const rep = flag.report;
                 const cat = rep ? categoryById(rep.category as never) : null;
                 return (
-                  <motion.div
+                  <div
                     key={flag.id}
-                    layout
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="card overflow-hidden"
+                    className="flex flex-col gap-6 rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black p-6 sm:flex-row sm:items-start"
                   >
-                    <div className="flex flex-col gap-4 p-4 sm:flex-row sm:items-start">
-                      {rep?.photo_url ? (
-                        <img
-                          src={rep.photo_url}
-                          alt=""
-                          className="h-20 w-20 shrink-0 rounded-xl object-cover"
-                          loading="lazy"
-                        />
+                    {rep?.photo_url ? (
+                      <img
+                        src={rep.photo_url}
+                        alt=""
+                        className="h-24 w-24 shrink-0 rounded-sm object-cover border border-neutral-200 dark:border-neutral-800"
+                        loading="lazy"
+                      />
+                    ) : null}
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="rounded-sm bg-red-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-red-700 border border-red-100">
+                          {flag.reason}
+                        </span>
+                        <span className="text-[11px] font-medium text-neutral-500 dark:text-neutral-400">
+                          by {flag.flaggerEmail} \u00b7 {timeAgo(flag.date)}
+                        </span>
+                      </div>
+                      <Link
+                        to={`/report/${rep?.id}`}
+                        className="mt-3 block text-base font-semibold text-neutral-900 dark:text-white transition-colors hover:text-neutral-600 dark:text-neutral-300 underline decoration-neutral-300 underline-offset-4"
+                      >
+                        {rep?.title ?? 'Unknown post'}
+                      </Link>
+                      {cat ? (
+                        <p className="mt-1.5 text-xs font-medium text-neutral-500 dark:text-neutral-400">
+                          {cat.label} \u00b7 {rep?.location_name ?? ''} \u00b7 by {rep?.author_name}
+                        </p>
                       ) : null}
-                      <div className="min-w-0 flex-1">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-rose-600 dark:text-rose-400">
-                            {flag.reason}
-                          </span>
-                          <span className="text-[11px] text-slate-400">
-                            by {flag.flaggerEmail} · {timeAgo(flag.date)}
-                          </span>
-                        </div>
-                        <Link
-                          to={`/report/${rep?.id}`}
-                          className="mt-1.5 block text-sm font-bold text-slate-900 hover:text-primary-600 dark:text-white"
-                        >
-                          {rep?.title ?? 'Unknown post'}
-                        </Link>
-                        {cat ? (
-                          <p className="mt-0.5 text-xs text-slate-400">
-                            {cat.label} · {rep?.location_name ?? ''} · by {rep?.author_name}
-                          </p>
-                        ) : null}
-                        {flag.note ? (
-                          <p className="mt-2 rounded-xl bg-rose-500/5 px-3 py-2 text-xs italic text-slate-500 dark:text-slate-400">
-                            “{flag.note}”
-                          </p>
-                        ) : null}
-                      </div>
-                      <div className="flex shrink-0 items-center gap-2">
-                        <button
-                          onClick={() => void handleTakeDown(flag)}
-                          disabled={busy === flag.id}
-                          className="flex items-center gap-1 rounded-lg bg-rose-600 px-3 py-2 text-xs font-bold text-white transition-colors hover:bg-rose-500 disabled:opacity-40"
-                        >
-                          <Trash2 className="h-3.5 w-3.5" />
-                          Take down
-                        </button>
-                        <button
-                          onClick={() => void handleDismiss(flag.id)}
-                          disabled={busy === flag.id}
-                          className="flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-600 transition-colors hover:bg-slate-50 disabled:opacity-40 dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-300"
-                        >
-                          <CheckCheck className="h-3.5 w-3.5" />
-                          Dismiss
-                        </button>
-                      </div>
+                      {flag.note ? (
+                        <p className="mt-4 rounded-sm bg-neutral-50 dark:bg-neutral-900 p-4 text-xs italic leading-relaxed text-neutral-600 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-800">
+                          \u201c{flag.note}\u201d
+                        </p>
+                      ) : null}
                     </div>
-                  </motion.div>
+                    <div className="flex shrink-0 items-center gap-3">
+                      <button
+                        onClick={() => void handleTakeDown(flag)}
+                        disabled={busy === flag.id}
+                        className="flex min-h-9 items-center justify-center gap-2 rounded-sm border border-neutral-300 bg-white dark:bg-black px-4 text-xs font-semibold text-neutral-900 dark:text-white transition-colors hover:border-neutral-900 hover:bg-neutral-50 dark:bg-neutral-900 active:scale-[0.98] disabled:opacity-40"
+                      >
+                        <Trash2 className="h-3.5 w-3.5" />
+                        Take down
+                      </button>
+                      <button
+                        onClick={() => void handleDismiss(flag.id)}
+                        disabled={busy === flag.id}
+                        className="flex min-h-9 items-center justify-center gap-2 rounded-sm border border-neutral-300 bg-white dark:bg-black px-4 text-xs font-semibold text-neutral-900 dark:text-white transition-colors hover:border-neutral-900 hover:bg-neutral-50 dark:bg-neutral-900 active:scale-[0.98] disabled:opacity-40"
+                      >
+                        <CheckCheck className="h-3.5 w-3.5" />
+                        Dismiss
+                      </button>
+                    </div>
+                  </div>
                 );
               })}
             </div>
           )}
         </div>
 
-        {/* Scope manager: mark reports as campus */}
-        <div className="mt-10">
-          <h2 className="mb-3 flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
-            <School className="h-4.5 w-4.5 text-primary-500" />
+        {/* Scope manager */}
+        <div className="mt-20">
+          <h2 className="mb-3 flex items-center gap-2 text-lg font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white">
+            <School className="h-5 w-5 text-neutral-900 dark:text-white" />
             Mark reports as campus
           </h2>
-          <p className="mb-3 text-xs text-slate-400">
+          <p className="mb-6 text-sm text-neutral-500 dark:text-neutral-400">
             Move reports between the city feed (CivicEye) and the campus feed (Amrita Eye). Campus
             reports are only visible to Amrita accounts.
           </p>
-          <div className="card overflow-hidden">
+          <div className="rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black overflow-hidden shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full min-w-[560px] text-left text-sm">
                 <thead>
-                  <tr className="border-b border-slate-200/70 text-[11px] uppercase tracking-widest text-slate-400 dark:border-white/10">
-                    <th className="pb-3 pr-4 font-bold">Report</th>
-                    <th className="pb-3 pr-4 font-bold">Scope</th>
-                    <th className="pb-3 font-bold">Action</th>
+                  <tr className="border-b border-neutral-200 dark:border-neutral-800 bg-[#f5f5f5] dark:bg-[#111] text-[10px] font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
+                    <th className="py-4 pl-6 pr-4">Report</th>
+                    <th className="py-4 pr-4">Scope</th>
+                    <th className="py-4 pr-6">Action</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="divide-y divide-neutral-100">
                   {loading ? (
                     <tr>
-                      <td colSpan={3} className="py-3">
-                        <div className="skeleton h-8 w-full" />
+                      <td colSpan={3} className="py-4 px-6">
+                        <div className="h-8 w-full rounded bg-neutral-100 dark:bg-neutral-800" />
                       </td>
                     </tr>
                   ) : reports.length === 0 ? (
                     <tr>
-                      <td colSpan={3} className="py-8 text-center text-xs text-slate-400">
+                      <td colSpan={3} className="py-12 text-center text-sm font-medium text-neutral-500 dark:text-neutral-400">
                         No reports yet.
                       </td>
                     </tr>
@@ -293,40 +290,40 @@ export function AdminPanel() {
                       .map((r) => (
                         <tr
                           key={r.id}
-                          className="border-b border-slate-100 transition-colors hover:bg-slate-50/60 dark:border-white/5 dark:hover:bg-white/[0.03]"
+                          className="transition-colors hover:bg-neutral-50 dark:bg-neutral-900"
                         >
-                          <td className="py-3 pr-4">
-                            <p className="max-w-[260px] truncate font-semibold text-slate-700 dark:text-slate-200">
+                          <td className="py-4 pl-6 pr-4">
+                            <p className="max-w-[260px] truncate font-semibold text-neutral-900 dark:text-white">
                               {r.title}
                             </p>
-                            <p className="text-[11px] text-slate-400">
-                              {r.author} · {r.locationName}
+                            <p className="mt-1 text-[11px] font-medium text-neutral-500 dark:text-neutral-400">
+                              {r.author} \u00b7 {r.locationName}
                             </p>
                           </td>
-                          <td className="py-3 pr-4">
+                          <td className="py-4 pr-4">
                             <span
                               className={cn(
-                                'rounded-full px-2 py-0.5 text-[10px] font-bold uppercase',
+                                'inline-flex items-center rounded-sm px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider',
                                 r.scope === 'campus'
-                                  ? 'bg-primary-500/10 text-primary-600 dark:text-primary-400'
-                                  : 'bg-sky-500/10 text-sky-600 dark:text-sky-400',
+                                  ? 'bg-[#800020]/10 text-[#800020]'
+                                  : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300',
                               )}
                             >
                               {r.scope === 'campus' ? 'Campus' : 'City'}
                             </span>
                           </td>
-                          <td className="py-3">
+                          <td className="py-4 pr-6">
                             <button
                               onClick={() => void handleScope(r.id, r.scope === 'campus' ? 'city' : 'campus')}
                               disabled={busy === `scope-${r.id}`}
                               className={cn(
-                                'flex items-center gap-1 rounded-lg border px-3 py-1.5 text-xs font-bold transition-all disabled:opacity-40',
+                                'flex min-h-8 items-center justify-center gap-2 rounded-sm border px-3 text-[11px] font-semibold transition-colors active:scale-[0.98] disabled:opacity-40',
                                 r.scope === 'campus'
-                                  ? 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50 dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-300'
-                                  : 'border-primary-200 bg-primary-500/10 text-primary-700 hover:bg-primary-500/20 dark:border-primary-400/30 dark:text-primary-300',
+                                  ? 'border-neutral-300 bg-white dark:bg-black text-neutral-900 dark:text-white hover:border-neutral-900'
+                                  : 'border-[#800020] bg-[#800020] text-white hover:bg-[#600018]',
                               )}
                             >
-                              <School className="h-3.5 w-3.5" />
+                              <School className="h-3 w-3" />
                               {r.scope === 'campus' ? 'Mark as city' : 'Mark as campus'}
                             </button>
                           </td>
@@ -340,32 +337,32 @@ export function AdminPanel() {
         </div>
 
         {/* Users (student details) */}
-        <div className="mt-10">
-          <h2 className="mb-3 flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
-            <Users className="h-4.5 w-4.5 text-primary-500" />
+        <div className="mt-20">
+          <h2 className="mb-3 flex items-center gap-2 text-lg font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white">
+            <Users className="h-5 w-5 text-neutral-900 dark:text-white" />
             Reporters &amp; details
           </h2>
-          <div className="card overflow-hidden">
+          <div className="rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black overflow-hidden shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full min-w-[560px] text-left text-sm">
                 <thead>
-                  <tr className="border-b border-slate-200/70 text-[11px] uppercase tracking-widest text-slate-400 dark:border-white/10">
-                    <th className="pb-3 pr-4 font-bold">Reporter</th>
-                    <th className="pb-3 pr-4 font-bold">Email</th>
-                    <th className="pb-3 pr-4 font-bold">Scope</th>
-                    <th className="pb-3 font-bold">Posts</th>
+                  <tr className="border-b border-neutral-200 dark:border-neutral-800 bg-[#f5f5f5] dark:bg-[#111] text-[10px] font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
+                    <th className="py-4 pl-6 pr-4">Reporter</th>
+                    <th className="py-4 pr-4">Email</th>
+                    <th className="py-4 pr-4">Scope</th>
+                    <th className="py-4 pr-6">Posts</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="divide-y divide-neutral-100">
                   {loading ? (
                     <tr>
-                      <td colSpan={4} className="py-3">
-                        <div className="skeleton h-8 w-full" />
+                      <td colSpan={4} className="py-4 px-6">
+                        <div className="h-8 w-full rounded bg-neutral-100 dark:bg-neutral-800" />
                       </td>
                     </tr>
                   ) : reports.length === 0 ? (
                     <tr>
-                      <td colSpan={4} className="py-8 text-center text-xs text-slate-400">
+                      <td colSpan={4} className="py-12 text-center text-sm font-medium text-neutral-500 dark:text-neutral-400">
                         No reports yet.
                       </td>
                     </tr>
@@ -373,32 +370,32 @@ export function AdminPanel() {
                     [...new Map(reports.map((r) => [r.author, r])).values()].map((r) => (
                       <tr
                         key={r.userId ?? r.author}
-                        className="border-b border-slate-100 transition-colors hover:bg-slate-50/60 dark:border-white/5 dark:hover:bg-white/[0.03]"
+                        className="transition-colors hover:bg-neutral-50 dark:bg-neutral-900"
                       >
-                        <td className="py-3 pr-4">
-                          <span className="flex items-center gap-2 font-semibold text-slate-700 dark:text-slate-200">
-                            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary-500/10 text-[11px] font-extrabold text-primary-600 dark:text-primary-400">
+                        <td className="py-4 pl-6 pr-4">
+                          <span className="flex items-center gap-3 font-semibold text-neutral-900 dark:text-white">
+                            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm bg-neutral-100 dark:bg-neutral-800 text-[11px] font-bold text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800">
                               {r.author[0]?.toUpperCase() ?? '?'}
                             </span>
                             {r.author}
                           </span>
                         </td>
-                        <td className="py-3 pr-4 text-xs text-slate-500 dark:text-slate-400">
-                          {r.userId ? (profileByUserId.get(r.userId)?.email ?? '—') : '—'}
+                        <td className="py-4 pr-4 text-xs font-medium text-neutral-500 dark:text-neutral-400">
+                          {r.userId ? (profileByUserId.get(r.userId)?.email ?? '\u2014') : '\u2014'}
                         </td>
-                        <td className="py-3 pr-4">
+                        <td className="py-4 pr-4">
                           <span
                             className={cn(
-                              'rounded-full px-2 py-0.5 text-[10px] font-bold uppercase',
+                              'inline-flex items-center rounded-sm px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider',
                               r.scope === 'campus'
-                                ? 'bg-primary-500/10 text-primary-600 dark:text-primary-400'
-                                : 'bg-sky-500/10 text-sky-600 dark:text-sky-400',
+                                ? 'bg-[#800020]/10 text-[#800020]'
+                                : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300',
                             )}
                           >
                             {r.scope === 'campus' ? 'Campus' : 'City'}
                           </span>
                         </td>
-                        <td className="py-3 text-xs font-bold tabular-nums text-slate-500 dark:text-slate-400">
+                        <td className="py-4 pr-6 text-sm font-semibold tabular-nums text-neutral-500 dark:text-neutral-400">
                           {reports.filter((x) => x.userId === r.userId).length}
                         </td>
                       </tr>
@@ -408,9 +405,9 @@ export function AdminPanel() {
               </table>
             </div>
           </div>
-          <p className="mt-3 flex items-center gap-1.5 text-xs text-slate-400">
-            <UserRound className="h-3.5 w-3.5" />
-            Reporter emails come from their profiles — visible to staff for follow-ups.
+          <p className="mt-4 flex items-center gap-2 text-xs font-medium text-neutral-500 dark:text-neutral-400">
+            <UserRound className="h-3.5 w-3.5 text-neutral-400" />
+            Reporter emails come from their profiles \u2014 visible to staff for follow-ups.
           </p>
         </div>
       </div>

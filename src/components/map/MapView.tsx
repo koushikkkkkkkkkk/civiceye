@@ -104,24 +104,24 @@ export function MapView({
       )}
 
       {/* Shared controls */}
-      <div className="absolute right-3 top-3 z-30 flex flex-col gap-2">
+      <div className="absolute bottom-8 right-4 z-30 flex flex-col gap-2">
         <button
           onClick={() => zoomBy(1)}
-          className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/60 bg-white/90 text-slate-700 shadow-softer backdrop-blur transition-all hover:scale-105 hover:text-primary-600 dark:border-white/10 dark:bg-slate-800/90 dark:text-slate-200"
+          className="flex h-11 w-11 items-center justify-center rounded-xl border border-neutral-200/50 bg-white/90 text-neutral-700 shadow-lg backdrop-blur-xl transition-all hover:scale-105 hover:text-primary-600 dark:border-white/10 dark:bg-[#111113]/90 dark:text-neutral-200"
           aria-label="Zoom in"
         >
           <Plus className="h-4 w-4" />
         </button>
         <button
           onClick={() => zoomBy(-1)}
-          className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/60 bg-white/90 text-slate-700 shadow-softer backdrop-blur transition-all hover:scale-105 hover:text-primary-600 dark:border-white/10 dark:bg-slate-800/90 dark:text-slate-200"
+          className="flex h-11 w-11 items-center justify-center rounded-xl border border-neutral-200/50 bg-white/90 text-neutral-700 shadow-lg backdrop-blur-xl transition-all hover:scale-105 hover:text-primary-600 dark:border-white/10 dark:bg-[#111113]/90 dark:text-neutral-200"
           aria-label="Zoom out"
         >
           <Minus className="h-4 w-4" />
         </button>
         <button
           onClick={() => void locateMe()}
-          className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/60 bg-white/90 text-slate-700 shadow-softer backdrop-blur transition-all hover:scale-105 hover:text-primary-600 dark:border-white/10 dark:bg-slate-800/90 dark:text-slate-200"
+          className="flex h-11 w-11 items-center justify-center rounded-xl border border-neutral-200/50 bg-white/90 text-neutral-700 shadow-lg backdrop-blur-xl transition-all hover:scale-105 hover:text-primary-600 dark:border-white/10 dark:bg-[#111113]/90 dark:text-neutral-200"
           aria-label="Show my location"
           title="Show my location"
         >

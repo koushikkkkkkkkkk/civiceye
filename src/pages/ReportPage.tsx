@@ -289,13 +289,13 @@ function ReportWizard() {
             Report an issue
           </p>
           <h1 className="heading-xl mt-2">60 seconds to a safer street</h1>
-          <p className="mt-3 max-w-2xl text-sm text-slate-500 dark:text-slate-400 sm:text-base">
+          <p className="mt-3 max-w-2xl text-sm text-neutral-500 dark:text-neutral-400 sm:text-base">
             Your report is saved to the live database and shared with the community + staff who can
             fix it.
           </p>
         </div>
 
-        <div className="mb-8 overflow-x-auto rounded-2xl border border-slate-200/70 bg-white/60 p-4 backdrop-blur dark:border-white/5 dark:bg-white/[0.02]">
+        <div className="mb-8 overflow-x-auto rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black p-4 backdrop-blur dark:border-white/5 dark:bg-white/[0.02]">
           <Stepper steps={STEPS} current={step} onStepClick={(i) => i < step && setStep(i)} />
         </div>
 
@@ -312,7 +312,7 @@ function ReportWizard() {
             onReport={() => createdId && navigate(`/report/${createdId}`)}
           />
         ) : (
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-4xl">
             <AnimatePresence mode="wait">
               <motion.div
                 key={step}
@@ -322,10 +322,10 @@ function ReportWizard() {
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               >
                 <div className="mb-6">
-                  <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">
+                  <h2 className="text-2xl font-extrabold text-neutral-900 dark:text-white">
                     {stepTitles[step].title}
                   </h2>
-                  <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                  <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
                     {stepTitles[step].sub}
                   </p>
                 </div>
@@ -343,25 +343,25 @@ function ReportWizard() {
                           onClick={() => update({ category: c.id })}
                           aria-pressed={active}
                           className={cn(
-                            'relative flex items-start gap-3 rounded-2xl border p-4 text-left transition-all',
+                            'relative flex items-start gap-3 rounded-md border p-4 text-left transition-all',
                             active
                               ? 'border-primary-500 bg-primary-500/10 shadow-glow'
-                              : 'border-slate-200/80 bg-white/80 hover:border-primary-300 dark:border-white/10 dark:bg-white/[0.04]',
+                              : 'border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black hover:border-primary-300 dark:border-white/10 dark:bg-white/[0.04]',
                           )}
                         >
                           <span
                             className={cn(
-                              'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-soft',
+                              'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-sm',
                               c.gradient,
                             )}
                           >
                             <Icon className="h-5 w-5" />
                           </span>
                           <span className="min-w-0">
-                            <span className="block text-sm font-bold text-slate-800 dark:text-slate-200">
+                            <span className="block text-sm font-bold text-neutral-800 dark:text-neutral-200">
                               {c.label}
                             </span>
-                            <span className="mt-0.5 line-clamp-2 block text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+                            <span className="mt-0.5 line-clamp-2 block text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">
                               {c.description}
                             </span>
                           </span>
@@ -384,8 +384,8 @@ function ReportWizard() {
                       onChange={(photo) => (photo ? handlePhoto(photo) : update({ photo: null }))}
                     />
                     <div className="relative">
-                      <div className="absolute inset-x-0 top-1/2 h-px bg-slate-200 dark:bg-white/10" />
-                      <span className="relative mx-auto block w-fit rounded-full bg-white px-4 py-1 text-xs font-bold text-slate-400 dark:bg-slate-900">
+                      <div className="absolute inset-x-0 top-1/2 h-px bg-neutral-200 dark:bg-white/10" />
+                      <span className="relative mx-auto block w-fit rounded-full bg-white dark:bg-black px-4 py-1 text-xs font-bold text-neutral-400 dark:bg-neutral-900">
                         or
                       </span>
                     </div>
@@ -428,7 +428,7 @@ function ReportWizard() {
                 {/* Block irrelevant photos: if analysis ran but found no
                     real issue, warn + keep Continue disabled. */}
                 {step === 2 && analysis && !isRelevantAnalysis(analysis) ? (
-                  <div className="mt-4 flex items-start gap-3 rounded-2xl border border-rose-300/70 bg-rose-50 p-4 dark:border-rose-500/30 dark:bg-rose-500/10">
+                  <div className="mt-4 flex items-start gap-3 rounded-md border border-rose-300/70 bg-rose-50 p-4 dark:border-rose-500/30 dark:bg-rose-500/10">
                     <Camera className="mt-0.5 h-5 w-5 shrink-0 text-rose-500" />
                     <div>
                       <p className="text-sm font-bold text-rose-800 dark:text-rose-300">
@@ -534,21 +534,21 @@ function AnalysisProgressCard({
   return (
     <div className="card overflow-hidden p-6">
       <div className="grid gap-6 sm:grid-cols-2">
-        <div className="relative overflow-hidden rounded-2xl">
+        <div className="relative overflow-hidden rounded-md">
           <img src={photo} alt="Being analysed" className="aspect-[16/9] w-full object-cover" />
           <motion.div
             animate={{ top: ['0%', '92%', '0%'] }}
             transition={{ duration: 2.2, repeat: Number.POSITIVE_INFINITY, ease: 'linear' }}
             className="absolute left-0 right-0 h-10 bg-gradient-to-b from-transparent via-primary-400/40 to-transparent"
           />
-          <div className="absolute inset-0 rounded-2xl ring-2 ring-inset ring-primary-400/40" />
-          <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-slate-950/70 px-3 py-1 text-[10px] font-bold text-white backdrop-blur">
+          <div className="absolute inset-0 rounded-md ring-2 ring-inset ring-primary-400/40" />
+          <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-neutral-950/70 px-3 py-1 text-[10px] font-bold text-white backdrop-blur">
             <ScanLine className="h-3 w-3" />
             VISION MODEL v2.4
           </span>
         </div>
         <div className="flex flex-col justify-center gap-4">
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+          <h3 className="text-lg font-bold text-neutral-900 dark:text-white">
             Analysing your photo…
           </h3>
           <div className="space-y-3">
@@ -561,7 +561,7 @@ function AnalysisProgressCard({
                       ? 'bg-emerald-500 text-white'
                       : i === stageIndex
                         ? 'bg-primary-500 text-white'
-                        : 'bg-slate-100 text-slate-400 dark:bg-white/10',
+                        : 'bg-neutral-100 text-neutral-400 dark:bg-white/10',
                   )}
                 >
                   {i < stageIndex ? <Check className="h-3.5 w-3.5" /> : i + 1}
@@ -570,7 +570,7 @@ function AnalysisProgressCard({
                   <p
                     className={cn(
                       'text-sm font-semibold',
-                      i <= stageIndex ? 'text-slate-700 dark:text-slate-200' : 'text-slate-400',
+                      i <= stageIndex ? 'text-neutral-700 dark:text-neutral-200' : 'text-neutral-400',
                     )}
                   >
                     {s.label}
@@ -584,7 +584,7 @@ function AnalysisProgressCard({
               </div>
             ))}
           </div>
-          <div className="h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-white/10">
+          <div className="h-2 overflow-hidden rounded-full bg-neutral-100 dark:bg-white/10">
             <motion.div
               animate={{ width: `${progress * 100}%` }}
               className="h-full rounded-full bg-gradient-to-r from-primary-500 to-emerald-500"
@@ -620,7 +620,7 @@ function AnalysisResultCard({
     <div className="space-y-4">
       <div className="card overflow-hidden p-6">
         <div className="grid gap-6 sm:grid-cols-2">
-          <div className="relative overflow-hidden rounded-2xl">
+          <div className="relative overflow-hidden rounded-md">
             <img
               src={showAnnotated && analysis.annotatedImage ? analysis.annotatedImage : photo}
               alt="Analysed evidence"
@@ -631,12 +631,12 @@ function AnalysisResultCard({
               ANALYSED
             </span>
             {canShowAnnotated ? (
-              <div className="absolute right-3 top-3 flex gap-1 rounded-lg bg-slate-950/70 p-1 backdrop-blur">
+              <div className="absolute right-3 top-3 flex gap-1 rounded-lg bg-neutral-950/70 p-1 backdrop-blur">
                 <button
                   onClick={() => setShowAnnotated(false)}
                   className={cn(
                     'rounded-md px-2 py-1 text-[10px] font-bold transition-colors',
-                    !showAnnotated ? 'bg-white text-slate-900' : 'text-white hover:text-white/80',
+                    !showAnnotated ? 'bg-white dark:bg-black text-neutral-900' : 'text-white hover:text-white/80',
                   )}
                 >
                   Original
@@ -645,7 +645,7 @@ function AnalysisResultCard({
                   onClick={() => setShowAnnotated(true)}
                   className={cn(
                     'rounded-md px-2 py-1 text-[10px] font-bold transition-colors',
-                    showAnnotated ? 'bg-white text-slate-900' : 'text-white hover:text-white/80',
+                    showAnnotated ? 'bg-white dark:bg-black text-neutral-900' : 'text-white hover:text-white/80',
                   )}
                 >
                   AI annotated
@@ -656,7 +656,7 @@ function AnalysisResultCard({
           <div className="space-y-4">
             <div>
               <div className="mb-1.5 flex items-center justify-between gap-2">
-                <label htmlFor="detected-category" className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                <label htmlFor="detected-category" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
                   Detected category
                 </label>
                 <span className="shrink-0 text-[10px] font-semibold text-amber-600 dark:text-amber-400">
@@ -668,7 +668,7 @@ function AnalysisResultCard({
                   id="detected-category"
                   value={analysis.category}
                   onChange={(e) => onCategoryChange(e.target.value as CategoryId)}
-                  className="w-full appearance-none rounded-xl border border-slate-300/80 bg-white py-2.5 pl-4 pr-10 text-sm font-semibold text-slate-800 transition-all focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-500/15 dark:border-white/15 dark:bg-slate-800 dark:text-slate-100"
+                  className="w-full appearance-none rounded-xl border border-neutral-300/80 bg-white dark:bg-black py-2.5 pl-4 pr-10 text-sm font-semibold text-neutral-800 transition-all focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-500/15 dark:border-white/15 dark:bg-neutral-800 dark:text-neutral-100"
                   aria-label="Detected category (editable)"
                 >
                   {availableCategories.map((c) => (
@@ -677,7 +677,7 @@ function AnalysisResultCard({
                     </option>
                   ))}
                 </select>
-                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -tranneutral-y-1/2 text-neutral-400" />
               </div>
             </div>
             <div>
@@ -687,7 +687,7 @@ function AnalysisResultCard({
                   {confidencePct}%
                 </span>
               </p>
-              <div className="h-2.5 overflow-hidden rounded-full bg-slate-100 dark:bg-white/10">
+              <div className="h-2.5 overflow-hidden rounded-full bg-neutral-100 dark:bg-white/10">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${confidencePct}%` }}
@@ -711,7 +711,7 @@ function AnalysisResultCard({
                         'flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-bold capitalize transition-all',
                         active
                           ? 'border-current bg-current/5'
-                          : 'border-slate-200 bg-white/70 text-slate-500 hover:border-slate-300 dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-400',
+                          : 'border-neutral-200 dark:border-neutral-800 bg-white/70 text-neutral-500 hover:border-neutral-300 dark:border-white/10 dark:bg-white/[0.04] dark:text-neutral-400',
                         meta.color,
                       )}
                     >
@@ -731,7 +731,7 @@ function AnalysisResultCard({
           <Sparkles className="h-4 w-4 text-primary-500" />
           AI description (editable in the next step)
         </p>
-        <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+        <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
           {analysis.description}
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
@@ -741,7 +741,7 @@ function AnalysisResultCard({
             </span>
           ))}
         </div>
-        <p className="mt-4 flex items-center gap-1.5 text-xs text-slate-400">
+        <p className="mt-4 flex items-center gap-1.5 text-xs text-neutral-400">
           <Crosshair className="h-3.5 w-3.5" />
           Analysed at{' '}
           {new Date(analysis.timestamp).toLocaleTimeString('en-IN', {
@@ -771,7 +771,7 @@ function AnalysisResultCard({
             </span>
           </p>
         ) : null}
-        <p className="mt-3 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+        <p className="mt-3 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-neutral-400">
           {analysis.engine === 'roboflow' ? (
             <>
               <ScanLine className="h-3.5 w-3.5 text-primary-500" />
@@ -867,7 +867,7 @@ function LocationStep({
     <div className="space-y-4">
       <div className="card overflow-hidden p-6">
         <div className="mb-4 flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
-          <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">
+          <p className="text-sm font-semibold text-neutral-600 dark:text-neutral-300">
             {coordinates
               ? 'Location set — you can still fine-tune the pin.'
               : 'Tap the map to drop a pin, or use your GPS.'}
@@ -904,7 +904,7 @@ function LocationStep({
               id="coords"
               readOnly
               value={coordinates ? formatCoords(coordinates) : 'Not set yet'}
-              className="input-base bg-slate-50 text-slate-500 dark:bg-white/[0.03]"
+              className="input-base bg-neutral-50 text-neutral-500 dark:bg-white/[0.03]"
             />
           </div>
           <div>
@@ -927,22 +927,22 @@ function LocationStep({
         {coordinates ? (
           <div
             className={cn(
-              'mt-4 flex items-start gap-3 rounded-2xl border p-4',
+              'mt-4 flex items-start gap-3 rounded-md border p-4',
               insideCampus
                 ? 'border-primary-300 bg-primary-500/5 dark:border-primary-400/30'
-                : 'border-slate-200 bg-white/60 dark:border-white/10 dark:bg-white/[0.02]',
+                : 'border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black dark:border-white/10 dark:bg-white/[0.02]',
             )}
           >
             <span
               className={cn(
                 'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl',
-                insideCampus ? 'bg-primary-500/10 text-primary-600 dark:text-primary-400' : 'bg-slate-400/10 text-slate-500',
+                insideCampus ? 'bg-primary-500/10 text-primary-600 dark:text-primary-400' : 'bg-neutral-400/10 text-neutral-500',
               )}
             >
               <MapPin className="h-4 w-4" />
             </span>
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-bold text-slate-800 dark:text-slate-200">
+              <p className="text-sm font-bold text-neutral-800 dark:text-neutral-200">
                 {insideCampus ? (
                   <>
                     📍 This location is inside <span className="text-primary-600 dark:text-primary-400">{CAMPUS_CONFIG.name}</span>
@@ -951,7 +951,7 @@ function LocationStep({
                   <>This location is outside the campus</>
                 )}
               </p>
-              <p className="mt-0.5 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+              <p className="mt-0.5 text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">
                 {insideCampus
                   ? 'It will be recommended to campus students & staff so they can act on it quickly. You can change this below.'
                   : 'It will be shared with the city community. Only reports inside the campus boundary are recommended to campus students & staff.'}
@@ -964,7 +964,7 @@ function LocationStep({
                       'rounded-lg border px-3 py-1.5 text-xs font-bold transition-all',
                       chosenScope === null
                         ? 'border-primary-500 bg-primary-500 text-white'
-                        : 'border-primary-300 bg-white text-primary-700 hover:bg-primary-500/10 dark:border-primary-400/40 dark:bg-transparent dark:text-primary-300',
+                        : 'border-primary-300 bg-white dark:bg-black text-primary-700 hover:bg-primary-500/10 dark:border-primary-400/40 dark:bg-transparent dark:text-primary-300',
                     )}
                   >
                     ✓ Mark as campus (recommended)
@@ -974,15 +974,15 @@ function LocationStep({
                     className={cn(
                       'rounded-lg border px-3 py-1.5 text-xs font-bold transition-all',
                       chosenScope === 'city'
-                        ? 'border-slate-700 bg-slate-700 text-white'
-                        : 'border-slate-300 bg-white text-slate-600 hover:bg-slate-100 dark:border-white/20 dark:bg-transparent dark:text-slate-300',
+                        ? 'border-neutral-700 bg-neutral-700 text-white'
+                        : 'border-neutral-300 bg-white dark:bg-black text-neutral-600 hover:bg-neutral-100 dark:border-white/20 dark:bg-transparent dark:text-neutral-300',
                     )}
                   >
                     Post to city instead
                   </button>
                 </div>
               ) : null}
-              <p className="mt-2 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+              <p className="mt-2 text-[11px] font-semibold uppercase tracking-wide text-neutral-400">
                 {finalScope === 'campus' ? 'Campus report' : 'City report'} · shared with{' '}
                 {finalScope === 'campus' ? 'campus students & staff' : 'the city community'}
               </p>
@@ -1065,15 +1065,15 @@ function DetailsStep({
         ) : null}
       </div>
 
-      <div className="flex items-center gap-3 rounded-2xl border border-primary-200/70 bg-primary-500/5 p-4 dark:border-primary-400/20">
+      <div className="flex items-center gap-3 rounded-md border border-primary-200/70 bg-primary-500/5 p-4 dark:border-primary-400/20">
         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary-500/10 text-primary-600 dark:text-primary-400">
           <BadgeCheck className="h-4 w-4" />
         </span>
         <div className="min-w-0">
-          <p className="text-sm font-bold text-slate-800 dark:text-slate-200">
+          <p className="text-sm font-bold text-neutral-800 dark:text-neutral-200">
             Reporting as {displayName(profile)}
           </p>
-          <p className="truncate text-xs text-slate-400">
+          <p className="truncate text-xs text-neutral-400">
             {profile?.email ?? ''} · your name is shared so staff can follow up with you.
           </p>
         </div>
@@ -1095,9 +1095,9 @@ function ReviewStep({ draft, finalScope }: { draft: ReportDraft; finalScope: 'ci
       {draft.photo ? (
         <div className="relative">
           <img src={draft.photo} alt="Report evidence" className="h-52 w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/60 to-transparent" />
           <div className="absolute bottom-3 left-3 flex gap-2">
-            <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-slate-700 backdrop-blur dark:bg-slate-900/80 dark:text-slate-200">
+            <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-neutral-700 backdrop-blur dark:bg-neutral-900/80 dark:text-neutral-200">
               {category.label}
             </span>
             <span
@@ -1114,39 +1114,39 @@ function ReviewStep({ draft, finalScope }: { draft: ReportDraft; finalScope: 'ci
       ) : null}
       <div className="space-y-4 p-6">
         <div>
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+          <h3 className="text-lg font-bold text-neutral-900 dark:text-white">
             {draft.title || 'Untitled report'}
           </h3>
-          <p className="mt-1.5 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+          <p className="mt-1.5 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
             {draft.description || 'No description provided.'}
           </p>
         </div>
-        <div className="grid gap-3 rounded-2xl bg-slate-50 p-4 text-sm sm:grid-cols-2 dark:bg-white/[0.04]">
-          <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
+        <div className="grid gap-3 rounded-md bg-neutral-50 p-4 text-sm sm:grid-cols-2 dark:bg-white/[0.04]">
+          <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-300">
             <MapPin className="h-4 w-4 text-primary-500" />
             {draft.locationName || 'Location not set'}
           </div>
-          <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
+          <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-300">
             <Crosshair className="h-4 w-4 text-primary-500" />
             {draft.coordinates ? formatCoords(draft.coordinates) : '—'}
           </div>
-          <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
+          <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-300">
             <BadgeCheck className="h-4 w-4 text-primary-500" />
             AI confidence {draft.analysis ? Math.round(draft.analysis.confidence * 100) : 0}%
           </div>
-          <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
+          <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-300">
             <Camera className="h-4 w-4 text-primary-500" />
             Photo attached
           </div>
-          <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
+          <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-300">
             <MapPin className="h-4 w-4 text-primary-500" />
             {finalScope === 'campus' ? 'Campus report' : 'City report'}
           </div>
         </div>
-        <p className="flex items-center gap-2 text-xs text-slate-400">
+        <p className="flex items-center gap-2 text-xs text-neutral-400">
           <ChevronDown className="h-3.5 w-3.5 rotate-180" />
           Submitting will publish this as a{' '}
-          <strong className="text-slate-500 dark:text-slate-400">pending</strong> report. Neighbours
+          <strong className="text-neutral-500 dark:text-neutral-400">pending</strong> report. Neighbours
           can confirm it to make it Verified.
         </p>
       </div>
@@ -1207,8 +1207,8 @@ function SuccessScreen({
         Submitted
       </p>
       <h2 className="heading-lg mt-2">Thank you! Your report is live. 🎉</h2>
-      <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-        Report <strong className="text-slate-700 dark:text-slate-200">{reportId}</strong> is now
+      <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
+        Report <strong className="text-neutral-700 dark:text-neutral-200">{reportId}</strong> is now
         pending community verification. Share it with neighbours so it can be confirmed and pushed
         to the ward dashboard.
       </p>
@@ -1263,11 +1263,11 @@ function PhoneCapture({ sessionId }: { sessionId: string }) {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-5 py-10">
       <div className="w-full max-w-sm text-center">
-        <span className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl brand-grad-1 text-white shadow-glow">
+        <span className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-md brand-grad-1 text-white shadow-glow">
           <Camera className="h-7 w-7" />
         </span>
-        <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white">Capture evidence</h1>
-        <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+        <h1 className="text-2xl font-extrabold text-neutral-900 dark:text-white">Capture evidence</h1>
+        <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
           This photo will be sent back to the desktop session you started.
         </p>
 
@@ -1280,12 +1280,12 @@ function PhoneCapture({ sessionId }: { sessionId: string }) {
             <img
               src={photo as string}
               alt="Captured evidence"
-              className="w-full rounded-2xl border border-emerald-400/40 shadow-glow-emerald"
+              className="w-full rounded-md border border-emerald-400/40 shadow-glow-emerald"
             />
-            <div className="rounded-2xl bg-emerald-500/10 p-4 text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+            <div className="rounded-md bg-emerald-500/10 p-4 text-sm font-semibold text-emerald-600 dark:text-emerald-400">
               ✓ Photo sent to your desktop session
             </div>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-neutral-400">
               You can close this tab now — the report wizard on your desktop is already analysing
               the photo.
             </p>
@@ -1296,7 +1296,7 @@ function PhoneCapture({ sessionId }: { sessionId: string }) {
         ) : (
           <div className="mt-8">
             <ImageUploader value={photo} onChange={handlePhoto} />
-            <p className="mt-4 text-[11px] leading-relaxed text-slate-400">
+            <p className="mt-4 text-[11px] leading-relaxed text-neutral-400">
               Tip: if a camera doesn't open, choose an image from your gallery — it works the same
               way.
             </p>

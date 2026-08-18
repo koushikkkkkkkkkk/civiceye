@@ -1,38 +1,20 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
-
-const tagline = "Stop guessing where campus issues are. See exactly what needs fixing, in real time.";
-
-const Word = ({ children, progress, range }: { children: string, progress: MotionValue<number>, range: [number, number] }) => {
-  const opacity = useTransform(progress, range, [0.25, 1]);
-  return (
-    <motion.span style={{ opacity }} className="mr-2 sm:mr-3 inline-block">
-      {children}
-    </motion.span>
-  );
-};
+import { AnimatedText } from '@/components/ui/AnimatedText';
 
 export function AmritaTaglineReveal() {
-  const container = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start 75%", "end 50%"]
-  });
-
-  const words = tagline.split(" ");
-
   return (
-    <section ref={container} className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
-      <div className="max-w-[680px] text-4xl sm:text-5xl font-semibold leading-tight text-center text-[#1d1d1f] dark:text-[#f5f5f7]">
-        {words.map((word, i) => {
-          const start = i / words.length;
-          const end = start + (1 / words.length);
-          return (
-            <Word key={i} progress={scrollYProgress} range={[start, end]}>
-              {word}
-            </Word>
-          );
-        })}
+    <section className="relative bg-[#FFF5F7] dark:bg-[#1A030A] border-t border-[#A51636]/10 dark:border-[#E52B50]/10 overflow-hidden">
+      {/* Central glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#A51636]/5 dark:bg-[#E52B50]/5 blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="relative z-10 mx-auto flex min-h-[70vh] max-w-[1920px] items-center justify-center px-6 py-28 sm:py-36">
+        <h2 
+          className="max-w-6xl text-center text-[56px] sm:text-[72px] lg:text-[88px] font-bold leading-[1.05] tracking-[-0.03em] text-neutral-900 dark:text-white"
+        >
+          <AnimatedText text="Stop guessing where campus issues are." /> <br className="hidden lg:block" />
+          <span className="font-serif italic font-normal text-[#A51636] dark:text-[#E52B50]">
+            <AnimatedText text="See exactly what needs fixing, in real time." />
+          </span>
+        </h2>
       </div>
     </section>
   );

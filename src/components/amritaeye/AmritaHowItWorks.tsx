@@ -18,72 +18,65 @@ const steps = [
   }
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { y: 64, filter: 'blur(8px)', opacity: 0 },
-  visible: {
-    y: 0,
-    filter: 'blur(0px)',
-    opacity: 1,
-    transition: {
-      duration: 0.8,
-      ease: [0.32, 0.72, 0, 1]
-    }
-  }
-};
-
 export function AmritaHowItWorks() {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={itemVariants}
-        className="text-center mb-16"
-      >
-        <h2 className="text-3xl sm:text-4xl font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] mb-4">
-          How it works
-        </h2>
-        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          Report issues in three simple steps. No complicated forms, no long emails.
-        </p>
-      </motion.div>
+    <section className="bg-[#FFF5F7] dark:bg-[#1A030A] py-24 sm:py-36 border-t border-[#A51636]/10 dark:border-[#E52B50]/10">
+      <div className="mx-auto max-w-[1920px] px-6 lg:px-12">
+        <div className="mb-24 md:mb-32">
+          <div className="mb-6 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#A51636] dark:text-[#E52B50]">
+            <span className="h-2 w-2 rounded-full bg-[#A51636] dark:bg-[#E52B50]" aria-hidden="true" />
+            <span>How it works</span>
+          </div>
+          <h2 className="max-w-4xl text-[48px] sm:text-[64px] font-bold leading-[1.05] tracking-[-0.03em] text-neutral-900 dark:text-white">
+            Report issues in <span className="font-serif italic font-normal text-[#A51636] dark:text-[#E52B50]">three simple steps.</span>
+          </h2>
+        </div>
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-8 relative"
-      >
-        <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-[2px] bg-gray-100 dark:bg-[#1F1F1F] -z-10" />
-        
-        {steps.map((step, index) => (
-          <motion.div key={index} variants={itemVariants} className="flex flex-col items-center text-center">
-            <div className="w-24 h-24 rounded-full bg-white dark:bg-black border-[6px] border-gray-50 dark:border-[#181818] shadow-sm flex items-center justify-center mb-6">
-              <span className="text-2xl font-bold font-mono text-[#A51636]">
-                {step.number}
-              </span>
-            </div>
-            <h3 className="text-xl font-semibold text-[#1d1d1f] dark:text-[#f5f5f7] mb-2">
-              {step.title}
-            </h3>
-            <p className="text-base text-gray-600 dark:text-gray-400">
-              {step.description}
-            </p>
-          </motion.div>
-        ))}
-      </motion.div>
+        <div className="relative border-t border-[#A51636]/10 dark:border-[#E52B50]/10">
+          {steps.map((step, index) => (
+            <motion.div 
+              key={index} 
+              className="grid grid-cols-1 gap-8 md:grid-cols-12 py-16 border-b border-[#A51636]/10 dark:border-[#E52B50]/10"
+              initial={{ opacity: 0, y: 100, scale: 0.9, filter: "blur(8px)", rotate: -2 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)", rotate: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ type: 'spring', duration: 1.5, bounce: 0.4 }}
+            >
+              <div className="md:col-span-5 md:sticky md:top-32 self-start relative">
+                <motion.span 
+                  className="text-[120px] lg:text-[180px] font-serif italic leading-none tracking-tighter text-[#A51636]/10 dark:text-[#E52B50]/10 select-none inline-block origin-left"
+                  initial={{ scale: 2, opacity: 0, filter: "blur(8px)", x: -100 }}
+                  whileInView={{ scale: 1, opacity: 1, filter: "blur(0px)", x: 0 }}
+                  transition={{ type: "spring", bounce: 0.5, duration: 1.5, delay: 0.2 }}
+                >
+                  {step.number}
+                </motion.span>
+                <div className="absolute inset-0 flex items-center pt-8 pl-4 lg:pt-16 lg:pl-8 pointer-events-none">
+                  <motion.h3 
+                    className="text-[28px] sm:text-[40px] font-bold tracking-tight text-neutral-900 dark:text-white leading-[1.1]"
+                    initial={{ x: 50, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ type: "spring", bounce: 0, duration: 1, delay: 0.4 }}
+                  >
+                    {step.title}
+                  </motion.h3>
+                </div>
+              </div>
+              
+              <div className="md:col-span-7 flex items-center">
+                <motion.p 
+                  className="text-[20px] sm:text-[24px] leading-[1.6] text-neutral-600 dark:text-neutral-400 max-w-2xl"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ type: "spring", bounce: 0, duration: 1, delay: 0.5 }}
+                >
+                  {step.description}
+                </motion.p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

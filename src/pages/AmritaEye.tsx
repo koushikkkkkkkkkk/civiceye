@@ -33,7 +33,7 @@ export function AmritaEye() {
   }, [campusReports]);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-[#1d1d1f] dark:text-[#f5f5f7] font-sans antialiased selection:bg-[#A51636] selection:text-white">
+    <div className="min-h-screen bg-[#FFF5F7] dark:bg-[#1A030A] text-neutral-900 dark:text-white font-sans antialiased selection:bg-primary-500 selection:text-white">
       <AmritaHero />
       <AmritaMapCanvas
         campusReports={campusReports}
