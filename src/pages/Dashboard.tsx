@@ -330,10 +330,10 @@ export function Dashboard() {
                       </span>
                       <span className="tabular-nums font-semibold text-neutral-500 dark:text-neutral-400">{c.count}</span>
                     </div>
-                    <div className="h-2 w-full overflow-hidden rounded-sm bg-white dark:bg-[#111113]">
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-white dark:bg-[#111113]">
                       <div
                         style={{ width: `${(c.count / maxCategory) * 100}%` }}
-                        className="h-full bg-neutral-900"
+                        className="h-full rounded-full bg-neutral-900 dark:bg-white"
                       />
                     </div>
                   </li>
@@ -341,7 +341,7 @@ export function Dashboard() {
               </ul>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm p-8 flex flex-col">
+            <motion.div variants={itemVariants} className="rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm p-8 flex flex-col">
               <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white leading-[1.3]">Severity distribution</h2>
               <p className="mt-1.5 text-sm text-neutral-500 dark:text-neutral-400">Risk-weighted view of the ward</p>
               <div className="mt-8 flex flex-col items-center gap-8 sm:flex-row sm:justify-center">
@@ -399,7 +399,7 @@ export function Dashboard() {
                         {SEVERITY_META[s.severity].label}
                       </span>
                       <span className="tabular-nums font-semibold text-neutral-500 dark:text-neutral-400">
-                        {s.count} \u00b7 {Math.round((s.count / totalSeverity) * 100)}%
+                        {s.count} · {Math.round((s.count / totalSeverity) * 100)}%
                       </span>
                     </li>
                   ))}
@@ -407,7 +407,7 @@ export function Dashboard() {
               </div>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm p-8 flex flex-col">
+            <motion.div variants={itemVariants} className="rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm p-8 flex flex-col">
               <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white leading-[1.3]">Weekly activity</h2>
               <p className="mt-1.5 text-sm text-neutral-500 dark:text-neutral-400">New reports per week (last 8 weeks)</p>
               <div className="mt-8 flex h-48 items-end gap-2 px-2">
@@ -419,7 +419,7 @@ export function Dashboard() {
                     <div
                       style={{ height: `${(w.count / maxTrend) * 100}%` }}
                       className={cn(
-                        'w-full max-w-[2rem] rounded-t-sm',
+                        'w-full max-w-[2rem] rounded-t-lg',
                         i === weeklyTrend.length - 1
                           ? 'bg-primary-500'
                           : 'bg-neutral-200'
@@ -439,12 +439,12 @@ export function Dashboard() {
 
           {/* Map Row */}
           <div className="grid gap-8 lg:grid-cols-3">
-            <div className="lg:col-span-2 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm p-8 flex flex-col">
+            <div className="lg:col-span-2 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm p-8 flex flex-col">
               <div>
                 <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white leading-[1.3]">Live ward map</h2>
                 <p className="mt-1.5 text-sm text-neutral-500 dark:text-neutral-400">Click a pin to inspect a report</p>
               </div>
-              <div className="mt-6 flex-1 h-[400px] w-full overflow-hidden rounded-md border border-neutral-200 dark:border-white/10 dark:border-white/10">
+              <div className="mt-6 flex-1 h-[400px] w-full overflow-hidden rounded-2xl border border-neutral-200 dark:border-white/10">
                 <MapView
                   reports={scopedReports}
                   selectedId={selectedId}
@@ -455,14 +455,14 @@ export function Dashboard() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm p-8 flex flex-col">
+            <div className="rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm p-8 flex flex-col">
               <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white leading-[1.3]">Hotspots</h2>
               <p className="mt-1.5 text-sm text-neutral-500 dark:text-neutral-400">Areas with the most reports</p>
               <ul className="mt-8 space-y-4">
                 {topAreas.map((a, i) => (
                   <li key={a.area} className="flex items-center justify-between gap-3 border-b border-neutral-100 pb-4 last:border-0 last:pb-0">
                     <div className="flex min-w-0 items-center gap-3">
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-sm bg-white dark:bg-[#111113] text-xs font-bold text-neutral-500 dark:text-neutral-400">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-neutral-100 dark:bg-[#111113] text-xs font-bold text-neutral-500 dark:text-neutral-400">
                         {i + 1}
                       </span>
                       <span className="truncate text-sm font-semibold text-neutral-900 dark:text-white">
@@ -483,14 +483,14 @@ export function Dashboard() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-8 rounded-sm bg-white/50 dark:bg-[#111113]/50 backdrop-blur-md border border-neutral-200 dark:border-white/10 dark:border-white/10 p-4 text-xs leading-relaxed text-neutral-600 dark:text-neutral-300">
+              <div className="mt-8 rounded-2xl bg-white/50 dark:bg-[#111113]/50 backdrop-blur-md border border-neutral-200 dark:border-white/10 p-4 text-xs leading-relaxed text-neutral-600 dark:text-neutral-300">
                 <strong>Tip:</strong> areas with high critical counts should get a site visit this week.
               </div>
             </div>
           </div>
 
           {/* Table Row */}
-          <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm p-8">
+          <div className="rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm p-8">
             <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white leading-[1.3]">Recent reports</h2>
             <p className="mt-1.5 text-sm text-neutral-500 dark:text-neutral-400">Latest citizen submissions awaiting action</p>
             
@@ -536,7 +536,7 @@ export function Dashboard() {
                             <img
                               src={r.image}
                               alt=""
-                              className="h-12 w-12 shrink-0 rounded-sm object-cover border border-neutral-200 dark:border-white/10 dark:border-white/10"
+                              className="h-12 w-12 shrink-0 rounded-2xl object-cover border border-neutral-200 dark:border-white/10"
                               loading="lazy"
                             />
                             <div className="min-w-0">
@@ -544,7 +544,7 @@ export function Dashboard() {
                                 {r.title}
                               </p>
                               <p className="mt-1 text-xs font-medium text-neutral-500 dark:text-neutral-400">
-                                {r.id} \u00b7 {timeAgo(r.date)}
+                                {r.id} · {timeAgo(r.date)}
                               </p>
                             </div>
                           </div>
@@ -555,13 +555,13 @@ export function Dashboard() {
                           </span>
                         </td>
                         <td className="py-4 pr-4">
-                          <span className={cn('inline-flex items-center rounded-sm px-2 py-0.5 text-xs font-bold uppercase tracking-wider', severity.bg, severity.color)}>
+                          <span className={cn('inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider', severity.bg, severity.color)}>
                             {severity.label}
                           </span>
                         </td>
                         <td className="py-4 pr-4">
                           <div className="flex flex-col items-start gap-1.5">
-                            <span className={cn('inline-flex items-center rounded-sm px-2 py-0.5 text-xs font-bold uppercase tracking-wider', status.bg, status.color)}>
+                            <span className={cn('inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider', status.bg, status.color)}>
                               {status.label}
                             </span>
                             {assigned ? (
@@ -579,7 +579,7 @@ export function Dashboard() {
                             <button
                               onClick={() => handleResolve(r)}
                               disabled={r.status === 'resolved'}
-                              className="flex h-8 items-center gap-1.5 rounded-sm border border-neutral-300  px-3 text-xs font-semibold text-neutral-900 dark:text-white transition-colors hover:border-neutral-900 hover:bg-white/50 dark:bg-[#111113]/50 backdrop-blur-md disabled:cursor-not-allowed disabled:opacity-40"
+                              className="flex h-8 items-center gap-1.5 rounded-full border border-neutral-300 px-4 text-xs font-semibold text-neutral-900 dark:text-white transition-colors hover:border-neutral-900 hover:bg-white/50 dark:bg-[#111113]/50 backdrop-blur-md disabled:cursor-not-allowed disabled:opacity-40 shadow-sm"
                               title="Mark resolved"
                             >
                               <Wrench className="h-3 w-3" />
@@ -588,10 +588,10 @@ export function Dashboard() {
                             <select
                               value={r.assignedTo ?? ''}
                               onChange={(e) => e.target.value && handleAssign(r, e.target.value)}
-                              className="h-8 rounded-sm border border-neutral-300  px-2 text-xs font-semibold text-neutral-900 dark:text-white focus:border-neutral-900 focus:outline-none disabled:opacity-40"
+                              className="h-8 rounded-full border border-neutral-300 px-3 text-xs font-semibold text-neutral-900 dark:text-white focus:border-neutral-900 focus:outline-none disabled:opacity-40"
                               aria-label={`Assign ${r.id}`}
                             >
-                              <option value="">Assign to\u2026</option>
+                              <option value="">Assign to…</option>
                               {authoritiesForScope(isAmrita ? 'campus' : 'city').map((a) => (
                                 <option key={a.id} value={a.id}>
                                   {a.name}
@@ -605,7 +605,7 @@ export function Dashboard() {
                                 );
                               }}
                               disabled={r.status === 'rejected' || r.status === 'resolved'}
-                              className="flex h-8 w-8 items-center justify-center rounded-sm text-neutral-400 transition-colors hover:bg-white dark:bg-[#111113] hover:text-neutral-900 dark:text-white disabled:opacity-40"
+                              className="flex h-8 w-8 items-center justify-center rounded-full text-neutral-400 transition-colors hover:bg-white dark:bg-[#111113] hover:text-neutral-900 dark:text-white disabled:opacity-40"
                               title="Reject report"
                               aria-label="Reject report"
                             >
@@ -630,7 +630,7 @@ export function Dashboard() {
             ) : null}
             <div className="mt-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-neutral-400">
               <MapIcon className="h-3.5 w-3.5" />
-              Showing the 10 most recent reports \u2014 all actions update the shared database instantly.
+              Showing the 10 most recent reports — all actions update the shared database instantly.
             </div>
           </div>
         </div>

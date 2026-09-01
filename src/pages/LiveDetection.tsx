@@ -190,7 +190,7 @@ export function LiveDetection() {
             transition={{ type: 'spring', duration: 0.45, bounce: 0, delay: 0.2 }}
             className="grid gap-8 lg:grid-cols-[1.6fr_1fr]"
           >
-            <div className="flex flex-col rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] overflow-hidden shadow-sm">
+            <div className="flex flex-col rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] overflow-hidden shadow-sm">
               <div className="relative aspect-[16/9] w-full bg-neutral-900">
                 {current?.image ? (
                   <img
@@ -201,7 +201,7 @@ export function LiveDetection() {
                 ) : (
                   <div className="flex h-full w-full items-center justify-center bg-neutral-900 text-neutral-500 dark:text-neutral-400">
                     <Camera className="h-10 w-10" />
-                    <p className="ml-2 text-sm font-semibold">No signal \u2014 scene clear</p>
+                    <p className="ml-2 text-sm font-semibold">No signal — scene clear</p>
                   </div>
                 )}
 
@@ -233,7 +233,7 @@ export function LiveDetection() {
                   <div
                     key={`${current.frameIndex}-${i}`}
                     className={cn(
-                      'absolute border-2 bg-black/30 backdrop-blur-[1px] transition-all',
+                      'absolute border-2 bg-black/30 backdrop-blur-[1px] transition-all rounded-lg',
                       BOX_COLORS[current.severity],
                     )}
                     style={{
@@ -243,7 +243,7 @@ export function LiveDetection() {
                       height: `${box.h}%`,
                     }}
                   >
-                    <span className="absolute -top-6 left-0 bg-black/80 px-1.5 py-0.5 text-xs font-bold tracking-wider text-white">
+                    <span className="absolute -top-6 left-0 rounded-full bg-black/80 px-2 py-0.5 text-xs font-bold tracking-wider text-white">
                       {box.label} {Math.round(box.confidence * 100)}%
                     </span>
                   </div>
@@ -251,46 +251,46 @@ export function LiveDetection() {
 
                 <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between gap-3">
                   {current?.category ? (
-                    <span className="flex items-center gap-2 bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white backdrop-blur border border-white/20">
+                    <span className="flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-white backdrop-blur border border-white/20">
                       <ShieldAlert className="h-3.5 w-3.5" />
-                      {categoryById(current.category).label} \u00b7 {Math.round(current.confidence * 100)}%
+                      {categoryById(current.category).label} · {Math.round(current.confidence * 100)}%
                     </span>
                   ) : (
-                    <span className="flex items-center gap-2 bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white backdrop-blur border border-white/20">
+                    <span className="flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-white backdrop-blur border border-white/20">
                       <CircleDot className="h-3.5 w-3.5" />
                       Scene clear
                     </span>
                   )}
-                  <span className="bg-black/60 px-3 py-1.5 text-xs font-semibold text-white/80 backdrop-blur">
+                  <span className="rounded-full bg-black/60 px-3.5 py-1.5 text-xs font-semibold text-white/80 backdrop-blur">
                     {camera.area}
                   </span>
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-4 border-t border-neutral-200 dark:border-white/10 dark:border-white/10  p-5">
+              <div className="flex flex-wrap items-center gap-4 border-t border-neutral-200 dark:border-white/10 p-5">
                 <select
                   value={camera.id}
                   onChange={(e) =>
                     setCamera(LIVE_CAMERAS.find((c) => c.id === e.target.value) ?? LIVE_CAMERAS[0])
                   }
-                  className="rounded-md border border-neutral-300  py-2 pl-3 pr-8 text-xs font-semibold text-neutral-900 dark:text-white focus:border-neutral-900 focus:outline-none"
+                  className="rounded-full border border-neutral-300 py-2 pl-4 pr-8 text-xs font-semibold text-neutral-900 dark:text-white focus:border-neutral-900 focus:outline-none"
                 >
                   {LIVE_CAMERAS.map((c) => (
                     <option key={c.id} value={c.id}>
-                      \ud83d\udcf7 {c.streamLabel} \u2014 {c.name}
+                      📷 {c.streamLabel} — {c.name}
                     </option>
                   ))}
                 </select>
 
-                <div className="flex items-center gap-1 rounded-md border border-neutral-200 dark:border-white/10 dark:border-white/10 bg-white/50 dark:bg-[#111113]/50 backdrop-blur-md p-1">
+                <div className="flex items-center gap-1 rounded-full border border-neutral-200 dark:border-white/10 bg-white/50 dark:bg-[#111113]/50 backdrop-blur-md p-1">
                   {SPEEDS.map((s, i) => (
                     <button
                       key={s.label}
                       onClick={() => setSpeedIdx(i)}
                       className={cn(
-                        'rounded px-3 py-1.5 text-xs font-semibold transition-colors',
+                        'rounded-full px-3 py-1.5 text-xs font-semibold transition-colors',
                         i === speedIdx
-                          ? ' text-neutral-900 dark:text-white shadow-sm border border-neutral-200 dark:border-white/10 dark:border-white/10'
+                          ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-sm'
                           : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:text-white',
                       )}
                     >
@@ -326,7 +326,7 @@ export function LiveDetection() {
                   >
                     <span
                       className={cn(
-                        'absolute top-0.5 h-4 w-4 rounded-full  transition-all',
+                        'absolute top-0.5 h-4 w-4 rounded-full bg-white transition-all',
                         autoReport ? 'left-[18px]' : 'left-0.5',
                       )}
                     />
@@ -335,14 +335,14 @@ export function LiveDetection() {
                 </div>
               </div>
 
-              <div className="border-t border-neutral-200 dark:border-white/10 dark:border-white/10 bg-white/50 dark:bg-[#111113]/50 backdrop-blur-md p-4 text-xs leading-5 text-neutral-500 dark:text-neutral-400">
+              <div className="border-t border-neutral-200 dark:border-white/10 bg-white/50 dark:bg-[#111113]/50 backdrop-blur-md p-4 text-xs leading-5 text-neutral-500 dark:text-neutral-400">
                 <FastForward className="mr-1 inline h-3.5 w-3.5 text-neutral-400" />
-                Detections above the threshold are auto-created as <strong>pending</strong> reports \u2014
+                Detections above the threshold are auto-created as <strong>pending</strong> reports —
                 neighbours confirm them to make them Verified, exactly like manual reports.
               </div>
             </div>
 
-            <div className="flex flex-col rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm overflow-hidden h-[730px]">
+            <div className="flex flex-col rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm overflow-hidden h-[730px]">
               <div className="flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 px-6 py-5">
                 <p className="text-base font-semibold text-neutral-900 dark:text-white">Detection feed</p>
                 <span className="bg-[#F5F5F7] dark:bg-[#0D0D0D] text-neutral-600 dark:text-neutral-300 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full">{feed.length} events</span>
@@ -406,7 +406,7 @@ export function LiveDetection() {
                         {event.reportId ? (
                           <Link
                             to={`/report/${event.reportId}`}
-                            className="mt-3 inline-flex items-center gap-1.5 border border-[#800020]/20 bg-primary-500/5 px-2 py-1 text-xs font-semibold text-[#800020] hover:bg-primary-500/10 rounded-sm"
+                            className="mt-3 inline-flex items-center gap-1.5 border border-[#800020]/20 bg-primary-500/5 px-3 py-1 text-xs font-semibold text-[#800020] hover:bg-primary-500/10 rounded-full"
                           >
                             <Zap className="h-3 w-3" />
                             Auto-report {event.reportId}
@@ -419,7 +419,7 @@ export function LiveDetection() {
                 </AnimatePresence>
                 {feed.length === 0 ? (
                   <div className="flex h-full items-center justify-center py-20 text-center text-sm font-medium text-neutral-400">
-                    Waiting for the first frame\u2026
+                    Waiting for the first frame…
                   </div>
                 ) : null}
               </div>

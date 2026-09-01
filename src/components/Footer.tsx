@@ -108,13 +108,13 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-sm border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 text-neutral-500 dark:text-neutral-400 transition-colors hover:border-neutral-900 hover:bg-white dark:bg-black hover:text-neutral-900 dark:text-white"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 text-neutral-500 dark:text-neutral-400 transition-colors hover:border-neutral-900 hover:bg-white dark:bg-black hover:text-neutral-900 dark:text-white shadow-sm"
                 >
                   <s.icon className="h-4 w-4" />
                 </a>
               ))}
             </div>
-            <p className="mt-8 rounded-sm bg-neutral-50 dark:bg-neutral-900 p-4 text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">
+            <p className="mt-8 rounded-2xl bg-neutral-50 dark:bg-neutral-900 p-4 text-xs leading-relaxed text-neutral-500 dark:text-neutral-400 border border-neutral-200/50 dark:border-white/5">
               <strong>Prototype build:</strong> all data shown is simulated for demo purposes.
             </p>
           </div>
@@ -122,7 +122,7 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col items-center justify-between gap-6 border-t border-neutral-200 dark:border-neutral-800 pt-8 sm:flex-row">
           <p className="text-xs font-medium text-neutral-500 dark:text-neutral-400">
-            \u00a9 {new Date().getFullYear()} {meta.appName}. All rights reserved. Built in
+            © {new Date().getFullYear()} {meta.appName}. All rights reserved. Built in
             {isAmrita ? ' Amritapuri & Bengaluru' : ' Bengaluru'}.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-neutral-500 dark:text-neutral-400">
@@ -138,7 +138,7 @@ export function Footer() {
             >
               Terms of Service
             </Link>
-            <span className="flex items-center gap-1.5 bg-neutral-100 dark:bg-neutral-800 px-2.5 py-1 rounded-sm">
+            <span className="flex items-center gap-1.5 bg-neutral-100 dark:bg-neutral-800 px-3 py-1 rounded-full text-xs font-semibold">
               Made for citizens
               <Heart className="h-3 w-3 text-neutral-900 dark:text-white" />
             </span>

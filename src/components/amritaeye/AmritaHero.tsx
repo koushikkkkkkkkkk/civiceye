@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { AnimatedText } from '@/components/ui/AnimatedText';
+import { AsciiAnimation } from '@/components/AsciiAnimation';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -22,7 +23,8 @@ const itemVariants = {
 
 export function AmritaHero() {
   return (
-    <section aria-labelledby="amrita-hero-title" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-[#FFF5F7] dark:bg-[#1A030A]">
+    <section id="hero" aria-labelledby="amrita-hero-title" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-[#FFF5F7] dark:bg-[#1A030A]">
+      <AsciiAnimation />
       <motion.div 
         className="mx-auto max-w-[1920px] px-6 lg:px-12 flex flex-col items-center text-center z-10 relative"
         variants={containerVariants}

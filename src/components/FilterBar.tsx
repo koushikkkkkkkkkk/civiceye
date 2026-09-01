@@ -35,7 +35,7 @@ export function FilterBar({ filters, onChange, className }: FilterBarProps) {
       {/* Scope — campus vs city */}
       <div>
         <p className="mb-2 text-xs font-semibold text-slate-500 dark:text-slate-400">Location</p>
-        <div className="grid grid-cols-3 gap-1 rounded-xl bg-slate-100 p-1 dark:bg-white/10">
+        <div className="grid grid-cols-3 gap-1 rounded-full bg-slate-100 p-1 dark:bg-white/10">
           {(
             [
               ['all', 'All', MapPin],
@@ -48,7 +48,7 @@ export function FilterBar({ filters, onChange, className }: FilterBarProps) {
               onClick={() => update({ scope: key as ScopeFilter })}
               aria-pressed={filters.scope === key}
               className={cn(
-                'flex items-center justify-center gap-1.5 rounded-lg py-1.5 text-xs font-bold transition-all',
+                'flex items-center justify-center gap-1.5 rounded-full py-1.5 text-xs font-bold transition-all',
                 filters.scope === key
                   ? 'bg-white text-primary-700 shadow-softer dark:bg-slate-700 dark:text-white'
                   : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200',
@@ -146,7 +146,7 @@ export function FilterBar({ filters, onChange, className }: FilterBarProps) {
       </div>
 
       {/* Verified only */}
-      <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 bg-white/70 px-4 py-3 transition-colors hover:border-primary-300 dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-primary-400/40">
+      <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-slate-200 bg-white/70 px-4 py-3 transition-colors hover:border-primary-300 dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-primary-400/40">
         <button
           role="switch"
           aria-checked={filters.verifiedOnly}

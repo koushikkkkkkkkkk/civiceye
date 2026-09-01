@@ -295,7 +295,7 @@ function ReportWizard() {
           </p>
         </div>
 
-        <div className="mb-8 overflow-x-auto rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black p-4 backdrop-blur dark:border-white/5 dark:bg-white/[0.02]">
+        <div className="mb-8 overflow-x-auto rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black p-4 backdrop-blur dark:border-white/5 dark:bg-white/[0.02] shadow-sm">
           <Stepper steps={STEPS} current={step} onStepClick={(i) => i < step && setStep(i)} />
         </div>
 
@@ -343,7 +343,7 @@ function ReportWizard() {
                           onClick={() => update({ category: c.id })}
                           aria-pressed={active}
                           className={cn(
-                            'relative flex items-start gap-3 rounded-md border p-4 text-left transition-all',
+                            'relative flex items-start gap-3 rounded-2xl border p-4 text-left transition-all',
                             active
                               ? 'border-primary-500 bg-primary-500/10 shadow-glow'
                               : 'border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black hover:border-primary-300 dark:border-white/10 dark:bg-white/[0.04]',
@@ -428,7 +428,7 @@ function ReportWizard() {
                 {/* Block irrelevant photos: if analysis ran but found no
                     real issue, warn + keep Continue disabled. */}
                 {step === 2 && analysis && !isRelevantAnalysis(analysis) ? (
-                  <div className="mt-4 flex items-start gap-3 rounded-md border border-rose-300/70 bg-rose-50 p-4 dark:border-rose-500/30 dark:bg-rose-500/10">
+                  <div className="mt-4 flex items-start gap-3 rounded-2xl border border-rose-300/70 bg-rose-50 p-4 dark:border-rose-500/30 dark:bg-rose-500/10">
                     <Camera className="mt-0.5 h-5 w-5 shrink-0 text-rose-500" />
                     <div>
                       <p className="text-sm font-bold text-rose-800 dark:text-rose-300">
@@ -446,7 +446,7 @@ function ReportWizard() {
                           setStep(1);
                           setAnalysisProgress(0);
                         }}
-                        className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-rose-600 px-3 py-1.5 text-xs font-bold text-white transition-colors hover:bg-rose-500"
+                        className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-4 py-2 text-xs font-bold text-white transition-colors hover:bg-rose-500 shadow-sm"
                       >
                         <RefreshCw className="h-3.5 w-3.5" />
                         Retake photo
@@ -534,14 +534,14 @@ function AnalysisProgressCard({
   return (
     <div className="card overflow-hidden p-6">
       <div className="grid gap-6 sm:grid-cols-2">
-        <div className="relative overflow-hidden rounded-md">
+        <div className="relative overflow-hidden rounded-2xl">
           <img src={photo} alt="Being analysed" className="aspect-[16/9] w-full object-cover" />
           <motion.div
             animate={{ top: ['0%', '92%', '0%'] }}
             transition={{ duration: 2.2, repeat: Number.POSITIVE_INFINITY, ease: 'linear' }}
             className="absolute left-0 right-0 h-10 bg-gradient-to-b from-transparent via-primary-400/40 to-transparent"
           />
-          <div className="absolute inset-0 rounded-md ring-2 ring-inset ring-primary-400/40" />
+          <div className="absolute inset-0 rounded-2xl ring-2 ring-inset ring-primary-400/40" />
           <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-neutral-950/70 px-3 py-1 text-xs font-bold text-white backdrop-blur">
             <ScanLine className="h-3 w-3" />
             VISION MODEL v2.4
@@ -620,7 +620,7 @@ function AnalysisResultCard({
     <div className="space-y-4">
       <div className="card overflow-hidden p-6">
         <div className="grid gap-6 sm:grid-cols-2">
-          <div className="relative overflow-hidden rounded-md">
+          <div className="relative overflow-hidden rounded-2xl">
             <img
               src={showAnnotated && analysis.annotatedImage ? analysis.annotatedImage : photo}
               alt="Analysed evidence"
@@ -631,11 +631,11 @@ function AnalysisResultCard({
               ANALYSED
             </span>
             {canShowAnnotated ? (
-              <div className="absolute right-3 top-3 flex gap-1 rounded-lg bg-neutral-950/70 p-1 backdrop-blur">
+              <div className="absolute right-3 top-3 flex gap-1 rounded-full bg-neutral-950/70 p-1 backdrop-blur">
                 <button
                   onClick={() => setShowAnnotated(false)}
                   className={cn(
-                    'rounded-md px-2 py-1 text-xs font-bold transition-colors',
+                    'rounded-full px-3 py-1 text-xs font-bold transition-colors',
                     !showAnnotated ? 'bg-white dark:bg-black text-neutral-900' : 'text-white hover:text-white/80',
                   )}
                 >
@@ -644,7 +644,7 @@ function AnalysisResultCard({
                 <button
                   onClick={() => setShowAnnotated(true)}
                   className={cn(
-                    'rounded-md px-2 py-1 text-xs font-bold transition-colors',
+                    'rounded-full px-3 py-1 text-xs font-bold transition-colors',
                     showAnnotated ? 'bg-white dark:bg-black text-neutral-900' : 'text-white hover:text-white/80',
                   )}
                 >
@@ -927,7 +927,7 @@ function LocationStep({
         {coordinates ? (
           <div
             className={cn(
-              'mt-4 flex items-start gap-3 rounded-md border p-4',
+              'mt-4 flex items-start gap-3 rounded-2xl border p-4',
               insideCampus
                 ? 'border-primary-300 bg-primary-500/5 dark:border-primary-400/30'
                 : 'border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black dark:border-white/10 dark:bg-white/[0.02]',
@@ -990,7 +990,7 @@ function LocationStep({
           </div>
         ) : null}
 
-        <p className="mt-3 flex items-start gap-2 rounded-xl border border-amber-200/70 bg-amber-50 p-3 text-xs leading-relaxed text-amber-800 dark:border-amber-500/20 dark:bg-amber-500/10 dark:text-amber-300">
+        <p className="mt-3 flex items-start gap-2 rounded-2xl border border-amber-200/70 bg-amber-50 p-3 text-xs leading-relaxed text-amber-800 dark:border-amber-500/20 dark:bg-amber-500/10 dark:text-amber-300">
           <Info className="mt-0.5 h-4 w-4 shrink-0" />
           <span>
             <strong>Location disclaimer:</strong> auto-detected GPS is accurate to roughly{' '}
@@ -1065,8 +1065,8 @@ function DetailsStep({
         ) : null}
       </div>
 
-      <div className="flex items-center gap-3 rounded-md border border-primary-200/70 bg-primary-500/5 p-4 dark:border-primary-400/20">
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary-500/10 text-primary-600 dark:text-primary-400">
+      <div className="flex items-center gap-3 rounded-2xl border border-primary-200/70 bg-primary-500/5 p-4 dark:border-primary-400/20">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-primary-500/10 text-primary-600 dark:text-primary-400">
           <BadgeCheck className="h-4 w-4" />
         </span>
         <div className="min-w-0">
@@ -1121,7 +1121,7 @@ function ReviewStep({ draft, finalScope }: { draft: ReportDraft; finalScope: 'ci
             {draft.description || 'No description provided.'}
           </p>
         </div>
-        <div className="grid gap-3 rounded-md bg-neutral-50 p-4 text-sm sm:grid-cols-2 dark:bg-white/[0.04]">
+        <div className="grid gap-3 rounded-2xl bg-neutral-50 p-4 text-sm sm:grid-cols-2 dark:bg-white/[0.04]">
           <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-300">
             <MapPin className="h-4 w-4 text-primary-500" />
             {draft.locationName || 'Location not set'}
@@ -1263,7 +1263,7 @@ function PhoneCapture({ sessionId }: { sessionId: string }) {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-5 py-10">
       <div className="w-full max-w-sm text-center">
-        <span className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-md brand-grad-1 text-white shadow-glow">
+        <span className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl brand-grad-1 text-white shadow-glow">
           <Camera className="h-7 w-7" />
         </span>
         <h1 className="text-2xl font-extrabold text-neutral-900 dark:text-white">Capture evidence</h1>
@@ -1280,9 +1280,9 @@ function PhoneCapture({ sessionId }: { sessionId: string }) {
             <img
               src={photo as string}
               alt="Captured evidence"
-              className="w-full rounded-md border border-emerald-400/40 shadow-glow-emerald"
+              className="w-full rounded-2xl border border-emerald-400/40 shadow-glow-emerald"
             />
-            <div className="rounded-md bg-emerald-500/10 p-4 text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+            <div className="rounded-2xl bg-emerald-500/10 p-4 text-sm font-semibold text-emerald-600 dark:text-emerald-400">
               ✓ Photo sent to your desktop session
             </div>
             <p className="text-xs text-neutral-400">

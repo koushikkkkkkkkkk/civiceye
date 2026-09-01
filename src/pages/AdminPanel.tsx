@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCheck, Flag, Inbox, School, ShieldCheck, Trash2, UserRound, Users } from 'lucide-react';
+import { CheckCheck, Flag, Inbox, Layers, School, ShieldCheck, Trash2, UserRound, Users } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useBrand } from '@/hooks/useBrand';
 import { useToast } from '@/hooks/useToast';
@@ -66,7 +66,7 @@ export function AdminPanel() {
   if (!isAdmin) {
     return (
       <div className="bg-white dark:bg-black min-h-screen py-32 text-center">
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-sm bg-[#f5f5f5] dark:bg-[#111] text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800">
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#f5f5f5] dark:bg-[#111] text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800 shadow-sm">
           <ShieldCheck className="h-8 w-8" />
         </div>
         <h1 className="mt-8 text-2xl font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white">
@@ -76,7 +76,7 @@ export function AdminPanel() {
           This panel is for verified {brand === 'amrita' ? 'Amrita campus' : 'city'} staff
           members. If you're a teacher or listed admin, sign in with that account.
         </p>
-        <Link to="/login" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-[#800020] px-8 text-sm font-semibold text-white transition-colors hover:bg-[#600018] active:scale-[0.98] mt-8">
+        <Link to="/login" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#800020] px-8 text-sm font-semibold text-white transition-colors hover:bg-[#600018] active:scale-[0.98] mt-8 shadow-md">
           Sign in as staff
         </Link>
       </div>
@@ -136,7 +136,7 @@ export function AdminPanel() {
           flags that are unfounded.
         </p>
 
-        <div className="mt-12 grid grid-cols-2 gap-px border border-neutral-200 dark:border-neutral-800 bg-neutral-200 rounded-md overflow-hidden lg:grid-cols-4">
+        <div className="mt-12 grid grid-cols-2 gap-px border border-neutral-200 dark:border-neutral-800 bg-neutral-200 rounded-3xl overflow-hidden lg:grid-cols-4 shadow-sm">
           <div className="bg-white dark:bg-black p-6 sm:p-8 flex flex-col space-y-3">
             <div className="text-4xl font-semibold tracking-[-0.03em] text-neutral-900 dark:text-white tabular-nums">
               {flags.length}
@@ -165,14 +165,14 @@ export function AdminPanel() {
           {flagsLoading ? (
             <div className="space-y-4">
               {Array.from({ length: 2 }, (_, i) => (
-                <div key={i} className="rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black p-6">
-                  <div className="h-4 w-40 rounded bg-neutral-100 dark:bg-neutral-800" />
-                  <div className="mt-4 h-4 w-full rounded bg-neutral-100 dark:bg-neutral-800" />
+                <div key={i} className="rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black p-6">
+                  <div className="h-4 w-40 rounded-full bg-neutral-100 dark:bg-neutral-800" />
+                  <div className="mt-4 h-4 w-full rounded-full bg-neutral-100 dark:bg-neutral-800" />
                 </div>
               ))}
             </div>
           ) : flags.length === 0 ? (
-            <div className="flex flex-col items-center justify-center rounded-md border border-dashed border-neutral-300 py-16 text-center">
+            <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-neutral-300 py-16 text-center">
               <Inbox className="mb-4 h-8 w-8 text-neutral-300" />
               <p className="text-sm font-semibold text-neutral-900 dark:text-white">
                 No flags right now
@@ -189,23 +189,23 @@ export function AdminPanel() {
                 return (
                   <div
                     key={flag.id}
-                    className="flex flex-col gap-6 rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black p-6 sm:flex-row sm:items-start"
+                    className="flex flex-col gap-6 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black p-6 sm:flex-row sm:items-start"
                   >
                     {rep?.photo_url ? (
                       <img
                         src={rep.photo_url}
                         alt=""
-                        className="h-24 w-24 shrink-0 rounded-sm object-cover border border-neutral-200 dark:border-neutral-800"
+                        className="h-24 w-24 shrink-0 rounded-2xl object-cover border border-neutral-200 dark:border-neutral-800"
                         loading="lazy"
                       />
                     ) : null}
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-3">
-                        <span className="rounded-sm bg-red-50 px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-red-700 border border-red-100">
+                        <span className="rounded-full bg-red-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-red-700 border border-red-100">
                           {flag.reason}
                         </span>
                         <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">
-                          by {flag.flaggerEmail} \u00b7 {timeAgo(flag.date)}
+                          by {flag.flaggerEmail} · {timeAgo(flag.date)}
                         </span>
                       </div>
                       <Link
@@ -216,12 +216,12 @@ export function AdminPanel() {
                       </Link>
                       {cat ? (
                         <p className="mt-1.5 text-xs font-medium text-neutral-500 dark:text-neutral-400">
-                          {cat.label} \u00b7 {rep?.location_name ?? ''} \u00b7 by {rep?.author_name}
+                          {cat.label} · {rep?.location_name ?? ''} · by {rep?.author_name}
                         </p>
                       ) : null}
                       {flag.note ? (
-                        <p className="mt-4 rounded-sm bg-neutral-50 dark:bg-neutral-900 p-4 text-xs italic leading-relaxed text-neutral-600 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-800">
-                          \u201c{flag.note}\u201d
+                        <p className="mt-4 rounded-2xl bg-neutral-50 dark:bg-neutral-900 p-4 text-xs italic leading-relaxed text-neutral-600 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-800">
+                          “{flag.note}”
                         </p>
                       ) : null}
                     </div>
@@ -229,7 +229,7 @@ export function AdminPanel() {
                       <button
                         onClick={() => void handleTakeDown(flag)}
                         disabled={busy === flag.id}
-                        className="flex min-h-9 items-center justify-center gap-2 rounded-sm border border-neutral-300 bg-white dark:bg-black px-4 text-xs font-semibold text-neutral-900 dark:text-white transition-colors hover:border-neutral-900 hover:bg-neutral-50 dark:bg-neutral-900 active:scale-[0.98] disabled:opacity-40"
+                        className="flex min-h-9 items-center justify-center gap-2 rounded-full border border-neutral-300 bg-white dark:bg-black px-5 text-xs font-semibold text-neutral-900 dark:text-white transition-colors hover:border-neutral-900 hover:bg-neutral-50 dark:bg-neutral-900 active:scale-[0.98] disabled:opacity-40 shadow-sm"
                       >
                         <Trash2 className="h-3.5 w-3.5" />
                         Take down
@@ -237,7 +237,7 @@ export function AdminPanel() {
                       <button
                         onClick={() => void handleDismiss(flag.id)}
                         disabled={busy === flag.id}
-                        className="flex min-h-9 items-center justify-center gap-2 rounded-sm border border-neutral-300 bg-white dark:bg-black px-4 text-xs font-semibold text-neutral-900 dark:text-white transition-colors hover:border-neutral-900 hover:bg-neutral-50 dark:bg-neutral-900 active:scale-[0.98] disabled:opacity-40"
+                        className="flex min-h-9 items-center justify-center gap-2 rounded-full border border-neutral-300 bg-white dark:bg-black px-5 text-xs font-semibold text-neutral-900 dark:text-white transition-colors hover:border-neutral-900 hover:bg-neutral-50 dark:bg-neutral-900 active:scale-[0.98] disabled:opacity-40 shadow-sm"
                       >
                         <CheckCheck className="h-3.5 w-3.5" />
                         Dismiss
@@ -253,20 +253,16 @@ export function AdminPanel() {
         {/* Scope manager */}
         <div className="mt-20">
           <h2 className="mb-3 flex items-center gap-2 text-lg font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white">
-            <School className="h-5 w-5 text-neutral-900 dark:text-white" />
-            Mark reports as campus
+            <Layers className="h-5 w-5 text-neutral-900 dark:text-white" />
+            Switch scope (Campus vs City)
           </h2>
-          <p className="mb-6 text-sm text-neutral-500 dark:text-neutral-400">
-            Move reports between the city feed (CivicEye) and the campus feed (Amrita Eye). Campus
-            reports are only visible to Amrita accounts.
-          </p>
-          <div className="rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black overflow-hidden shadow-sm">
+          <div className="rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black overflow-hidden shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full min-w-[560px] text-left text-sm">
                 <thead>
                   <tr className="border-b border-neutral-200 dark:border-neutral-800 bg-[#f5f5f5] dark:bg-[#111] text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
                     <th className="py-4 pl-6 pr-4">Report</th>
-                    <th className="py-4 pr-4">Scope</th>
+                    <th className="py-4 pr-4">Current scope</th>
                     <th className="py-4 pr-6">Action</th>
                   </tr>
                 </thead>
@@ -280,7 +276,7 @@ export function AdminPanel() {
                   ) : reports.length === 0 ? (
                     <tr>
                       <td colSpan={3} className="py-12 text-center text-sm font-medium text-neutral-500 dark:text-neutral-400">
-                        No reports yet.
+                        No reports in database.
                       </td>
                     </tr>
                   ) : (
@@ -297,13 +293,13 @@ export function AdminPanel() {
                               {r.title}
                             </p>
                             <p className="mt-1 text-xs font-medium text-neutral-500 dark:text-neutral-400">
-                              {r.author} \u00b7 {r.locationName}
+                              {r.author} · {r.locationName}
                             </p>
                           </td>
                           <td className="py-4 pr-4">
                             <span
                               className={cn(
-                                'inline-flex items-center rounded-sm px-2 py-0.5 text-xs font-bold uppercase tracking-wider',
+                                'inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider',
                                 r.scope === 'campus'
                                   ? 'bg-[#800020]/10 text-[#800020]'
                                   : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300',
@@ -317,7 +313,7 @@ export function AdminPanel() {
                               onClick={() => void handleScope(r.id, r.scope === 'campus' ? 'city' : 'campus')}
                               disabled={busy === `scope-${r.id}`}
                               className={cn(
-                                'flex min-h-8 items-center justify-center gap-2 rounded-sm border px-3 text-xs font-semibold transition-colors active:scale-[0.98] disabled:opacity-40',
+                                'flex min-h-8 items-center justify-center gap-2 rounded-full border px-4 text-xs font-semibold transition-colors active:scale-[0.98] disabled:opacity-40 shadow-sm',
                                 r.scope === 'campus'
                                   ? 'border-neutral-300 bg-white dark:bg-black text-neutral-900 dark:text-white hover:border-neutral-900'
                                   : 'border-[#800020] bg-[#800020] text-white hover:bg-[#600018]',
@@ -342,7 +338,7 @@ export function AdminPanel() {
             <Users className="h-5 w-5 text-neutral-900 dark:text-white" />
             Reporters &amp; details
           </h2>
-          <div className="rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black overflow-hidden shadow-sm">
+          <div className="rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black overflow-hidden shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full min-w-[560px] text-left text-sm">
                 <thead>
@@ -357,7 +353,7 @@ export function AdminPanel() {
                   {loading ? (
                     <tr>
                       <td colSpan={4} className="py-4 px-6">
-                        <div className="h-8 w-full rounded bg-neutral-100 dark:bg-neutral-800" />
+                        <div className="h-8 w-full rounded-full bg-neutral-100 dark:bg-neutral-800" />
                       </td>
                     </tr>
                   ) : reports.length === 0 ? (
@@ -374,19 +370,19 @@ export function AdminPanel() {
                       >
                         <td className="py-4 pl-6 pr-4">
                           <span className="flex items-center gap-3 font-semibold text-neutral-900 dark:text-white">
-                            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm bg-neutral-100 dark:bg-neutral-800 text-xs font-bold text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800">
+                            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 text-xs font-bold text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800">
                               {r.author[0]?.toUpperCase() ?? '?'}
                             </span>
                             {r.author}
                           </span>
                         </td>
                         <td className="py-4 pr-4 text-xs font-medium text-neutral-500 dark:text-neutral-400">
-                          {r.userId ? (profileByUserId.get(r.userId)?.email ?? '\u2014') : '\u2014'}
+                          {r.userId ? (profileByUserId.get(r.userId)?.email ?? '—') : '—'}
                         </td>
                         <td className="py-4 pr-4">
                           <span
                             className={cn(
-                              'inline-flex items-center rounded-sm px-2 py-0.5 text-xs font-bold uppercase tracking-wider',
+                              'inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider',
                               r.scope === 'campus'
                                 ? 'bg-[#800020]/10 text-[#800020]'
                                 : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300',
@@ -407,7 +403,7 @@ export function AdminPanel() {
           </div>
           <p className="mt-4 flex items-center gap-2 text-xs font-medium text-neutral-500 dark:text-neutral-400">
             <UserRound className="h-3.5 w-3.5 text-neutral-400" />
-            Reporter emails come from their profiles \u2014 visible to staff for follow-ups.
+            Reporter emails come from their profiles — visible to staff for follow-ups.
           </p>
         </div>
       </div>

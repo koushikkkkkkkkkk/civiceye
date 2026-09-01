@@ -144,7 +144,7 @@ export function Community() {
                 setFilters((f) => ({ ...f, search }));
                 resetPagination();
               }}
-              placeholder="Search reports, areas, categories\u2026"
+              placeholder="Search reports, areas, categories…"
               className="flex-1"
             />
             <div className="flex items-center gap-2">
@@ -157,7 +157,7 @@ export function Community() {
                     resetPagination();
                   }}
                   aria-label="Sort reports"
-                  className="w-full appearance-none rounded-md border border-neutral-300  py-3 pl-10 pr-10 text-sm font-semibold text-neutral-900 dark:text-white focus:border-neutral-900 focus:outline-none focus:ring-1 focus:ring-neutral-900 sm:w-48"
+                  className="w-full appearance-none rounded-full border border-neutral-300 py-3 pl-10 pr-10 text-sm font-semibold text-neutral-900 dark:text-white focus:border-neutral-900 focus:outline-none focus:ring-1 focus:ring-neutral-900 sm:w-48 shadow-sm"
                 >
                   {SORTS.map((s) => (
                     <option key={s.key} value={s.key}>
@@ -165,7 +165,7 @@ export function Community() {
                     </option>
                   ))}
                 </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-neutral-500 dark:text-neutral-400">
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-neutral-500 dark:text-neutral-400">
                   <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
                     <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path>
                   </svg>
@@ -173,7 +173,7 @@ export function Community() {
               </div>
               <button
                 onClick={() => setFiltersOpen(true)}
-                className="flex h-[46px] items-center gap-2 rounded-md border border-neutral-300  px-4 text-sm font-semibold text-neutral-900 dark:text-white lg:hidden"
+                className="flex h-[46px] items-center gap-2 rounded-full border border-neutral-300 px-5 text-sm font-semibold text-neutral-900 dark:text-white lg:hidden shadow-sm"
                 aria-label="Open filters"
               >
                 <ListFilter className="h-4 w-4" />
@@ -182,7 +182,7 @@ export function Community() {
           </div>
 
           {/* Desktop filter bar */}
-          <div className="mb-12 hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-[#F5F5F7]/50 dark:bg-[#161618] p-8 shadow-sm lg:block">
+          <div className="mb-12 hidden rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-[#F5F5F7]/50 dark:bg-[#161618] p-8 shadow-sm lg:block">
             <FilterBar
               filters={filters}
               onChange={(f) => {

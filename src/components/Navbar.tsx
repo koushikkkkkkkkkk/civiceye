@@ -158,17 +158,17 @@ export function Navbar() {
                     {initials}
                   </button>
                   {profileOpen && (
-                    <div className="absolute right-0 top-12 z-50 w-56 overflow-hidden rounded-xl border border-neutral-200/50 bg-white/80 p-2 shadow-sm backdrop-blur-md dark:border-neutral-800/50 dark:bg-black/80">
+                    <div className="absolute right-0 top-12 z-50 w-56 overflow-hidden rounded-2xl border border-neutral-200/50 bg-white/95 p-2 shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-[#121214]/95">
                       <div className="px-3 py-2">
                         <p className="truncate text-sm font-semibold text-neutral-900 dark:text-white">
                           {profile?.full_name || 'Account'}
                         </p>
                         <p className="truncate text-xs text-neutral-500 dark:text-neutral-400">{user.email}</p>
                       </div>
-                      <div className="my-1 border-t border-neutral-100 dark:border-neutral-800" />
+                      <div className="my-1 border-t border-neutral-100 dark:border-white/[0.08]" />
                       <button
                         onClick={() => void handleSignOut()}
-                        className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:hover:text-white"
+                        className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white"
                       >
                         <LogOut className="h-4 w-4" />
                         Sign out
@@ -177,7 +177,7 @@ export function Navbar() {
                   )}
                 </div>
               ) : (
-                <Link to="/login" className="hidden lg:flex px-4 py-1.5 text-xs font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">
+                <Link to="/login" className="hidden lg:flex rounded-full px-4 py-1.5 text-xs font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">
                   Sign in
                 </Link>
               )}
@@ -211,7 +211,7 @@ export function Navbar() {
                   end={link.to === '/'}
                   className={({ isActive }) =>
                     cn(
-                      'flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium transition-colors',
+                      'flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium transition-colors',
                       isActive
                         ? 'bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-white'
                         : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-white',

@@ -210,7 +210,7 @@ export function AmritaFeed({ campusReports }: AmritaFeedProps) {
             })}
           </div>
         ) : (
-          <div className="mt-8 flex min-h-56 flex-col items-start justify-center rounded-md border border-neutral-200 dark:border-neutral-800 bg-[#f5f5f5] dark:bg-[#111] p-8 sm:p-10">
+          <div className="mt-8 flex min-h-56 flex-col items-start justify-center rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-[#f5f5f5] dark:bg-[#111] p-8 sm:p-10 shadow-sm">
             <svg
               aria-hidden="true"
               viewBox="0 0 24 24"

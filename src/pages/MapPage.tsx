@@ -213,7 +213,7 @@ export function MapPage() {
                           </p>
                           <div className="mt-2.5 flex items-center gap-2">
                             <span className={cn(
-                              'inline-flex items-center rounded-md px-2 py-0.5 text-xs font-bold uppercase tracking-wider',
+                              'inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider',
                               isSelected ? 'bg-white/20 text-white dark:bg-black/20 dark:text-white' : 'bg-[#F5F5F7] text-neutral-600 dark:bg-[#161618] dark:text-neutral-300'
                             )}>
                               {STATUS_META[report.status].label}

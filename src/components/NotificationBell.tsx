@@ -31,10 +31,10 @@ export function NotificationBell() {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((o) => !o)}
-        className="relative flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-white/70 text-slate-600 transition-colors hover:border-primary-300 hover:text-primary-600 dark:border-white/10 dark:bg-white/[0.06] dark:text-slate-300 dark:hover:border-primary-400/40 dark:hover:text-white"
+        className="relative flex h-8 w-8 items-center justify-center rounded-full text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white"
         aria-label={`Notifications${unreadCount ? ` (${unreadCount} unread)` : ''}`}
       >
-        <Bell className="h-5 w-5" />
+        <Bell className="h-4 w-4" />
         <AnimatePresence>
           {unreadCount > 0 ? (
             <motion.span
@@ -80,8 +80,8 @@ export function NotificationBell() {
 
             <div className="max-h-80 overflow-y-auto">
               {notifications.length === 0 ? (
-                <div className="px-4 py-10 text-center text-sm text-slate-400 dark:text-slate-500">
-                  You\u2019re all caught up. ✨
+                <div className="px-4 py-10 text-center text-sm text-neutral-400 dark:text-neutral-500">
+                  You’re all caught up. ✨
                 </div>
               ) : (
                 notifications.slice(0, 8).map((n) => {

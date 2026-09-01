@@ -36,7 +36,7 @@ export function NotFound() {
         transition={{ delay: 0.22 }}
         className="heading-xl mt-3"
       >
-        This street doesn\u2019t exist
+        This street doesn’t exist
       </motion.h1>
       <motion.p
         initial={{ opacity: 0, y: 12 }}
@@ -44,7 +44,7 @@ export function NotFound() {
         transition={{ delay: 0.3 }}
         className="mt-4 max-w-md text-slate-500 dark:text-slate-400"
       >
-        The page you\u2019re looking for was either moved, demolished, or never built. Let\u2019s
+        The page you’re looking for was either moved, demolished, or never built. Let’s
         get you back to somewhere safe.
       </motion.p>
       <motion.div

@@ -161,8 +161,8 @@ export function About() {
             className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
           >
             {VALUES.map((v) => (
-              <motion.div variants={itemVariants} key={v.title} className="flex flex-col rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-[#F5F5F7] dark:bg-[#161618] p-8 shadow-sm">
-                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-900 dark:bg-white text-white dark:text-neutral-900">
+              <motion.div variants={itemVariants} key={v.title} className="flex flex-col rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-[#F5F5F7] dark:bg-[#161618] p-8 shadow-sm">
+                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-neutral-900 dark:bg-white text-white dark:text-neutral-900">
                   <v.icon className="h-6 w-6" />
                 </div>
                 <h3 className="mb-3 text-lg font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white">{v.title}</h3>
@@ -189,7 +189,7 @@ export function About() {
             className="mx-auto max-w-4xl space-y-8"
           >
             {TIMELINE.map((t) => (
-              <motion.div variants={itemVariants} key={t.date} className="flex flex-col sm:flex-row sm:gap-12 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] p-8 shadow-sm">
+              <motion.div variants={itemVariants} key={t.date} className="flex flex-col sm:flex-row sm:gap-12 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] p-8 shadow-sm">
                 <div className="mb-4 sm:mb-0 sm:w-1/3 shrink-0">
                   <div className="text-sm font-semibold uppercase tracking-widest text-[#A51636] dark:text-[#E52B50]">
                     {t.date}
