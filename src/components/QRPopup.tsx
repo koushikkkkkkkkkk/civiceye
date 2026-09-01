@@ -86,7 +86,7 @@ export function QRPopup({ open, onClose, onPhoto }: QRPopupProps) {
               Copy
             </button>
           </div>
-          <p className="text-[11px] text-slate-400 dark:text-slate-500">
+          <p className="text-xs text-slate-400 dark:text-slate-500">
             Or scan the QR code with any phone camera — it opens the same link.
           </p>
         </div>

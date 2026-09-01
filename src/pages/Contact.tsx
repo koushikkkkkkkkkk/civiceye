@@ -70,14 +70,14 @@ export function Contact() {
           transition={{ type: 'spring', duration: 0.45, bounce: 0 }}
           className="mb-16"
         >
-          <div className="mb-6 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#A51636] dark:text-[#E52B50]">
+          <div className="mb-6 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-[#A51636] dark:text-[#E52B50]">
             <span className="h-2 w-2 rounded-full bg-[#A51636] dark:bg-[#E52B50]" aria-hidden="true" />
             <span>Contact us</span>
           </div>
-          <h1 className="max-w-4xl text-[56px] sm:text-[64px] font-bold leading-[1.05] tracking-[-0.03em] text-neutral-900 dark:text-white">
-            <AnimatedText text="Talk to the " /> <span className="font-serif italic font-normal text-[#A51636] dark:text-[#E52B50]"><AnimatedText text="team." /></span>
+          <h1 className="max-w-4xl text-[56px] sm:text-[72px] font-bold leading-[1.05] tracking-[-0.03em] text-neutral-900 dark:text-white">
+            <AnimatedText text="Talk to the" /> <span className="font-serif italic font-normal text-[#A51636] dark:text-[#E52B50]"><AnimatedText text="team." /></span>
           </h1>
-          <p className="mt-8 max-w-2xl text-[16px] leading-[1.5] text-neutral-600 dark:text-neutral-400">
+          <p className="mt-8 max-w-2xl text-base leading-[1.5] text-neutral-600 dark:text-neutral-400">
             Questions, partnerships, or a ward office that wants in? We’d love to hear from you.
           </p>
         </motion.div>
@@ -101,7 +101,7 @@ export function Contact() {
                     <item.icon className="h-5 w-5" />
                   </div>
                   <div className="flex flex-col justify-center h-12">
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+                    <p className="text-xs font-bold uppercase tracking-widest text-neutral-400">
                       {item.label}
                     </p>
                     <p className="mt-1 text-sm font-medium text-neutral-900 dark:text-white">

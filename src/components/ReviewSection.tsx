@@ -87,7 +87,7 @@ export function ReviewSection({ reportId }: { reportId: string }) {
           className="input-base resize-none disabled:opacity-60"
         />
         <div className="mt-2.5 flex items-center justify-between">
-          <span className="text-[11px] font-medium text-slate-400">
+          <span className="text-xs font-medium text-slate-400">
             {content.length}/{MAX_REVIEW_LENGTH}
           </span>
           <button
@@ -135,7 +135,7 @@ export function ReviewSection({ reportId }: { reportId: string }) {
               >
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2.5">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-amber-500 text-[11px] font-extrabold text-white">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-amber-500 text-xs font-extrabold text-white">
                       {review.authorName
                         .split(' ')
                         .map((s) => s[0])
@@ -147,7 +147,7 @@ export function ReviewSection({ reportId }: { reportId: string }) {
                       <p className="text-sm font-bold text-slate-800 dark:text-slate-200">
                         {review.authorName}
                       </p>
-                      <p className="text-[11px] text-slate-400">{timeAgo(review.date)}</p>
+                      <p className="text-xs text-slate-400">{timeAgo(review.date)}</p>
                     </div>
                   </div>
                   {review.userId === user?.id ? (

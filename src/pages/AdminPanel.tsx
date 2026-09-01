@@ -126,7 +126,7 @@ export function AdminPanel() {
   return (
     <div className="bg-white dark:bg-black pb-24 pt-32 sm:pt-40">
       <div className="mx-auto max-w-[1920px] px-5 sm:px-8 lg:px-12 xl:px-16">
-        <div className="mb-4 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
+        <div className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
           <ShieldCheck className="h-4 w-4 text-neutral-900 dark:text-white" />
           Staff &amp; Admin
         </div>
@@ -141,7 +141,7 @@ export function AdminPanel() {
             <div className="text-4xl font-semibold tracking-[-0.03em] text-neutral-900 dark:text-white tabular-nums">
               {flags.length}
             </div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
               Open flags
             </p>
           </div>
@@ -149,7 +149,7 @@ export function AdminPanel() {
             <div className="text-4xl font-semibold tracking-[-0.03em] text-neutral-900 dark:text-white tabular-nums">
               {reports.length}
             </div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
               Total posts ({brand === 'amrita' ? 'campus' : 'city'})
             </p>
           </div>
@@ -201,10 +201,10 @@ export function AdminPanel() {
                     ) : null}
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-3">
-                        <span className="rounded-sm bg-red-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-red-700 border border-red-100">
+                        <span className="rounded-sm bg-red-50 px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-red-700 border border-red-100">
                           {flag.reason}
                         </span>
-                        <span className="text-[11px] font-medium text-neutral-500 dark:text-neutral-400">
+                        <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">
                           by {flag.flaggerEmail} \u00b7 {timeAgo(flag.date)}
                         </span>
                       </div>
@@ -264,7 +264,7 @@ export function AdminPanel() {
             <div className="overflow-x-auto">
               <table className="w-full min-w-[560px] text-left text-sm">
                 <thead>
-                  <tr className="border-b border-neutral-200 dark:border-neutral-800 bg-[#f5f5f5] dark:bg-[#111] text-[10px] font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
+                  <tr className="border-b border-neutral-200 dark:border-neutral-800 bg-[#f5f5f5] dark:bg-[#111] text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
                     <th className="py-4 pl-6 pr-4">Report</th>
                     <th className="py-4 pr-4">Scope</th>
                     <th className="py-4 pr-6">Action</th>
@@ -296,14 +296,14 @@ export function AdminPanel() {
                             <p className="max-w-[260px] truncate font-semibold text-neutral-900 dark:text-white">
                               {r.title}
                             </p>
-                            <p className="mt-1 text-[11px] font-medium text-neutral-500 dark:text-neutral-400">
+                            <p className="mt-1 text-xs font-medium text-neutral-500 dark:text-neutral-400">
                               {r.author} \u00b7 {r.locationName}
                             </p>
                           </td>
                           <td className="py-4 pr-4">
                             <span
                               className={cn(
-                                'inline-flex items-center rounded-sm px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider',
+                                'inline-flex items-center rounded-sm px-2 py-0.5 text-xs font-bold uppercase tracking-wider',
                                 r.scope === 'campus'
                                   ? 'bg-[#800020]/10 text-[#800020]'
                                   : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300',
@@ -317,7 +317,7 @@ export function AdminPanel() {
                               onClick={() => void handleScope(r.id, r.scope === 'campus' ? 'city' : 'campus')}
                               disabled={busy === `scope-${r.id}`}
                               className={cn(
-                                'flex min-h-8 items-center justify-center gap-2 rounded-sm border px-3 text-[11px] font-semibold transition-colors active:scale-[0.98] disabled:opacity-40',
+                                'flex min-h-8 items-center justify-center gap-2 rounded-sm border px-3 text-xs font-semibold transition-colors active:scale-[0.98] disabled:opacity-40',
                                 r.scope === 'campus'
                                   ? 'border-neutral-300 bg-white dark:bg-black text-neutral-900 dark:text-white hover:border-neutral-900'
                                   : 'border-[#800020] bg-[#800020] text-white hover:bg-[#600018]',
@@ -346,7 +346,7 @@ export function AdminPanel() {
             <div className="overflow-x-auto">
               <table className="w-full min-w-[560px] text-left text-sm">
                 <thead>
-                  <tr className="border-b border-neutral-200 dark:border-neutral-800 bg-[#f5f5f5] dark:bg-[#111] text-[10px] font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
+                  <tr className="border-b border-neutral-200 dark:border-neutral-800 bg-[#f5f5f5] dark:bg-[#111] text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
                     <th className="py-4 pl-6 pr-4">Reporter</th>
                     <th className="py-4 pr-4">Email</th>
                     <th className="py-4 pr-4">Scope</th>
@@ -374,7 +374,7 @@ export function AdminPanel() {
                       >
                         <td className="py-4 pl-6 pr-4">
                           <span className="flex items-center gap-3 font-semibold text-neutral-900 dark:text-white">
-                            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm bg-neutral-100 dark:bg-neutral-800 text-[11px] font-bold text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800">
+                            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm bg-neutral-100 dark:bg-neutral-800 text-xs font-bold text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800">
                               {r.author[0]?.toUpperCase() ?? '?'}
                             </span>
                             {r.author}
@@ -386,7 +386,7 @@ export function AdminPanel() {
                         <td className="py-4 pr-4">
                           <span
                             className={cn(
-                              'inline-flex items-center rounded-sm px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider',
+                              'inline-flex items-center rounded-sm px-2 py-0.5 text-xs font-bold uppercase tracking-wider',
                               r.scope === 'campus'
                                 ? 'bg-[#800020]/10 text-[#800020]'
                                 : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300',

@@ -54,7 +54,7 @@ export function Features() {
       {/* ------------------------------------------------ Header */}
       <section className="border-b border-neutral-200 dark:border-neutral-800 pt-32 pb-24 sm:pt-40">
         <div className="mx-auto max-w-[1920px] px-5 sm:px-8 lg:px-12 xl:px-16">
-          <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
+          <div className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
             <span className="inline-block h-1.5 w-1.5 bg-[#800020] mr-2" aria-hidden="true" />
             Features
           </div>
@@ -87,7 +87,7 @@ export function Features() {
       {/* Feature grid */}
       <section className="border-b border-neutral-200 dark:border-neutral-800 bg-[#f5f5f5] dark:bg-[#111] py-24">
         <div className="mx-auto max-w-[1920px] px-5 sm:px-8 lg:px-12 xl:px-16">
-          <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
+          <div className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
             Capabilities
           </div>
           <h2 className="mb-6 text-3xl font-semibold tracking-[-0.035em] text-neutral-900 dark:text-white sm:text-4xl">
@@ -156,7 +156,7 @@ export function Features() {
                       heatmap
                       className="h-full w-full"
                     />
-                    <div className="absolute bottom-4 right-4 rounded-sm bg-white/90 px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-neutral-900 dark:text-white backdrop-blur border border-neutral-200 dark:border-neutral-800">
+                    <div className="absolute bottom-4 right-4 rounded-sm bg-white/90 px-3 py-2 text-xs font-bold uppercase tracking-wider text-neutral-900 dark:text-white backdrop-blur border border-neutral-200 dark:border-neutral-800">
                       LIVE \u00b7 {scoped.length} reports
                     </div>
                   </div>
@@ -177,7 +177,7 @@ export function Features() {
       {/* How it works */}
       <section className="border-b border-neutral-200 dark:border-neutral-800 py-24 bg-[#f5f5f5] dark:bg-[#111]">
         <div className="mx-auto max-w-[1920px] px-5 sm:px-8 lg:px-12 xl:px-16">
-          <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
+          <div className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
             How it works
           </div>
           <h2 className="mb-16 text-3xl font-semibold tracking-[-0.035em] text-neutral-900 dark:text-white sm:text-4xl">

@@ -52,7 +52,7 @@ export function Footer() {
 
           {/* Quick links */}
           <nav aria-label="Quick links">
-            <h3 className="mb-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
+            <h3 className="mb-6 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-400">
               Quick links
             </h3>
             <ul className="space-y-4">
@@ -71,7 +71,7 @@ export function Footer() {
 
           {/* Company */}
           <nav aria-label="Company">
-            <h3 className="mb-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
+            <h3 className="mb-6 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-400">
               Company
             </h3>
             <ul className="space-y-4">
@@ -97,7 +97,7 @@ export function Footer() {
 
           {/* Social */}
           <div>
-            <h3 className="mb-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
+            <h3 className="mb-6 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-400">
               Follow us
             </h3>
             <div className="flex flex-wrap gap-3">
@@ -121,11 +121,11 @@ export function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col items-center justify-between gap-6 border-t border-neutral-200 dark:border-neutral-800 pt-8 sm:flex-row">
-          <p className="text-[11px] font-medium text-neutral-500 dark:text-neutral-400">
+          <p className="text-xs font-medium text-neutral-500 dark:text-neutral-400">
             \u00a9 {new Date().getFullYear()} {meta.appName}. All rights reserved. Built in
             {isAmrita ? ' Amritapuri & Bengaluru' : ' Bengaluru'}.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-6 text-[11px] font-medium text-neutral-500 dark:text-neutral-400">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-neutral-500 dark:text-neutral-400">
             <Link
               to="/about"
               className="transition-colors hover:text-neutral-900 dark:text-white"

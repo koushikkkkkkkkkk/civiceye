@@ -33,7 +33,7 @@ export function AmritaFAQ() {
   return (
     <section className="bg-transparent border-t border-[#A51636]/10 dark:border-[#E52B50]/10">
       <div className="mx-auto max-w-[800px] px-6 py-28 sm:py-36">
-        <h2 className="mb-16 text-[32px] sm:text-[40px] font-bold leading-[1.2] tracking-tight text-neutral-900 dark:text-white">
+        <h2 className="mb-16 text-3xl sm:text-4xl font-bold leading-[1.2] tracking-tight text-neutral-900 dark:text-white">
           Frequently asked questions
         </h2>
 
@@ -48,7 +48,7 @@ export function AmritaFAQ() {
                   aria-controls={`faq-answer-${index}`}
                   className="flex w-full items-center justify-between py-8 text-left transition-colors hover:bg-neutral-50 dark:hover:bg-[#111113] focus-visible:outline-none"
                 >
-                  <span className={`text-[20px] font-semibold leading-[1.3] transition-colors ${isOpen ? 'text-[#A51636] dark:text-[#E52B50]' : 'text-neutral-900 dark:text-white'}`}>
+                  <span className={`text-xl font-semibold leading-[1.3] transition-colors ${isOpen ? 'text-[#A51636] dark:text-[#E52B50]' : 'text-neutral-900 dark:text-white'}`}>
                     {faq.question}
                   </span>
                   <svg
@@ -74,7 +74,7 @@ export function AmritaFAQ() {
                     isOpen ? 'max-h-96 pb-8 opacity-100' : 'max-h-0 opacity-0'
                   }`}
                 >
-                  <p className="text-[16px] leading-[1.5] text-neutral-600 dark:text-neutral-400 px-4 border-l-2 border-[#A51636] dark:border-[#E52B50]">
+                  <p className="text-base leading-[1.5] text-neutral-600 dark:text-neutral-400 px-4 border-l-2 border-[#A51636] dark:border-[#E52B50]">
                     {faq.answer}
                   </p>
                 </div>

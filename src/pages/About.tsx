@@ -78,13 +78,13 @@ export function About() {
           transition={{ type: 'spring', duration: 0.45, bounce: 0 }}
           className="mx-auto max-w-[1920px] px-6 sm:px-8 lg:px-12 xl:px-16"
         >
-          <div className="mb-6 flex items-center gap-3 text-[14px] font-semibold uppercase tracking-widest text-[#A51636] dark:text-[#E52B50]">
+          <div className="mb-6 flex items-center gap-3 text-sm font-semibold uppercase tracking-widest text-[#A51636] dark:text-[#E52B50]">
             <span>About CivicEye</span>
           </div>
-          <h1 className="max-w-4xl text-[56px] sm:text-[64px] font-bold leading-[1.05] tracking-[-0.03em] text-neutral-900 dark:text-white">
-            <AnimatedText text="Know your " /> <span className="font-serif italic font-normal text-[#A51636] dark:text-[#E52B50]"><AnimatedText text="place" /></span> <AnimatedText text=" before it bites" />
+          <h1 className="max-w-4xl text-[56px] sm:text-[72px] font-bold leading-[1.05] tracking-[-0.03em] text-neutral-900 dark:text-white">
+            <AnimatedText text="Know your" /> <span className="font-serif italic font-normal text-[#A51636] dark:text-[#E52B50]"><AnimatedText text="place" /></span> <AnimatedText text="before it bites" />
           </h1>
-          <p className="mt-8 max-w-2xl text-[18px] leading-[1.6] text-neutral-600 dark:text-neutral-400">
+          <p className="mt-8 max-w-2xl text-lg leading-[1.6] text-neutral-600 dark:text-neutral-400">
             CivicEye is a shared, living map of what’s broken, dark, flooded or unsafe in your city and campus — reported and verified by the people who live it, so newcomers and locals alike know where they’re going.
           </p>
         </motion.div>
@@ -94,7 +94,7 @@ export function About() {
         <div className="mx-auto max-w-[1920px] px-5 sm:px-8 lg:px-12 xl:px-16">
           <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-24">
             <div>
-              <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
+              <div className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
                 Our story
               </div>
               <h2 className="mb-6 text-3xl font-semibold tracking-[-0.035em] text-neutral-900 dark:text-white sm:text-4xl">
@@ -125,7 +125,7 @@ export function About() {
               <p className="text-2xl font-bold tracking-[-0.03em] text-neutral-900 dark:text-white">
                 Made by students, for students
               </p>
-              <p className="mt-2 text-[14px] font-medium text-neutral-500 dark:text-neutral-400">
+              <p className="mt-2 text-sm font-medium text-neutral-500 dark:text-neutral-400">
                 and for anyone new to their neighbourhood
               </p>
               <div className="mt-10 grid grid-cols-3 gap-px bg-neutral-200 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-800 rounded-2xl overflow-hidden">
@@ -136,7 +136,7 @@ export function About() {
                 ].map(([v, l]) => (
                   <div key={l} className="bg-white dark:bg-[#161618] p-6">
                     <p className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-white">{v}</p>
-                    <p className="mt-2 text-[10px] font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400">{l}</p>
+                    <p className="mt-2 text-xs font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400">{l}</p>
                   </div>
                 ))}
               </div>
@@ -147,7 +147,7 @@ export function About() {
 
       <section className="border-b border-[#A51636]/10 dark:border-[#E52B50]/10 py-20 bg-white dark:bg-[#0D0105]">
         <div className="mx-auto max-w-[1920px] px-5 sm:px-8 lg:px-12 xl:px-16">
-          <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
+          <div className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
             What we believe
           </div>
           <h2 className="mb-16 text-3xl font-semibold tracking-[-0.035em] text-neutral-900 dark:text-white sm:text-4xl">
@@ -165,8 +165,8 @@ export function About() {
                 <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-900 dark:bg-white text-white dark:text-neutral-900">
                   <v.icon className="h-6 w-6" />
                 </div>
-                <h3 className="mb-3 text-[18px] font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white">{v.title}</h3>
-                <p className="text-[14px] leading-[1.6] text-neutral-600 dark:text-neutral-400">{v.text}</p>
+                <h3 className="mb-3 text-lg font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white">{v.title}</h3>
+                <p className="text-sm leading-[1.6] text-neutral-600 dark:text-neutral-400">{v.text}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -175,7 +175,7 @@ export function About() {
 
       <section className="border-b border-[#A51636]/10 dark:border-[#E52B50]/10 py-20 bg-white dark:bg-[#0D0105]">
         <div className="mx-auto max-w-[1920px] px-5 sm:px-8 lg:px-12 xl:px-16">
-          <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
+          <div className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
             Timeline
           </div>
           <h2 className="mb-12 text-3xl font-semibold tracking-[-0.035em] text-neutral-900 dark:text-white sm:text-4xl">
@@ -191,15 +191,15 @@ export function About() {
             {TIMELINE.map((t) => (
               <motion.div variants={itemVariants} key={t.date} className="flex flex-col sm:flex-row sm:gap-12 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] p-8 shadow-sm">
                 <div className="mb-4 sm:mb-0 sm:w-1/3 shrink-0">
-                  <div className="text-[14px] font-semibold uppercase tracking-widest text-[#A51636] dark:text-[#E52B50]">
+                  <div className="text-sm font-semibold uppercase tracking-widest text-[#A51636] dark:text-[#E52B50]">
                     {t.date}
                   </div>
                 </div>
                 <div>
-                  <h3 className="mb-3 text-[20px] font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white">
+                  <h3 className="mb-3 text-xl font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white">
                     {t.title}
                   </h3>
-                  <p className="text-[15px] leading-[1.6] text-neutral-600 dark:text-neutral-400">{t.text}</p>
+                  <p className="text-sm leading-[1.6] text-neutral-600 dark:text-neutral-400">{t.text}</p>
                 </div>
               </motion.div>
             ))}
@@ -216,7 +216,7 @@ export function About() {
           className="mx-auto max-w-4xl px-5"
         >
           <MapPin className="mx-auto mb-6 h-12 w-12 text-[#A51636] dark:text-[#E52B50]" />
-          <h2 className="text-[2.5rem] font-bold leading-[1.05] tracking-[-0.04em] text-neutral-900 dark:text-white sm:text-5xl">
+          <h2 className="text-[32px] font-bold leading-[1.05] tracking-[-0.04em] text-neutral-900 dark:text-white sm:text-5xl">
             New to the <span className="font-serif italic font-normal text-[#A51636] dark:text-[#E52B50]">neighbourhood?</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg text-neutral-500 dark:text-neutral-400">
@@ -225,14 +225,14 @@ export function About() {
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               to="/report"
-              className="inline-flex h-12 items-center justify-center gap-3 rounded-full bg-[#A51636] px-8 text-[14px] font-bold text-white transition-opacity hover:opacity-90 dark:bg-[#E52B50]"
+              className="inline-flex h-12 items-center justify-center gap-3 rounded-full bg-[#A51636] px-8 text-sm font-bold text-white transition-opacity hover:opacity-90 dark:bg-[#E52B50]"
             >
               <Heart className="h-4 w-4" />
               Report an issue
             </Link>
             <Link
               to="/map"
-              className="inline-flex h-12 items-center justify-center rounded-full border border-neutral-300 px-8 text-[14px] font-bold text-neutral-900 dark:text-white transition-opacity hover:opacity-80 dark:border-neutral-700 bg-white dark:bg-[#161618] shadow-sm"
+              className="inline-flex h-12 items-center justify-center rounded-full border border-neutral-300 px-8 text-sm font-bold text-neutral-900 dark:text-white transition-opacity hover:opacity-80 dark:border-neutral-700 bg-white dark:bg-[#161618] shadow-sm"
             >
               View the map
             </Link>

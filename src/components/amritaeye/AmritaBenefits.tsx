@@ -25,11 +25,11 @@ export function AmritaBenefits() {
     <section className="bg-[#FFF5F7] dark:bg-[#1A030A] py-24 sm:py-36 border-t border-[#A51636]/10 dark:border-[#E52B50]/10">
       <div className="mx-auto max-w-[1920px] px-6 lg:px-12">
         <div className="mb-16">
-          <div className="mb-6 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#A51636] dark:text-[#E52B50]">
+          <div className="mb-6 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-[#A51636] dark:text-[#E52B50]">
             <span className="h-2 w-2 rounded-full bg-[#A51636] dark:bg-[#E52B50]" aria-hidden="true" />
             <span>Core Benefits</span>
           </div>
-          <h2 className="text-[40px] sm:text-[56px] font-bold leading-[1.1] tracking-tight text-neutral-900 dark:text-white max-w-3xl">
+          <h2 className="text-4xl sm:text-[56px] font-bold leading-[1.1] tracking-tight text-neutral-900 dark:text-white max-w-3xl">
             A smarter campus, <br />
             <span className="font-serif italic font-normal text-[#A51636] dark:text-[#E52B50]">built by everyone.</span>
           </h2>
@@ -54,10 +54,10 @@ export function AmritaBenefits() {
               <Eye className="h-7 w-7 text-[#A51636] dark:text-[#E52B50]" />
             </div>
             <div className="z-10 max-w-lg">
-              <h3 className="mb-4 text-[28px] sm:text-[32px] font-bold text-neutral-900 dark:text-white leading-[1.2]">
+              <h3 className="mb-4 text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-white leading-[1.2]">
                 Instant visibility
               </h3>
-              <p className="text-[18px] leading-[1.6] text-neutral-600 dark:text-neutral-400">
+              <p className="text-lg leading-[1.6] text-neutral-600 dark:text-neutral-400">
                 Know exactly what's happening on campus right now, without waiting for emails or manual reports to be processed.
               </p>
             </div>
@@ -72,10 +72,10 @@ export function AmritaBenefits() {
               <Zap className="h-6 w-6 text-neutral-900 dark:text-white" />
             </div>
             <div>
-              <h3 className="mb-3 text-[22px] font-bold text-neutral-900 dark:text-white leading-[1.2]">
+              <h3 className="mb-3 text-[24px] font-bold text-neutral-900 dark:text-white leading-[1.2]">
                 Targeted resolution
               </h3>
-              <p className="text-[16px] leading-[1.6] text-neutral-600 dark:text-neutral-400">
+              <p className="text-base leading-[1.6] text-neutral-600 dark:text-neutral-400">
                 Route issues directly to the right department, cutting response times from days to hours.
               </p>
             </div>
@@ -93,10 +93,10 @@ export function AmritaBenefits() {
               <Users className="h-6 w-6 text-white" />
             </div>
             <div className="z-10">
-              <h3 className="mb-3 text-[22px] font-bold leading-[1.2]">
+              <h3 className="mb-3 text-[24px] font-bold leading-[1.2]">
                 Community driven
               </h3>
-              <p className="text-[16px] leading-[1.6] text-white/80">
+              <p className="text-base leading-[1.6] text-white/80">
                 Empower students and faculty to take ownership and make their campus better together.
               </p>
             </div>
@@ -113,10 +113,10 @@ export function AmritaBenefits() {
                   <MapPin className="h-6 w-6 text-[#A51636] dark:text-[#E52B50]" />
                 </div>
                 <div>
-                  <h3 className="text-[20px] font-bold text-neutral-900 dark:text-white leading-[1.2]">
+                  <h3 className="text-xl font-bold text-neutral-900 dark:text-white leading-[1.2]">
                     Pinpoint Accuracy
                   </h3>
-                  <p className="text-[15px] leading-[1.6] text-neutral-600 dark:text-neutral-400 mt-1">
+                  <p className="text-sm leading-[1.6] text-neutral-600 dark:text-neutral-400 mt-1">
                     Exact coordinates mean no more wandering maintenance crews.
                   </p>
                 </div>
@@ -126,10 +126,10 @@ export function AmritaBenefits() {
                   <ShieldCheck className="h-6 w-6 text-[#A51636] dark:text-[#E52B50]" />
                 </div>
                 <div>
-                  <h3 className="text-[20px] font-bold text-neutral-900 dark:text-white leading-[1.2]">
+                  <h3 className="text-xl font-bold text-neutral-900 dark:text-white leading-[1.2]">
                     Verified Reports
                   </h3>
-                  <p className="text-[15px] leading-[1.6] text-neutral-600 dark:text-neutral-400 mt-1">
+                  <p className="text-sm leading-[1.6] text-neutral-600 dark:text-neutral-400 mt-1">
                     Upvotes by other students prevent duplicate logs.
                   </p>
                 </div>

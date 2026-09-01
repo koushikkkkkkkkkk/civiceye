@@ -35,7 +35,7 @@ export function AuthorityContactCard({
 
   return (
     <div className={cn('rounded-2xl border border-slate-200/70 p-4 dark:border-white/10', className)}>
-      <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400">{heading}</p>
+      <p className="text-xs font-bold uppercase tracking-widest text-slate-400">{heading}</p>
 
       <div className="mt-3 flex items-start gap-3">
         <span

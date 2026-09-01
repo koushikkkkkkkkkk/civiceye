@@ -114,7 +114,7 @@ export function Navbar() {
                     end={link.to === '/'}
                     className={({ isActive }) =>
                       cn(
-                        'px-3 py-1.5 text-[13px] font-medium transition-colors rounded-full',
+                        'px-3 py-1.5 text-xs font-medium transition-colors rounded-full',
                         isActive
                           ? 'text-neutral-900 bg-neutral-100 dark:bg-neutral-800 dark:text-white'
                           : 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white',
@@ -153,7 +153,7 @@ export function Navbar() {
                 <div className="relative ml-1" ref={profileRef}>
                   <button
                     onClick={() => setProfileOpen((o) => !o)}
-                    className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-100 text-[10px] font-bold text-neutral-900 transition-colors hover:bg-neutral-200 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700"
+                    className="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-100 text-xs font-bold text-neutral-900 transition-colors hover:bg-neutral-200 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700"
                   >
                     {initials}
                   </button>
@@ -177,14 +177,14 @@ export function Navbar() {
                   )}
                 </div>
               ) : (
-                <Link to="/login" className="hidden lg:flex px-4 py-1.5 text-[13px] font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">
+                <Link to="/login" className="hidden lg:flex px-4 py-1.5 text-xs font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">
                   Sign in
                 </Link>
               )}
 
               <Link
                 to="/report"
-                className="ml-2 hidden lg:flex items-center gap-1.5 rounded-full bg-[#111] dark:bg-white px-4 py-1.5 text-[13px] font-medium text-white dark:text-black transition-transform hover:scale-105 active:scale-95"
+                className="ml-2 hidden lg:flex items-center gap-1.5 rounded-full bg-[#111] dark:bg-white px-4 py-1.5 text-xs font-medium text-white dark:text-black transition-transform hover:scale-105 active:scale-95"
               >
                 <Plus className="h-3.5 w-3.5" />
                 Report issue

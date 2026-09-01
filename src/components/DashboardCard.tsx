@@ -41,7 +41,7 @@ export function DashboardCard({
         {typeof delta === 'number' ? (
           <span
             className={cn(
-              'rounded-full px-2 py-0.5 text-[11px] font-bold',
+              'rounded-full px-2 py-0.5 text-xs font-bold',
               delta >= 0
                 ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
                 : 'bg-rose-500/10 text-rose-600 dark:text-rose-400',

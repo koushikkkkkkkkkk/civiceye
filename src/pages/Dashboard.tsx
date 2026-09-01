@@ -217,13 +217,13 @@ export function Dashboard() {
             className="flex flex-col justify-between gap-12 lg:flex-row lg:items-end"
           >
             <div>
-              <div className="mb-6 flex items-center gap-3 text-[14px] font-semibold uppercase tracking-widest text-[#A51636] dark:text-[#E52B50]">
+              <div className="mb-6 flex items-center gap-3 text-sm font-semibold uppercase tracking-widest text-[#A51636] dark:text-[#E52B50]">
                 <span>Authorities · Prototype</span>
               </div>
-              <h1 className="text-[56px] sm:text-[64px] font-bold leading-[1.05] tracking-[-0.03em] text-neutral-900 dark:text-white max-w-4xl">
-                <AnimatedText text="Ward Operations " /> <span className="font-serif italic font-normal text-[#A51636] dark:text-[#E52B50]"><AnimatedText text="Dashboard" /></span>
+              <h1 className="text-[56px] sm:text-[72px] font-bold leading-[1.05] tracking-[-0.03em] text-neutral-900 dark:text-white max-w-4xl">
+                <AnimatedText text="Ward Operations" /> <span className="font-serif italic font-normal text-[#A51636] dark:text-[#E52B50]"><AnimatedText text="Dashboard" /></span>
               </h1>
-              <p className="mt-6 max-w-2xl text-[16px] leading-[1.5] text-neutral-600 dark:text-neutral-400">
+              <p className="mt-6 max-w-2xl text-base leading-[1.5] text-neutral-600 dark:text-neutral-400">
                 A live view of every citizen report in your jurisdiction — prioritised, verified and
                 ready to act on.
               </p>
@@ -234,7 +234,7 @@ export function Dashboard() {
                 label="Report to authority"
                 variant="primary"
               />
-              <button onClick={generateReport} className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-neutral-300 px-6 text-[14px] font-semibold text-neutral-900 dark:text-white transition-opacity hover:opacity-80 dark:border-neutral-700 bg-white dark:bg-[#161618] shadow-sm">
+              <button onClick={generateReport} className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-neutral-300 px-6 text-sm font-semibold text-neutral-900 dark:text-white transition-opacity hover:opacity-80 dark:border-neutral-700 bg-white dark:bg-[#161618] shadow-sm">
                 <FileDown className="h-4 w-4" />
                 Generate report
               </button>
@@ -266,38 +266,38 @@ export function Dashboard() {
             ) : (
               <>
                 <motion.div variants={itemVariants} className="bg-white dark:bg-[#161618] p-8 flex flex-col justify-center items-center text-center">
-                  <div className="flex flex-col items-center gap-3 text-[12px] font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-4">
+                  <div className="flex flex-col items-center gap-3 text-xs font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-4">
                     <ClipboardList className="h-5 w-5 text-neutral-900 dark:text-white" />
                     <span>Open reports</span>
                   </div>
-                  <div className="text-[40px] font-bold leading-[1.2] tracking-tight text-neutral-900 dark:text-white tabular-nums">
+                  <div className="text-4xl font-bold leading-[1.2] tracking-tight text-neutral-900 dark:text-white tabular-nums">
                     {stats.open}
                   </div>
                 </motion.div>
                 <motion.div variants={itemVariants} className="bg-white dark:bg-[#161618] p-8 flex flex-col justify-center items-center text-center">
-                  <div className="flex flex-col items-center gap-3 text-[12px] font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-4">
+                  <div className="flex flex-col items-center gap-3 text-xs font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-4">
                     <Clock className="h-5 w-5 text-neutral-900 dark:text-white" />
                     <span>Pending review</span>
                   </div>
-                  <div className="text-[40px] font-bold leading-[1.2] tracking-tight text-neutral-900 dark:text-white tabular-nums">
+                  <div className="text-4xl font-bold leading-[1.2] tracking-tight text-neutral-900 dark:text-white tabular-nums">
                     {stats.pending}
                   </div>
                 </motion.div>
                 <motion.div variants={itemVariants} className="bg-white dark:bg-[#161618] p-8 flex flex-col justify-center items-center text-center">
-                  <div className="flex flex-col items-center gap-3 text-[12px] font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-4">
+                  <div className="flex flex-col items-center gap-3 text-xs font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-4">
                     <ShieldCheck className="h-5 w-5 text-neutral-900 dark:text-white" />
                     <span>Verified</span>
                   </div>
-                  <div className="text-[40px] font-bold leading-[1.2] tracking-tight text-neutral-900 dark:text-white tabular-nums">
+                  <div className="text-4xl font-bold leading-[1.2] tracking-tight text-neutral-900 dark:text-white tabular-nums">
                     {stats.verified}
                   </div>
                 </motion.div>
                 <motion.div variants={itemVariants} className="bg-white dark:bg-[#161618] p-8 flex flex-col justify-center items-center text-center">
-                  <div className="flex flex-col items-center gap-3 text-[12px] font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-4">
+                  <div className="flex flex-col items-center gap-3 text-xs font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-4">
                     <CheckCircle2 className="h-5 w-5 text-[#A51636] dark:text-[#E52B50]" />
                     <span className="text-[#A51636] dark:text-[#E52B50]">Resolved</span>
                   </div>
-                  <div className="text-[40px] font-bold leading-[1.2] tracking-tight text-[#A51636] dark:text-[#E52B50] tabular-nums">
+                  <div className="text-4xl font-bold leading-[1.2] tracking-tight text-[#A51636] dark:text-[#E52B50] tabular-nums">
                     {stats.resolved}
                   </div>
                 </motion.div>
@@ -319,7 +319,7 @@ export function Dashboard() {
             className="grid gap-8 lg:grid-cols-3"
           >
             <motion.div variants={itemVariants} className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm p-8 flex flex-col">
-              <h2 className="text-[20px] sm:text-[24px] font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white leading-[1.3]">Category breakdown</h2>
+              <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white leading-[1.3]">Category breakdown</h2>
               <p className="mt-1.5 text-sm text-neutral-500 dark:text-neutral-400">Open reports by category</p>
               <ul className="mt-8 space-y-5">
                 {categoryBreakdown.slice(0, 8).map((c) => (
@@ -342,7 +342,7 @@ export function Dashboard() {
             </motion.div>
 
             <motion.div variants={itemVariants} className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm p-8 flex flex-col">
-              <h2 className="text-[20px] sm:text-[24px] font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white leading-[1.3]">Severity distribution</h2>
+              <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white leading-[1.3]">Severity distribution</h2>
               <p className="mt-1.5 text-sm text-neutral-500 dark:text-neutral-400">Risk-weighted view of the ward</p>
               <div className="mt-8 flex flex-col items-center gap-8 sm:flex-row sm:justify-center">
                 <div className="relative h-40 w-40 shrink-0">
@@ -383,7 +383,7 @@ export function Dashboard() {
                     <span className="text-3xl font-semibold tracking-[-0.03em] text-neutral-900 dark:text-white">
                       {scopedReports.length}
                     </span>
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400 mt-1">
+                    <span className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400 mt-1">
                       total
                     </span>
                   </div>
@@ -408,7 +408,7 @@ export function Dashboard() {
             </motion.div>
 
             <motion.div variants={itemVariants} className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm p-8 flex flex-col">
-              <h2 className="text-[20px] sm:text-[24px] font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white leading-[1.3]">Weekly activity</h2>
+              <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white leading-[1.3]">Weekly activity</h2>
               <p className="mt-1.5 text-sm text-neutral-500 dark:text-neutral-400">New reports per week (last 8 weeks)</p>
               <div className="mt-8 flex h-48 items-end gap-2 px-2">
                 {weeklyTrend.map((w, i) => (
@@ -425,10 +425,10 @@ export function Dashboard() {
                           : 'bg-neutral-200'
                       )}
                     />
-                    <span className="text-[10px] font-semibold tabular-nums text-neutral-500 dark:text-neutral-400">
+                    <span className="text-xs font-semibold tabular-nums text-neutral-500 dark:text-neutral-400">
                       {w.count}
                     </span>
-                    <span className="hidden text-[9px] font-semibold uppercase tracking-wider text-neutral-400 sm:block">
+                    <span className="hidden text-xs font-semibold uppercase tracking-wider text-neutral-400 sm:block">
                       {w.label.split(' ')[0]}
                     </span>
                   </div>
@@ -441,7 +441,7 @@ export function Dashboard() {
           <div className="grid gap-8 lg:grid-cols-3">
             <div className="lg:col-span-2 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm p-8 flex flex-col">
               <div>
-                <h2 className="text-[20px] sm:text-[24px] font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white leading-[1.3]">Live ward map</h2>
+                <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white leading-[1.3]">Live ward map</h2>
                 <p className="mt-1.5 text-sm text-neutral-500 dark:text-neutral-400">Click a pin to inspect a report</p>
               </div>
               <div className="mt-6 flex-1 h-[400px] w-full overflow-hidden rounded-md border border-neutral-200 dark:border-white/10 dark:border-white/10">
@@ -456,13 +456,13 @@ export function Dashboard() {
             </div>
 
             <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm p-8 flex flex-col">
-              <h2 className="text-[20px] sm:text-[24px] font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white leading-[1.3]">Hotspots</h2>
+              <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white leading-[1.3]">Hotspots</h2>
               <p className="mt-1.5 text-sm text-neutral-500 dark:text-neutral-400">Areas with the most reports</p>
               <ul className="mt-8 space-y-4">
                 {topAreas.map((a, i) => (
                   <li key={a.area} className="flex items-center justify-between gap-3 border-b border-neutral-100 pb-4 last:border-0 last:pb-0">
                     <div className="flex min-w-0 items-center gap-3">
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-sm bg-white dark:bg-[#111113] text-[10px] font-bold text-neutral-500 dark:text-neutral-400">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-sm bg-white dark:bg-[#111113] text-xs font-bold text-neutral-500 dark:text-neutral-400">
                         {i + 1}
                       </span>
                       <span className="truncate text-sm font-semibold text-neutral-900 dark:text-white">
@@ -471,7 +471,7 @@ export function Dashboard() {
                     </div>
                     <div className="flex shrink-0 items-center gap-3">
                       {a.critical > 0 ? (
-                        <span className="flex items-center gap-1.5 text-[11px] font-bold text-[#800020]">
+                        <span className="flex items-center gap-1.5 text-xs font-bold text-[#800020]">
                           <AlertTriangle className="h-3.5 w-3.5" />
                           {a.critical}
                         </span>
@@ -491,13 +491,13 @@ export function Dashboard() {
 
           {/* Table Row */}
           <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm p-8">
-            <h2 className="text-[20px] sm:text-[24px] font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white leading-[1.3]">Recent reports</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white leading-[1.3]">Recent reports</h2>
             <p className="mt-1.5 text-sm text-neutral-500 dark:text-neutral-400">Latest citizen submissions awaiting action</p>
             
             <div className="mt-8 overflow-x-auto">
               <table className="w-full min-w-[800px] text-left text-sm">
                 <thead>
-                  <tr className="border-b border-neutral-200 dark:border-white/10 dark:border-white/10 text-[10px] font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
+                  <tr className="border-b border-neutral-200 dark:border-white/10 dark:border-white/10 text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
                     <th className="pb-4 pr-4">Report</th>
                     <th className="pb-4 pr-4">Category</th>
                     <th className="pb-4 pr-4">Severity</th>
@@ -543,7 +543,7 @@ export function Dashboard() {
                               <p className="max-w-[240px] truncate font-semibold text-neutral-900 dark:text-white">
                                 {r.title}
                               </p>
-                              <p className="mt-1 text-[11px] font-medium text-neutral-500 dark:text-neutral-400">
+                              <p className="mt-1 text-xs font-medium text-neutral-500 dark:text-neutral-400">
                                 {r.id} \u00b7 {timeAgo(r.date)}
                               </p>
                             </div>
@@ -555,17 +555,17 @@ export function Dashboard() {
                           </span>
                         </td>
                         <td className="py-4 pr-4">
-                          <span className={cn('inline-flex items-center rounded-sm px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider', severity.bg, severity.color)}>
+                          <span className={cn('inline-flex items-center rounded-sm px-2 py-0.5 text-xs font-bold uppercase tracking-wider', severity.bg, severity.color)}>
                             {severity.label}
                           </span>
                         </td>
                         <td className="py-4 pr-4">
                           <div className="flex flex-col items-start gap-1.5">
-                            <span className={cn('inline-flex items-center rounded-sm px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider', status.bg, status.color)}>
+                            <span className={cn('inline-flex items-center rounded-sm px-2 py-0.5 text-xs font-bold uppercase tracking-wider', status.bg, status.color)}>
                               {status.label}
                             </span>
                             {assigned ? (
-                              <span className="text-[10px] font-semibold text-neutral-500 dark:text-neutral-400">
+                              <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400">
                                 {assigned.name}
                               </span>
                             ) : null}
@@ -579,7 +579,7 @@ export function Dashboard() {
                             <button
                               onClick={() => handleResolve(r)}
                               disabled={r.status === 'resolved'}
-                              className="flex h-8 items-center gap-1.5 rounded-sm border border-neutral-300  px-3 text-[11px] font-semibold text-neutral-900 dark:text-white transition-colors hover:border-neutral-900 hover:bg-white/50 dark:bg-[#111113]/50 backdrop-blur-md disabled:cursor-not-allowed disabled:opacity-40"
+                              className="flex h-8 items-center gap-1.5 rounded-sm border border-neutral-300  px-3 text-xs font-semibold text-neutral-900 dark:text-white transition-colors hover:border-neutral-900 hover:bg-white/50 dark:bg-[#111113]/50 backdrop-blur-md disabled:cursor-not-allowed disabled:opacity-40"
                               title="Mark resolved"
                             >
                               <Wrench className="h-3 w-3" />
@@ -588,7 +588,7 @@ export function Dashboard() {
                             <select
                               value={r.assignedTo ?? ''}
                               onChange={(e) => e.target.value && handleAssign(r, e.target.value)}
-                              className="h-8 rounded-sm border border-neutral-300  px-2 text-[11px] font-semibold text-neutral-900 dark:text-white focus:border-neutral-900 focus:outline-none disabled:opacity-40"
+                              className="h-8 rounded-sm border border-neutral-300  px-2 text-xs font-semibold text-neutral-900 dark:text-white focus:border-neutral-900 focus:outline-none disabled:opacity-40"
                               aria-label={`Assign ${r.id}`}
                             >
                               <option value="">Assign to\u2026</option>
@@ -628,7 +628,7 @@ export function Dashboard() {
                 </p>
               </div>
             ) : null}
-            <div className="mt-6 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-400">
+            <div className="mt-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-neutral-400">
               <MapIcon className="h-3.5 w-3.5" />
               Showing the 10 most recent reports \u2014 all actions update the shared database instantly.
             </div>

@@ -273,7 +273,7 @@ export function ReportToAuthority({
                       <Mail className="h-4 w-4" />
                       Email report package to {authority.name.split(' ').slice(0, 3).join(' ')}
                     </button>
-                    <p className="mt-2 text-center text-[11px] leading-relaxed text-slate-400">
+                    <p className="mt-2 text-center text-xs leading-relaxed text-slate-400">
                       The {isAmrita ? 'campus office' : 'authority'} receives the report details,
                       evidence photo link and GPS coordinates by email.
                     </p>
@@ -348,7 +348,7 @@ export function ReportToAuthority({
                     <div key={step} className="flex items-center gap-3">
                       <span
                         className={cn(
-                          'flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-bold transition-colors',
+                          'flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-colors',
                           idx < stepIndex
                             ? 'bg-emerald-500 text-white'
                             : idx === stepIndex

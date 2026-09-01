@@ -59,7 +59,7 @@ export function Stepper({ steps, current, onStepClick }: StepperProps) {
                   {step.label}
                 </span>
                 {step.description ? (
-                  <span className="text-[10px] text-slate-400 dark:text-slate-500">
+                  <span className="text-xs text-slate-400 dark:text-slate-500">
                     {step.description}
                   </span>
                 ) : null}

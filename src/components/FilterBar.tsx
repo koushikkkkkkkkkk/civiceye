@@ -59,7 +59,7 @@ export function FilterBar({ filters, onChange, className }: FilterBarProps) {
             </button>
           ))}
         </div>
-        <p className="mt-1.5 text-[11px] text-slate-400 dark:text-slate-500">
+        <p className="mt-1.5 text-xs text-slate-400 dark:text-slate-500">
           Campus = inside the campus boundary · City = anywhere else
         </p>
       </div>

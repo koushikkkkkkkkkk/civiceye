@@ -542,7 +542,7 @@ function AnalysisProgressCard({
             className="absolute left-0 right-0 h-10 bg-gradient-to-b from-transparent via-primary-400/40 to-transparent"
           />
           <div className="absolute inset-0 rounded-md ring-2 ring-inset ring-primary-400/40" />
-          <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-neutral-950/70 px-3 py-1 text-[10px] font-bold text-white backdrop-blur">
+          <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-neutral-950/70 px-3 py-1 text-xs font-bold text-white backdrop-blur">
             <ScanLine className="h-3 w-3" />
             VISION MODEL v2.4
           </span>
@@ -556,7 +556,7 @@ function AnalysisProgressCard({
               <div key={s.label} className="flex items-center gap-3">
                 <span
                   className={cn(
-                    'flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-bold transition-colors',
+                    'flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-colors',
                     i < stageIndex
                       ? 'bg-emerald-500 text-white'
                       : i === stageIndex
@@ -626,7 +626,7 @@ function AnalysisResultCard({
               alt="Analysed evidence"
               className="aspect-[16/9] w-full object-cover"
             />
-            <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-emerald-500/90 px-3 py-1 text-[10px] font-bold text-white backdrop-blur">
+            <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-emerald-500/90 px-3 py-1 text-xs font-bold text-white backdrop-blur">
               <BadgeCheck className="h-3.5 w-3.5" />
               ANALYSED
             </span>
@@ -635,7 +635,7 @@ function AnalysisResultCard({
                 <button
                   onClick={() => setShowAnnotated(false)}
                   className={cn(
-                    'rounded-md px-2 py-1 text-[10px] font-bold transition-colors',
+                    'rounded-md px-2 py-1 text-xs font-bold transition-colors',
                     !showAnnotated ? 'bg-white dark:bg-black text-neutral-900' : 'text-white hover:text-white/80',
                   )}
                 >
@@ -644,7 +644,7 @@ function AnalysisResultCard({
                 <button
                   onClick={() => setShowAnnotated(true)}
                   className={cn(
-                    'rounded-md px-2 py-1 text-[10px] font-bold transition-colors',
+                    'rounded-md px-2 py-1 text-xs font-bold transition-colors',
                     showAnnotated ? 'bg-white dark:bg-black text-neutral-900' : 'text-white hover:text-white/80',
                   )}
                 >
@@ -659,7 +659,7 @@ function AnalysisResultCard({
                 <label htmlFor="detected-category" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
                   Detected category
                 </label>
-                <span className="shrink-0 text-[10px] font-semibold text-amber-600 dark:text-amber-400">
+                <span className="shrink-0 text-xs font-semibold text-amber-600 dark:text-amber-400">
                   ⚠️ AI may be wrong — you can change it
                 </span>
               </div>
@@ -771,7 +771,7 @@ function AnalysisResultCard({
             </span>
           </p>
         ) : null}
-        <p className="mt-3 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-neutral-400">
+        <p className="mt-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-neutral-400">
           {analysis.engine === 'roboflow' ? (
             <>
               <ScanLine className="h-3.5 w-3.5 text-primary-500" />
@@ -982,7 +982,7 @@ function LocationStep({
                   </button>
                 </div>
               ) : null}
-              <p className="mt-2 text-[11px] font-semibold uppercase tracking-wide text-neutral-400">
+              <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-neutral-400">
                 {finalScope === 'campus' ? 'Campus report' : 'City report'} · shared with{' '}
                 {finalScope === 'campus' ? 'campus students & staff' : 'the city community'}
               </p>
@@ -1296,7 +1296,7 @@ function PhoneCapture({ sessionId }: { sessionId: string }) {
         ) : (
           <div className="mt-8">
             <ImageUploader value={photo} onChange={handlePhoto} />
-            <p className="mt-4 text-[11px] leading-relaxed text-neutral-400">
+            <p className="mt-4 text-xs leading-relaxed text-neutral-400">
               Tip: if a camera doesn't open, choose an image from your gallery — it works the same
               way.
             </p>

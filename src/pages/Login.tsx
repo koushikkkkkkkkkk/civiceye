@@ -413,22 +413,22 @@ function SupabaseSetupScreen() {
             'Create a free project at supabase.com',
             <>
               Run the schema in{' '}
-              <code className="rounded bg-slate-100 px-1.5 py-0.5 text-[11px] font-semibold dark:bg-white/10">
+              <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs font-semibold dark:bg-white/10">
                 supabase/schema.sql
               </code>{' '}
               (SQL Editor)
             </>,
             <>
               Copy the project URL + anon key into{' '}
-              <code className="rounded bg-slate-100 px-1.5 py-0.5 text-[11px] font-semibold dark:bg-white/10">
+              <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs font-semibold dark:bg-white/10">
                 .env
               </code>{' '}
               as{' '}
-              <code className="rounded bg-slate-100 px-1.5 py-0.5 text-[11px] font-semibold dark:bg-white/10">
+              <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs font-semibold dark:bg-white/10">
                 VITE_SUPABASE_URL
               </code>{' '}
               and{' '}
-              <code className="rounded bg-slate-100 px-1.5 py-0.5 text-[11px] font-semibold dark:bg-white/10">
+              <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs font-semibold dark:bg-white/10">
                 VITE_SUPABASE_ANON_KEY
               </code>
             </>,

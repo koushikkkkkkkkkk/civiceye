@@ -37,12 +37,12 @@ export function MapPopup({ report, onClose }: MapPopupProps) {
           <X className="h-4 w-4" />
         </button>
         <div className="absolute bottom-2 left-2 flex gap-1.5">
-          <span className="rounded-full bg-white/90 px-2 py-0.5 text-[10px] font-bold text-slate-700 backdrop-blur dark:bg-slate-900/80 dark:text-slate-200">
+          <span className="rounded-full bg-white/90 px-2 py-0.5 text-xs font-bold text-slate-700 backdrop-blur dark:bg-slate-900/80 dark:text-slate-200">
             {category.label}
           </span>
           <span
             className={cn(
-              'rounded-full px-2 py-0.5 text-[10px] font-bold backdrop-blur',
+              'rounded-full px-2 py-0.5 text-xs font-bold backdrop-blur',
               status.bg,
               status.color,
             )}
@@ -67,7 +67,7 @@ export function MapPopup({ report, onClose }: MapPopupProps) {
           {report.description}
         </p>
 
-        <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-semibold">
+        <div className="flex flex-wrap items-center gap-1.5 text-xs font-semibold">
           <span
             className={cn(
               'flex items-center gap-1 rounded-full px-2 py-0.5',
@@ -90,7 +90,7 @@ export function MapPopup({ report, onClose }: MapPopupProps) {
           ) : null}
         </div>
 
-        <div className="space-y-1 rounded-xl bg-slate-50 p-2.5 text-[11px] text-slate-500 dark:bg-white/[0.04] dark:text-slate-400">
+        <div className="space-y-1 rounded-xl bg-slate-50 p-2.5 text-xs text-slate-500 dark:bg-white/[0.04] dark:text-slate-400">
           <p className="flex items-center gap-1.5">
             <Calendar className="h-3 w-3" />
             Reported {formatDate(report.date)} by {report.author}

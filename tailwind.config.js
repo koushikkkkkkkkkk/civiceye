@@ -38,9 +38,9 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Geist', 'Manrope', 'system-ui', 'sans-serif'],
-        display: ['Manrope', 'Geist', 'sans-serif'],
-        mono: ['"Geist Mono"', 'monospace'],
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        display: ['"Playfair Display"', '"Times New Roman"', 'Times', 'Georgia', 'serif'],
+        mono: ['monospace'],
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
       },
       boxShadow: {

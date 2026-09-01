@@ -122,13 +122,13 @@ export function Community() {
           transition={{ type: 'spring', duration: 0.45, bounce: 0 }}
           className="mx-auto max-w-[1920px] px-6 sm:px-8 lg:px-12 xl:px-16"
         >
-          <div className="mb-6 flex items-center gap-3 text-[14px] font-semibold uppercase tracking-widest text-[#A51636] dark:text-[#E52B50]">
+          <div className="mb-6 flex items-center gap-3 text-sm font-semibold uppercase tracking-widest text-[#A51636] dark:text-[#E52B50]">
             <span>Community</span>
           </div>
-          <h1 className="max-w-4xl text-[56px] sm:text-[64px] font-bold leading-[1.05] tracking-[-0.03em] text-neutral-900 dark:text-white">
-            <AnimatedText text="Reports from your " /> <span className="font-serif italic font-normal text-[#A51636] dark:text-[#E52B50]"><AnimatedText text="neighbours" /></span>
+          <h1 className="max-w-4xl text-[56px] sm:text-[72px] font-bold leading-[1.05] tracking-[-0.03em] text-neutral-900 dark:text-white">
+            <AnimatedText text="Reports from your" /> <span className="font-serif italic font-normal text-[#A51636] dark:text-[#E52B50]"><AnimatedText text="neighbours" /></span>
           </h1>
-          <p className="mt-8 max-w-2xl text-[18px] leading-[1.6] text-neutral-600 dark:text-neutral-400">
+          <p className="mt-8 max-w-2xl text-lg leading-[1.6] text-neutral-600 dark:text-neutral-400">
             Every report below is citizen-submitted and community-validated. Search, filter and vote — the numbers decide what gets fixed first.
           </p>
         </motion.div>
@@ -202,10 +202,10 @@ export function Community() {
           ) : page.length === 0 ? (
             <div className="mt-8 flex min-h-56 flex-col items-center justify-center rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-[#F5F5F7] dark:bg-[#161618] p-8 text-center shadow-sm sm:p-12">
               <Inbox className="mb-4 h-12 w-12 text-neutral-400" />
-              <h3 className="mt-2 text-[20px] font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white">
+              <h3 className="mt-2 text-xl font-semibold tracking-[-0.02em] text-neutral-900 dark:text-white">
                 No reports found
               </h3>
-              <p className="mt-2 max-w-sm text-[15px] leading-[1.6] text-neutral-500 dark:text-neutral-400">
+              <p className="mt-2 max-w-sm text-sm leading-[1.6] text-neutral-500 dark:text-neutral-400">
                 Nothing matches your search and filters right now. Try clearing them, or be the first to report in this area.
               </p>
               <button
@@ -213,7 +213,7 @@ export function Community() {
                   setFilters({ ...DEFAULT_FILTERS, scope: isAmrita ? 'campus' : 'city' });
                   resetPagination();
                 }}
-                className="mt-6 inline-flex h-12 items-center justify-center rounded-full border border-neutral-300 px-8 text-[14px] font-bold text-neutral-900 dark:text-white transition-opacity hover:opacity-80 dark:border-neutral-700 bg-white dark:bg-[#111113] shadow-sm"
+                className="mt-6 inline-flex h-12 items-center justify-center rounded-full border border-neutral-300 px-8 text-sm font-bold text-neutral-900 dark:text-white transition-opacity hover:opacity-80 dark:border-neutral-700 bg-white dark:bg-[#111113] shadow-sm"
               >
                 Clear filters
               </button>
@@ -238,7 +238,7 @@ export function Community() {
                 <div className="mt-16 text-center">
                   <button
                     onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
-                    className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-neutral-300 px-8 text-[14px] font-bold text-neutral-900 dark:text-white transition-opacity hover:opacity-80 dark:border-neutral-700 bg-white dark:bg-[#161618] shadow-sm"
+                    className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-neutral-300 px-8 text-sm font-bold text-neutral-900 dark:text-white transition-opacity hover:opacity-80 dark:border-neutral-700 bg-white dark:bg-[#161618] shadow-sm"
                   >
                     <ArrowUpDown className="h-4 w-4 rotate-90" />
                     Load more ({sorted.length - visibleCount} remaining)

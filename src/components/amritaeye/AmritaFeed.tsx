@@ -76,16 +76,16 @@ export function AmritaFeed({ campusReports }: AmritaFeedProps) {
       <div className="mx-auto max-w-[1920px] px-6 py-28 sm:py-36">
         <div className="grid gap-12 border-b border-neutral-200 dark:border-neutral-800 pb-12 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
-            <p className="text-[14px] font-semibold uppercase tracking-widest text-[#A51636] dark:text-[#E52B50]">
+            <p className="text-sm font-semibold uppercase tracking-widest text-[#A51636] dark:text-[#E52B50]">
               Public issue log
             </p>
             <h2
               id="campus-reports-title"
-              className="mt-4 text-[32px] sm:text-[40px] font-bold leading-[1.2] tracking-tight text-neutral-900 dark:text-white"
+              className="mt-4 text-3xl sm:text-4xl font-bold leading-[1.2] tracking-tight text-neutral-900 dark:text-white"
             >
               Campus reports
             </h2>
-            <p className="mt-4 max-w-xl text-[16px] leading-[1.5] text-neutral-600 dark:text-neutral-400">
+            <p className="mt-4 max-w-xl text-base leading-[1.5] text-neutral-600 dark:text-neutral-400">
               Recent submissions from students and staff, with their current maintenance status.
             </p>
           </div>
@@ -137,26 +137,26 @@ export function AmritaFeed({ campusReports }: AmritaFeedProps) {
                       loading="lazy"
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute bottom-4 left-4 rounded-full bg-white/90 dark:bg-black/90 px-3 py-1.5 text-[12px] font-semibold uppercase tracking-wider text-neutral-900 dark:text-white backdrop-blur-md">
+                    <div className="absolute bottom-4 left-4 rounded-full bg-white/90 dark:bg-black/90 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-neutral-900 dark:text-white backdrop-blur-md">
                       {category.short}
                     </div>
                   </div>
 
                   <div className="flex flex-1 flex-col p-8">
                     <div className="flex items-center justify-between gap-4">
-                      <span className="font-mono text-[14px] font-medium text-neutral-500 dark:text-neutral-400">
+                      <span className="font-mono text-sm font-medium text-neutral-500 dark:text-neutral-400">
                         {report.code ?? `AMR-${report.id.slice(0, 6).toUpperCase()}`}
                       </span>
-                      <span className="inline-flex items-center gap-2 text-[14px] font-semibold text-neutral-900 dark:text-white">
+                      <span className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 dark:text-white">
                         <StatusLight status={report.status} />
                         {STATUS_LABELS[report.status]}
                       </span>
                     </div>
 
-                    <h3 className="mt-6 text-[20px] font-bold leading-[1.3] text-neutral-900 dark:text-white">
+                    <h3 className="mt-6 text-xl font-bold leading-[1.3] text-neutral-900 dark:text-white">
                       {report.title}
                     </h3>
-                    <p className="mt-3 line-clamp-2 text-[16px] leading-[1.5] text-neutral-600 dark:text-neutral-400">
+                    <p className="mt-3 line-clamp-2 text-base leading-[1.5] text-neutral-600 dark:text-neutral-400">
                       {report.description}
                     </p>
 

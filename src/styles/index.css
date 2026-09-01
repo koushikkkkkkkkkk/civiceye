@@ -88,6 +88,16 @@
   html.dark :focus-visible {
     @apply ring-offset-black;
   }
+
+  /* Fix vertical and horizontal alignment when Playfair Display (font-serif) is mixed inline with Inter (font-sans) */
+  span.font-serif {
+    position: relative;
+    top: 0.02em;
+    margin-left: -0.05em;
+    margin-right: -0.01em;
+    padding-right: 0.04em;
+    display: inline-block;
+  }
 }
 
 @layer components {
@@ -277,7 +287,7 @@
   }
 
   .font-serif-display {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", system-ui, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   }
 
   .heading-xl {

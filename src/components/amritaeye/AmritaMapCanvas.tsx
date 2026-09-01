@@ -16,7 +16,7 @@ export function AmritaMapCanvas({ campusReports, selectedId, onSelect }: AmritaM
       <div className="mx-auto max-w-[1920px] px-5 py-24 sm:px-8 sm:py-36 lg:px-12 xl:px-16">
         <div className="flex flex-col gap-6 border border-neutral-200 dark:border-neutral-800 border-b-0 bg-[#f5f5f5] dark:bg-[#111] p-8 sm:p-10 lg:flex-row lg:items-end lg:justify-between rounded-t-md">
           <div className="space-y-3">
-            <div className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400 dark:text-neutral-500">
+            <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400 dark:text-neutral-500">
               <span className="h-1.5 w-1.5 bg-primary-500" aria-hidden="true" />
               <span>Spatial tracking</span>
             </div>

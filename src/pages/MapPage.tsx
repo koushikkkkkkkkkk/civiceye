@@ -37,17 +37,21 @@ const listVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.05 }
+    transition: { 
+      staggerChildren: 0.08,
+      delayChildren: 0.2
+    }
   }
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 10, filter: "blur(4px)" },
+  hidden: { opacity: 0, y: 15, scale: 0.97, filter: "blur(8px)" },
   visible: { 
     opacity: 1, 
     y: 0, 
+    scale: 1,
     filter: "blur(0px)", 
-    transition: { type: "spring", duration: 0.4, bounce: 0 } 
+    transition: { type: "spring", damping: 22, stiffness: 200, mass: 0.8 } 
   }
 };
 
@@ -122,9 +126,9 @@ export function MapPage() {
 
       {/* Floating Sidebar Container */}
       <motion.aside
-        initial={{ x: -40, opacity: 0, filter: "blur(8px)" }}
+        initial={{ x: -60, opacity: 0, filter: "blur(12px)" }}
         animate={{ x: 0, opacity: 1, filter: "blur(0px)" }}
-        transition={{ type: 'spring', duration: 0.6, bounce: 0 }}
+        transition={{ type: 'spring', damping: 24, stiffness: 160, mass: 0.9, delay: 0.1 }}
         className="pointer-events-none absolute inset-y-0 left-0 z-40 flex w-full flex-col px-4 pb-6 pt-24 sm:w-[420px] lg:px-6"
       >
         
@@ -134,7 +138,7 @@ export function MapPage() {
           {/* Header & Search */}
           <div className="flex-none border-b border-neutral-200/50 dark:border-neutral-800/50 p-6">
             <div className="mb-6 flex items-center justify-between">
-              <span className="text-[14px] font-bold uppercase tracking-widest text-[#A51636] dark:text-[#E52B50]">Map View</span>
+              <span className="text-sm font-bold uppercase tracking-widest text-[#A51636] dark:text-[#E52B50]">Map View</span>
               {hasActiveFilters && (
                 <button
                   onClick={() => setFilters({ ...DEFAULT_FILTERS, scope: isAmrita ? 'campus' : 'city' })}
@@ -209,7 +213,7 @@ export function MapPage() {
                           </p>
                           <div className="mt-2.5 flex items-center gap-2">
                             <span className={cn(
-                              'inline-flex items-center rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider',
+                              'inline-flex items-center rounded-md px-2 py-0.5 text-xs font-bold uppercase tracking-wider',
                               isSelected ? 'bg-white/20 text-white dark:bg-black/20 dark:text-white' : 'bg-[#F5F5F7] text-neutral-600 dark:bg-[#161618] dark:text-neutral-300'
                             )}>
                               {STATUS_META[report.status].label}
@@ -228,9 +232,9 @@ export function MapPage() {
 
       {/* Floating Map Controls (Right Side) */}
       <motion.div
-        initial={{ x: 40, opacity: 0, filter: "blur(8px)" }}
+        initial={{ x: 60, opacity: 0, filter: "blur(12px)" }}
         animate={{ x: 0, opacity: 1, filter: "blur(0px)" }}
-        transition={{ type: 'spring', duration: 0.6, bounce: 0, delay: 0.1 }}
+        transition={{ type: 'spring', damping: 24, stiffness: 160, mass: 0.9, delay: 0.2 }}
         className="pointer-events-none absolute right-4 top-24 z-40 flex flex-col items-end gap-3 lg:right-6"
       >
         <button
@@ -248,12 +252,12 @@ export function MapPage() {
 
         {!heatmap && (
           <div className="pointer-events-auto mt-2 w-40 rounded-xl border border-neutral-200/50 bg-white/90 p-4 shadow-sm backdrop-blur-md dark:border-neutral-800/50 dark:bg-black/90">
-            <h3 className="mb-3 text-[10px] font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
+            <h3 className="mb-3 text-xs font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
               Severity
             </h3>
             <div className="space-y-2.5">
               {Object.entries(SEVERITY_META).map(([key, sev]) => (
-                <div key={key} className="flex items-center gap-2 text-[11px] font-semibold text-neutral-700 dark:text-neutral-300">
+                <div key={key} className="flex items-center gap-2 text-xs font-semibold text-neutral-700 dark:text-neutral-300">
                   <span className={cn('h-2.5 w-2.5 rounded-full', sev.dot)} />
                   {sev.label}
                 </div>

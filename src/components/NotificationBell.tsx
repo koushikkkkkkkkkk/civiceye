@@ -41,7 +41,7 @@ export function NotificationBell() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0 }}
-              className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-rose-500 px-1 text-[10px] font-bold text-white shadow"
+              className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-rose-500 px-1 text-xs font-bold text-white shadow"
             >
               {unreadCount > 9 ? '9+' : unreadCount}
             </motion.span>
@@ -63,7 +63,7 @@ export function NotificationBell() {
               <div className="flex items-center gap-1">
                 <button
                   onClick={markAllRead}
-                  className="flex items-center gap-1 rounded-lg px-2 py-1 text-[11px] font-semibold text-primary-600 transition-colors hover:bg-primary-500/10 dark:text-primary-400"
+                  className="flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-semibold text-primary-600 transition-colors hover:bg-primary-500/10 dark:text-primary-400"
                 >
                   <CheckCheck className="h-3.5 w-3.5" />
                   Mark all read
@@ -116,7 +116,7 @@ export function NotificationBell() {
                         <span className="mt-0.5 line-clamp-2 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
                           {n.message}
                         </span>
-                        <span className="mt-1 block text-[10px] font-medium text-slate-400 dark:text-slate-500">
+                        <span className="mt-1 block text-xs font-medium text-slate-400 dark:text-slate-500">
                           {timeAgo(n.date)}
                         </span>
                       </span>

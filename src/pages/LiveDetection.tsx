@@ -107,7 +107,7 @@ export function LiveDetection() {
         <div className="mx-auto max-w-[1920px] px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="mb-12 flex items-start gap-3 rounded-2xl border border-amber-200/50 bg-amber-50/50 p-6 backdrop-blur-sm dark:border-amber-900/30 dark:bg-amber-900/10">
             <Construction className="mt-1 h-5 w-5 shrink-0 text-amber-600 dark:text-amber-500" />
-            <div className="text-[14px] leading-[1.5] text-amber-900 dark:text-amber-200">
+            <div className="text-sm leading-[1.5] text-amber-900 dark:text-amber-200">
               <strong className="font-semibold">Work in progress.</strong> This page previews detections only — it does not
               create real reports yet. The production pipeline (real CCTV → YOLO model → verified
               events) is being rebuilt; see{' '}
@@ -125,19 +125,19 @@ export function LiveDetection() {
             className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end"
           >
             <div>
-              <div className="mb-6 flex items-center gap-3 text-[14px] font-semibold uppercase tracking-widest text-[#A51636] dark:text-[#E52B50]">
+              <div className="mb-6 flex items-center gap-3 text-sm font-semibold uppercase tracking-widest text-[#A51636] dark:text-[#E52B50]">
                 <span>Live AI Detection</span>
               </div>
-              <h1 className="text-[56px] sm:text-[64px] font-bold leading-[1.05] tracking-[-0.03em] text-neutral-900 dark:text-white max-w-4xl">
-                <AnimatedText text="CCTV vision " /> <span className="font-serif italic font-normal text-[#A51636] dark:text-[#E52B50]"><AnimatedText text="watchtower" /></span>
+              <h1 className="text-[56px] sm:text-[72px] font-bold leading-[1.05] tracking-[-0.03em] text-neutral-900 dark:text-white max-w-4xl">
+                <AnimatedText text="CCTV vision" /> <span className="font-serif italic font-normal text-[#A51636] dark:text-[#E52B50]"><AnimatedText text="watchtower" /></span>
               </h1>
-              <p className="mt-6 max-w-2xl text-[16px] leading-[1.5] text-neutral-600 dark:text-neutral-400">
+              <p className="mt-6 max-w-2xl text-base leading-[1.5] text-neutral-600 dark:text-neutral-400">
                 A mock computer-vision model watches city camera feeds and previews potholes,
                 accidents, garbage and more.
               </p>
             </div>
             <div className="flex items-center gap-4">
-              <span className="inline-flex h-12 items-center gap-3 rounded-full bg-[#F5F5F7] dark:bg-[#161618] px-5 text-[12px] font-bold uppercase tracking-wider text-neutral-900 dark:text-white">
+              <span className="inline-flex h-12 items-center gap-3 rounded-full bg-[#F5F5F7] dark:bg-[#161618] px-5 text-xs font-bold uppercase tracking-wider text-neutral-900 dark:text-white">
                 <span className="relative flex h-2 w-2">
                   {playing && <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#A51636] opacity-75" />}
                   <span className={cn("relative inline-flex h-2 w-2 rounded-full", playing ? "bg-[#A51636]" : "bg-neutral-400")} />
@@ -172,11 +172,11 @@ export function LiveDetection() {
               { icon: Sparkles, label: 'Avg. confidence', value: `${averageConfidence}%` },
             ].map((s) => (
               <div key={s.label} className="bg-white dark:bg-[#161618] p-8 flex flex-col justify-center items-center text-center">
-                <div className="flex flex-col items-center gap-3 text-[12px] font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-4">
+                <div className="flex flex-col items-center gap-3 text-xs font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-4">
                   <s.icon className="h-5 w-5 text-neutral-900 dark:text-white" />
                   <span>{s.label}</span>
                 </div>
-                <div className="text-[40px] font-bold leading-[1.2] tracking-tight text-neutral-900 dark:text-white tabular-nums">
+                <div className="text-4xl font-bold leading-[1.2] tracking-tight text-neutral-900 dark:text-white tabular-nums">
                   {s.value}
                 </div>
               </div>
@@ -208,12 +208,12 @@ export function LiveDetection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/40" />
 
                 <div className="absolute left-6 top-5 text-white">
-                  <p className="flex items-center gap-2 text-[11px] font-bold tracking-[0.18em]">
+                  <p className="flex items-center gap-2 text-xs font-bold tracking-[0.18em]">
                     <span className="h-2 w-2 animate-pulse rounded-full bg-primary-500" />
                     REC
                   </p>
                   <p className="mt-1 text-xs font-semibold text-white">{camera.streamLabel}</p>
-                  <p className="text-[10px] text-white/60">{camera.name}</p>
+                  <p className="text-xs text-white/60">{camera.name}</p>
                 </div>
 
                 <div className="absolute right-6 top-5 text-right">
@@ -222,7 +222,7 @@ export function LiveDetection() {
                       hour12: false,
                     })}
                   </p>
-                  <p className="text-[10px] text-white/60 uppercase tracking-wider">FRAME {frameIndex.toLocaleString()}</p>
+                  <p className="text-xs text-white/60 uppercase tracking-wider">FRAME {frameIndex.toLocaleString()}</p>
                 </div>
 
                 {playing && (
@@ -243,7 +243,7 @@ export function LiveDetection() {
                       height: `${box.h}%`,
                     }}
                   >
-                    <span className="absolute -top-6 left-0 bg-black/80 px-1.5 py-0.5 text-[10px] font-bold tracking-wider text-white">
+                    <span className="absolute -top-6 left-0 bg-black/80 px-1.5 py-0.5 text-xs font-bold tracking-wider text-white">
                       {box.label} {Math.round(box.confidence * 100)}%
                     </span>
                   </div>
@@ -251,17 +251,17 @@ export function LiveDetection() {
 
                 <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between gap-3">
                   {current?.category ? (
-                    <span className="flex items-center gap-2 bg-white/10 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-white backdrop-blur border border-white/20">
+                    <span className="flex items-center gap-2 bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white backdrop-blur border border-white/20">
                       <ShieldAlert className="h-3.5 w-3.5" />
                       {categoryById(current.category).label} \u00b7 {Math.round(current.confidence * 100)}%
                     </span>
                   ) : (
-                    <span className="flex items-center gap-2 bg-white/10 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-white backdrop-blur border border-white/20">
+                    <span className="flex items-center gap-2 bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white backdrop-blur border border-white/20">
                       <CircleDot className="h-3.5 w-3.5" />
                       Scene clear
                     </span>
                   )}
-                  <span className="bg-black/60 px-3 py-1.5 text-[10px] font-semibold text-white/80 backdrop-blur">
+                  <span className="bg-black/60 px-3 py-1.5 text-xs font-semibold text-white/80 backdrop-blur">
                     {camera.area}
                   </span>
                 </div>
@@ -344,8 +344,8 @@ export function LiveDetection() {
 
             <div className="flex flex-col rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161618] shadow-sm overflow-hidden h-[730px]">
               <div className="flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 px-6 py-5">
-                <p className="text-[16px] font-semibold text-neutral-900 dark:text-white">Detection feed</p>
-                <span className="bg-[#F5F5F7] dark:bg-[#0D0D0D] text-neutral-600 dark:text-neutral-300 px-3 py-1.5 text-[12px] font-semibold uppercase tracking-wider rounded-full">{feed.length} events</span>
+                <p className="text-base font-semibold text-neutral-900 dark:text-white">Detection feed</p>
+                <span className="bg-[#F5F5F7] dark:bg-[#0D0D0D] text-neutral-600 dark:text-neutral-300 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full">{feed.length} events</span>
               </div>
               <div className="flex-1 space-y-4 overflow-y-auto p-6">
                 <AnimatePresence initial={false}>
@@ -378,7 +378,7 @@ export function LiveDetection() {
                           >
                             {event.category ? categoryById(event.category).label : 'Scene clear'}
                           </p>
-                          <span className="shrink-0 text-[10px] font-semibold uppercase tracking-wider text-neutral-400">
+                          <span className="shrink-0 text-xs font-semibold uppercase tracking-wider text-neutral-400">
                             {timeAgo(event.timestamp)}
                           </span>
                         </div>
@@ -399,14 +399,14 @@ export function LiveDetection() {
                               )}
                             />
                           </div>
-                          <span className="shrink-0 text-[10px] font-bold tabular-nums text-neutral-500 dark:text-neutral-400">
+                          <span className="shrink-0 text-xs font-bold tabular-nums text-neutral-500 dark:text-neutral-400">
                             {Math.round(event.confidence * 100)}%
                           </span>
                         </div>
                         {event.reportId ? (
                           <Link
                             to={`/report/${event.reportId}`}
-                            className="mt-3 inline-flex items-center gap-1.5 border border-[#800020]/20 bg-primary-500/5 px-2 py-1 text-[10px] font-semibold text-[#800020] hover:bg-primary-500/10 rounded-sm"
+                            className="mt-3 inline-flex items-center gap-1.5 border border-[#800020]/20 bg-primary-500/5 px-2 py-1 text-xs font-semibold text-[#800020] hover:bg-primary-500/10 rounded-sm"
                           >
                             <Zap className="h-3 w-3" />
                             Auto-report {event.reportId}

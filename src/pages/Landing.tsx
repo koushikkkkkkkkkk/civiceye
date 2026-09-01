@@ -45,11 +45,11 @@ export function Landing() {
           <div className="grid items-center gap-16 lg:grid-cols-2">
             {/* Copy */}
             <div>
-              <div className="inline-flex items-center gap-2 rounded-sm border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-800 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-neutral-600 dark:text-neutral-300">
+              <div className="inline-flex items-center gap-2 rounded-sm border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-800 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-neutral-600 dark:text-neutral-300">
                 Prototype \u00b7 live demo data
               </div>
 
-              <h1 className="mt-8 text-[4rem] font-semibold leading-[0.95] tracking-[-0.05em] text-neutral-900 dark:text-white sm:text-7xl lg:text-[5rem]">
+              <h1 className="mt-8 text-[72px] font-semibold leading-[0.95] tracking-[-0.05em] text-neutral-900 dark:text-white sm:text-7xl lg:text-[72px]">
                 Making cities better,
                 <br />
                 <span className="text-neutral-400">one report at a time.</span>
@@ -78,7 +78,7 @@ export function Landing() {
                 </Link>
               </div>
 
-              <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-[11px] font-semibold uppercase tracking-wider text-neutral-400">
+              <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-xs font-semibold uppercase tracking-wider text-neutral-400">
                 <span className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 text-neutral-900 dark:text-white" />
                   Free for citizens
@@ -108,7 +108,7 @@ export function Landing() {
                     heatmap
                     className="h-full w-full"
                   />
-                  <div className="absolute bottom-4 right-4 rounded-sm bg-white/90 px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-neutral-900 dark:text-white backdrop-blur border border-neutral-200 dark:border-neutral-800">
+                  <div className="absolute bottom-4 right-4 rounded-sm bg-white/90 px-3 py-2 text-xs font-bold uppercase tracking-wider text-neutral-900 dark:text-white backdrop-blur border border-neutral-200 dark:border-neutral-800">
                     LIVE \u00b7 {compactNumber(stats.total)} reports
                   </div>
                 </div>
@@ -122,7 +122,7 @@ export function Landing() {
                   <p className="text-sm font-semibold text-neutral-900 dark:text-white">
                     {compactNumber(stats.verified)} verified
                   </p>
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">by the community</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">by the community</p>
                 </div>
               </div>
 
@@ -134,7 +134,7 @@ export function Landing() {
                   <p className="text-sm font-semibold text-neutral-900 dark:text-white">
                     {compactNumber(stats.totalVotes)} votes cast
                   </p>
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">across all reports</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">across all reports</p>
                 </div>
               </div>
             </div>
@@ -147,44 +147,44 @@ export function Landing() {
         <div className="mx-auto max-w-[1920px] px-5 sm:px-8 lg:px-12 xl:px-16">
           <div className="grid grid-cols-2 gap-px border border-neutral-200 dark:border-neutral-800 bg-neutral-200 rounded-md overflow-hidden lg:grid-cols-4">
             <div className="bg-white dark:bg-black p-6 sm:p-8 flex flex-col space-y-3">
-              <div className="flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
+              <div className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
                 <MapPin className="h-4 w-4 text-neutral-900 dark:text-white" />
                 <span>Active reports</span>
               </div>
               <div className="text-4xl font-semibold tracking-[-0.03em] text-neutral-900 dark:text-white tabular-nums">
                 {stats.total}
               </div>
-              <p className="text-[11px] font-medium text-neutral-400">in the database</p>
+              <p className="text-xs font-medium text-neutral-400">in the database</p>
             </div>
             <div className="bg-white dark:bg-black p-6 sm:p-8 flex flex-col space-y-3">
-              <div className="flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
+              <div className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
                 <ShieldCheck className="h-4 w-4 text-neutral-900 dark:text-white" />
                 <span>Verified reports</span>
               </div>
               <div className="text-4xl font-semibold tracking-[-0.03em] text-neutral-900 dark:text-white tabular-nums">
                 {stats.verified}
               </div>
-              <p className="text-[11px] font-medium text-neutral-400">confirmed by neighbours</p>
+              <p className="text-xs font-medium text-neutral-400">confirmed by neighbours</p>
             </div>
             <div className="bg-white dark:bg-black p-6 sm:p-8 flex flex-col space-y-3">
-              <div className="flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
+              <div className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
                 <CheckCircle2 className="h-4 w-4 text-neutral-900 dark:text-white" />
                 <span>Resolved</span>
               </div>
               <div className="text-4xl font-semibold tracking-[-0.03em] text-neutral-900 dark:text-white tabular-nums">
                 {stats.resolved}
               </div>
-              <p className="text-[11px] font-medium text-neutral-400">fixed by authorities</p>
+              <p className="text-xs font-medium text-neutral-400">fixed by authorities</p>
             </div>
             <div className="bg-white dark:bg-black p-6 sm:p-8 flex flex-col space-y-3">
-              <div className="flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
+              <div className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
                 <Zap className="h-4 w-4 text-neutral-900 dark:text-white" />
                 <span>Citizen votes</span>
               </div>
               <div className="text-4xl font-semibold tracking-[-0.03em] text-neutral-900 dark:text-white tabular-nums">
                 {compactNumber(stats.totalVotes)}
               </div>
-              <p className="text-[11px] font-medium text-neutral-400">community validation</p>
+              <p className="text-xs font-medium text-neutral-400">community validation</p>
             </div>
           </div>
         </div>
@@ -193,7 +193,7 @@ export function Landing() {
       {/* ------------------------------------------------ How it works */}
       <section className="border-b border-neutral-200 dark:border-neutral-800 py-24">
         <div className="mx-auto max-w-[1920px] px-5 sm:px-8 lg:px-12 xl:px-16">
-          <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
+          <div className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
             How it works
           </div>
           <h2 className="mb-6 text-3xl font-semibold tracking-[-0.035em] text-neutral-900 dark:text-white sm:text-4xl">
@@ -225,7 +225,7 @@ export function Landing() {
       {/* ------------------------------------------------ Features */}
       <section className="border-b border-neutral-200 dark:border-neutral-800 bg-[#f5f5f5] dark:bg-[#111] py-24">
         <div className="mx-auto max-w-[1920px] px-5 sm:px-8 lg:px-12 xl:px-16">
-          <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
+          <div className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
             Features
           </div>
           <h2 className="mb-6 text-3xl font-semibold tracking-[-0.035em] text-neutral-900 dark:text-white sm:text-4xl">
@@ -278,10 +278,10 @@ export function Landing() {
           <div className="rounded-md border border-neutral-200 dark:border-neutral-800 bg-neutral-900 p-10 sm:p-16 shadow-sm overflow-hidden">
             <div className="grid items-center gap-12 lg:grid-cols-2">
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-400">
                   Live map
                 </p>
-                <h2 className="mt-6 text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.04em] text-white sm:text-5xl">
+                <h2 className="mt-6 text-[32px] font-semibold leading-[1.05] tracking-[-0.04em] text-white sm:text-5xl">
                   See the danger before you hit it
                 </h2>
                 <p className="mt-6 max-w-lg text-lg leading-8 text-neutral-400">

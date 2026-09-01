@@ -65,7 +65,7 @@ export function ReportCard({ report, index = 0 }: ReportCardProps) {
             <span className={cn('h-1.5 w-1.5 rounded-full', severity.dot)} />
             {severity.label} severity
           </span>
-          <span className="rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-medium text-slate-600 backdrop-blur dark:bg-slate-900/80 dark:text-slate-300">
+          <span className="rounded-full bg-white/90 px-2.5 py-1 text-xs font-medium text-slate-600 backdrop-blur dark:bg-slate-900/80 dark:text-slate-300">
             {timeAgo(report.date)}
           </span>
         </div>

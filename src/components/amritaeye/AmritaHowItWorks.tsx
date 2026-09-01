@@ -23,11 +23,11 @@ export function AmritaHowItWorks() {
     <section className="bg-[#FFF5F7] dark:bg-[#1A030A] py-24 sm:py-36 border-t border-[#A51636]/10 dark:border-[#E52B50]/10">
       <div className="mx-auto max-w-[1920px] px-6 lg:px-12">
         <div className="mb-24 md:mb-32">
-          <div className="mb-6 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#A51636] dark:text-[#E52B50]">
+          <div className="mb-6 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-[#A51636] dark:text-[#E52B50]">
             <span className="h-2 w-2 rounded-full bg-[#A51636] dark:bg-[#E52B50]" aria-hidden="true" />
             <span>How it works</span>
           </div>
-          <h2 className="max-w-4xl text-[48px] sm:text-[64px] font-bold leading-[1.05] tracking-[-0.03em] text-neutral-900 dark:text-white">
+          <h2 className="max-w-4xl text-5xl sm:text-[72px] font-bold leading-[1.05] tracking-[-0.03em] text-neutral-900 dark:text-white">
             Report issues in <span className="font-serif italic font-normal text-[#A51636] dark:text-[#E52B50]">three simple steps.</span>
           </h2>
         </div>
@@ -44,7 +44,7 @@ export function AmritaHowItWorks() {
             >
               <div className="md:col-span-5 md:sticky md:top-32 self-start relative">
                 <motion.span 
-                  className="text-[120px] lg:text-[180px] font-serif italic leading-none tracking-tighter text-[#A51636]/10 dark:text-[#E52B50]/10 select-none inline-block origin-left"
+                  className="text-[72px] lg:text-[72px] font-serif italic leading-none tracking-tighter text-[#A51636]/10 dark:text-[#E52B50]/10 select-none inline-block origin-left"
                   initial={{ scale: 2, opacity: 0, filter: "blur(8px)", x: -100 }}
                   whileInView={{ scale: 1, opacity: 1, filter: "blur(0px)", x: 0 }}
                   transition={{ type: "spring", bounce: 0.5, duration: 1.5, delay: 0.2 }}
@@ -53,7 +53,7 @@ export function AmritaHowItWorks() {
                 </motion.span>
                 <div className="absolute inset-0 flex items-center pt-8 pl-4 lg:pt-16 lg:pl-8 pointer-events-none">
                   <motion.h3 
-                    className="text-[28px] sm:text-[40px] font-bold tracking-tight text-neutral-900 dark:text-white leading-[1.1]"
+                    className="text-2xl sm:text-4xl font-bold tracking-tight text-neutral-900 dark:text-white leading-[1.1]"
                     initial={{ x: 50, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{ type: "spring", bounce: 0, duration: 1, delay: 0.4 }}
@@ -65,7 +65,7 @@ export function AmritaHowItWorks() {
               
               <div className="md:col-span-7 flex items-center">
                 <motion.p 
-                  className="text-[20px] sm:text-[24px] leading-[1.6] text-neutral-600 dark:text-neutral-400 max-w-2xl"
+                  className="text-xl sm:text-2xl leading-[1.6] text-neutral-600 dark:text-neutral-400 max-w-2xl"
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ type: "spring", bounce: 0, duration: 1, delay: 0.5 }}
