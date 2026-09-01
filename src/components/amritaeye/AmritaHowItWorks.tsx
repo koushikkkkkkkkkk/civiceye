@@ -20,7 +20,7 @@ const steps = [
 
 export function AmritaHowItWorks() {
   return (
-    <section className="bg-[#FFF5F7] dark:bg-[#1A030A] py-24 sm:py-36 border-t border-[#A51636]/10 dark:border-[#E52B50]/10">
+    <section className="bg-transparent py-24 sm:py-36">
       <div className="mx-auto max-w-[1920px] px-6 lg:px-12">
         <div className="mb-24 md:mb-32">
           <div className="mb-6 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-[#A51636] dark:text-[#E52B50]">

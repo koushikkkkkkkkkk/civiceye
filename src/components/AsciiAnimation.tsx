@@ -45,13 +45,13 @@ function SceneWithDelayedComposer({ resolution, mousePos }: { resolution: Vector
       ctx.fillRect(0, 0, trailCanvas.width, trailCanvas.height)
 
       const x = (mousePos.x / resolution.x) * trailCanvas.width
-      const y = (1.0 - mousePos.y / resolution.y) * trailCanvas.height
+      const y = (mousePos.y / resolution.y) * trailCanvas.height
 
       const dist = lastMousePos.current.distanceTo(mousePos)
       lastMousePos.current.copy(mousePos)
 
       // Radius is small but expands slightly on fast movement
-      const targetRadius = Math.max(15, Math.min(30, 15 + dist * 0.3))
+      const targetRadius = Math.max(30, Math.min(60, 30 + dist * 0.4))
       
       const gradient = ctx.createRadialGradient(x, y, 0, x, y, targetRadius)
       gradient.addColorStop(0, 'rgba(255, 255, 255, 1)')
@@ -109,36 +109,27 @@ export function AsciiAnimation() {
   const [resolution] = useState(() => new Vector2(1920, 1080))
 
   useEffect(() => {
-    const container = document.getElementById('hero')
-    if (!container) return
-
     const updateResolution = () => {
-      const rect = container.getBoundingClientRect()
-      resolution.set(rect.width || 1920, rect.height || 1080)
+      resolution.set(window.innerWidth, window.innerHeight)
     }
 
     const handleMouseMove = (e: MouseEvent) => {
-      const rect = container.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = rect.height - (e.clientY - rect.top)
-      mousePos.set(x, y)
+      mousePos.set(e.clientX, e.clientY) // window coordinates directly
     }
 
     updateResolution()
-    const ro = new ResizeObserver(updateResolution)
-    ro.observe(container)
-    container.addEventListener("mousemove", handleMouseMove)
+    window.addEventListener('resize', updateResolution)
+    window.addEventListener("mousemove", handleMouseMove)
 
     return () => {
-      ro.disconnect()
-      container.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener('resize', updateResolution)
+      window.removeEventListener("mousemove", handleMouseMove)
     }
   }, [mousePos, resolution])
 
   return (
     <div
-      ref={containerRef}
-      className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-black"
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-black"
     >
       <Canvas
         dpr={Math.min(typeof window !== "undefined" ? window.devicePixelRatio : 1, 1.5)}

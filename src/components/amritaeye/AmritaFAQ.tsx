@@ -31,7 +31,7 @@ export function AmritaFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-transparent border-t border-[#A51636]/10 dark:border-[#E52B50]/10">
+    <section className="bg-transparent">
       <div className="mx-auto max-w-[800px] px-6 py-28 sm:py-36">
         <h2 className="mb-16 text-3xl sm:text-4xl font-bold leading-[1.2] tracking-tight text-neutral-900 dark:text-white">
           Frequently asked questions
