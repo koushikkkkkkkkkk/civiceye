@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "name": "refactoring-ui",
+  "owner": "opkod-france",
+  "repo": "opkod-claude-code-plugins",
+  "path": "plugins/ui-polish/skills/refactoring-ui",
+  "branch": "main",
+  "sha": "cb22279f18a292924471bbd8fcf20b3cf7376df8",
+  "source": "manual"
+}

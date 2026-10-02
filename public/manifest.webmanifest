@@ -13,7 +13,10 @@
   "dir": "ltr",
   "categories": ["civic-tech", "productivity", "utilities"],
   "icons": [
-    { "src": "/civiceye-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/civiceye-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
   ],
   "shortcuts": [
     { "name": "Report an issue", "short_name": "Report", "url": "/report?source=pwa" },

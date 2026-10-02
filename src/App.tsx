@@ -6,11 +6,14 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { NavbarAmrita } from '@/components/NavbarAmrita';
 import { FooterAmrita } from '@/components/FooterAmrita';
+import { MobileBottomNav } from '@/components/MobileBottomNav';
+import { PwaUpdateToast } from '@/components/PwaUpdateToast';
 import { SOSButton } from '@/components/SOSButton';
 import { RequireAuth } from '@/components/RequireAuth';
 import { Landing } from '@/pages/Landing';
 import { AmritaEye } from '@/pages/AmritaEye';
 import { useBrand } from '@/hooks/useBrand';
+import { useProcessOfflineQueue } from '@/hooks/useProcessOfflineQueue';
 import { cn } from '@/utils/cn';
 import { Features } from '@/pages/Features';
 import { MapPage } from '@/pages/MapPage';
@@ -46,6 +49,9 @@ export default function App() {
   // Show the Amrita Eye chrome on the /amrita route too, not just for
   // @amrita.edu logins — matches the koushikkkkkkkkkk.github.io preview.
   const amritaChrome = isAmrita || location.pathname.startsWith('/amrita');
+
+  // Process offline sync queue
+  useProcessOfflineQueue();
 
   // Browsers gate audio behind a user gesture; arm it once per visit.
   useEffect(() => {
@@ -142,7 +148,11 @@ export default function App() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-          className={cn('flex flex-1 flex-col', needsNavPad && 'has-top-nav')}
+          className={cn(
+            'flex flex-1 flex-col',
+            needsNavPad && 'has-top-nav',
+            !isAuthPage && !location.pathname.startsWith('/map') && 'pb-20 md:pb-0'
+          )}
         >
           {isAuthPage
             ? authRoutes
@@ -154,6 +164,8 @@ export default function App() {
         </motion.main>
       </AnimatePresence>
       {!isAuthPage ? (amritaChrome ? <FooterAmrita /> : <Footer />) : null}
+      {!isAuthPage ? <MobileBottomNav /> : null}
+      <PwaUpdateToast />
     </div>
   );
 }

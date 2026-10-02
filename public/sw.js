@@ -5,6 +5,10 @@ const STATIC_ASSETS = [
   '/',
   '/manifest.webmanifest',
   '/civiceye-icon.svg',
+  '/icon-192.png',
+  '/icon-512.png',
+  '/apple-touch-icon.png',
+  '/offline.html',
 ];
 
 self.addEventListener('install', (event) => {
@@ -19,6 +23,12 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))),
   );
   self.clients.claim();
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
 
 self.addEventListener('fetch', (event) => {
@@ -36,7 +46,7 @@ self.addEventListener('fetch', (event) => {
           caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => undefined);
           return res;
         })
-        .catch(() => caches.match(req).then((cached) => cached || caches.match('/'))),
+        .catch(() => caches.match(req).then((cached) => cached || caches.match('/offline.html'))),
     );
     return;
   }

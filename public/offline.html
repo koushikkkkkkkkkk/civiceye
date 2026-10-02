@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#1A030A" />
+  <title>CivicEye - Offline</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #1A030A;
+      color: #F8F8F8;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    .ascii-art {
+      font-family: monospace;
+      white-space: pre;
+      color: #A51636;
+      font-size: 10px;
+      line-height: 10px;
+      opacity: 0.8;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 0 1rem;
+      letter-spacing: -0.025em;
+    }
+    p {
+      color: #A1A1AA;
+      max-width: 400px;
+      margin: 0 0 2rem;
+      line-height: 1.5;
+    }
+    button {
+      background-color: #A51636;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #8A122D;
+    }
+  </style>
+</head>
+<body>
+  <div class="ascii-art">
+   _____ _       _       ______          
+  / ____(_)     (_)     |  ____|         
+ | |     ___   ___  ___ | |__  _   _  ___ 
+ | |    | \ \ / / |/ __||  __|| | | |/ _ \
+ | |____| |\ V /| | (__ | |___| |_| |  __/
+  \_____|_| \_/ |_|\___||______\__, |\___|
+                                __/ |    
+                               |___/     
+  </div>
+  <h1>You're offline</h1>
+  <p>It looks like you've lost your internet connection. CivicEye requires an active connection to view the live map.</p>
+  <button onclick="window.location.reload()">Try Again</button>
+</body>
+</html>

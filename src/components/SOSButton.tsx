@@ -86,7 +86,7 @@ export function SOSButton() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full border-2 border-white bg-rose-600 px-4 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-[0_14px_40px_-10px_rgba(225,29,72,0.75)] transition hover:-translate-y-0.5 hover:bg-rose-500 focus-visible:ring-rose-500 sm:bottom-7 sm:right-7"
+        className="fixed bottom-20 right-4 z-40 flex items-center gap-2 rounded-full border-2 border-white bg-rose-600 px-4 py-2.5 sm:py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-[0_14px_40px_-10px_rgba(225,29,72,0.75)] transition hover:-translate-y-0.5 hover:bg-rose-500 focus-visible:ring-rose-500 md:bottom-7 md:right-7"
         aria-label="Open SOS emergency report"
       >
         <Siren className="h-5 w-5" />

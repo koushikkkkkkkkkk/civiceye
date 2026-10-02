@@ -71,12 +71,12 @@ export function AmritaFeed({ campusReports }: AmritaFeedProps) {
   return (
     <section
       aria-labelledby="campus-reports-title"
-      className="bg-[#FFF5F7] dark:bg-[#1A030A] border-t border-[#A51636]/10 dark:border-[#E52B50]/10"
+      className="bg-primary-50 dark:bg-black border-t border-primary-500/10"
     >
       <div className="mx-auto max-w-[1920px] px-6 py-28 sm:py-36">
         <div className="grid gap-12 border-b border-neutral-200 dark:border-neutral-800 pb-12 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#A51636] dark:text-[#E52B50]">
+            <p className="text-sm font-semibold uppercase tracking-widest text-primary-500">
               Public issue log
             </p>
             <h2

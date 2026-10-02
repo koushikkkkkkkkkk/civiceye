@@ -85,6 +85,7 @@ uniform bool useGlyphAtlas;
 uniform bool volumeShading;
 uniform bool useTintColor;
 uniform vec3 tintColor;
+uniform vec3 bgColor;
 
 // Helper functions
 float random(vec2 st) {
@@ -277,12 +278,12 @@ void mainImage(const in vec4 inputColor, const in vec2 uv, out vec4 outputColor)
   vec3 finalColor;
   if (colorMode) {
     if (useTintColor) {
-      finalColor = tintColor * charValue;
+      finalColor = mix(bgColor, tintColor, charValue);
     } else {
-      finalColor = cellColor.rgb * charValue;
+      finalColor = mix(bgColor, cellColor.rgb, charValue);
     }
   } else {
-    finalColor = vec3(brightness * charValue);
+    finalColor = mix(bgColor, vec3(brightness), charValue);
   }
 
   if (mouseGlowOnly) {
@@ -330,6 +331,8 @@ let _colorMode = true
 let _asciiStyle = 0
 let _resolution = new Vector2(1920, 1080)
 let _mousePos = new Vector2(0, 0)
+let _bgColor = new Vector3(0, 0, 0)
+let _tintColor = new Vector3(1, 1, 1)
 
 interface AsciiEffectImplOptions {
   cellSize?: number
@@ -343,6 +346,7 @@ interface AsciiEffectImplOptions {
   glyphTiles?: number
   volumeShading?: boolean
   tintColor?: Vector3 | null
+  bgColor?: Vector3
 }
 
 class AsciiEffectImpl extends Effect {
@@ -359,6 +363,7 @@ class AsciiEffectImpl extends Effect {
       glyphTiles = 0,
       volumeShading = false,
       tintColor = null,
+      bgColor = new Vector3(0, 0, 0),
     } = options
 
     super("AsciiEffect", fragmentShader, {
@@ -377,6 +382,7 @@ class AsciiEffectImpl extends Effect {
         ["volumeShading", new Uniform(volumeShading)],
         ["useTintColor", new Uniform(!!tintColor)],
         ["tintColor", new Uniform(tintColor || new Vector3(1, 1, 1))],
+        ["bgColor", new Uniform(bgColor)],
         ["scanlineIntensity", new Uniform(postfx.scanlineIntensity || 0)],
         ["scanlineCount", new Uniform(postfx.scanlineCount || 200)],
         ["targetFPS", new Uniform(postfx.targetFPS || 0)],
@@ -440,6 +446,8 @@ class AsciiEffectImpl extends Effect {
     this.uniforms.get("asciiStyle")!.value = _asciiStyle
     this.uniforms.get("resolution")!.value = _resolution
     this.uniforms.get("mousePos")!.value = _mousePos
+    this.uniforms.get("bgColor")!.value.copy(_bgColor)
+    this.uniforms.get("tintColor")!.value.copy(_tintColor)
   }
 }
 
@@ -457,6 +465,8 @@ export interface AsciiEffectProps {
   volumeShading?: boolean
   /** Single color for all characters (e.g. "#917AFF"); removes scene lighting gradient */
   tintColor?: string
+  /** Background color (e.g. "#ffffff" for light mode) */
+  bgColor?: string
 }
 
 export const AsciiEffect = forwardRef<unknown, AsciiEffectProps>((props, ref) => {
@@ -471,6 +481,7 @@ export const AsciiEffect = forwardRef<unknown, AsciiEffectProps>((props, ref) =>
     characterSet = "terminal",
     volumeShading = false,
     tintColor: tintColorProp = undefined,
+    bgColor: bgColorProp = "#000000",
   } = props
 
   const styleMap = { standard: 0, dense: 1, minimal: 2, blocks: 3 }
@@ -481,6 +492,11 @@ export const AsciiEffect = forwardRef<unknown, AsciiEffectProps>((props, ref) =>
     const c = new Color(tintColorProp)
     return new Vector3(c.r, c.g, c.b)
   }, [tintColorProp])
+
+  const bgColorVec = useMemo(() => {
+    const c = new Color(bgColorProp)
+    return new Vector3(c.r, c.g, c.b)
+  }, [bgColorProp])
 
   const glyphTexture = useMemo(() => {
     if (characterSet == null) return null
@@ -495,6 +511,8 @@ export const AsciiEffect = forwardRef<unknown, AsciiEffectProps>((props, ref) =>
   _asciiStyle = styleNum
   _resolution = resolution
   _mousePos = mousePos
+  _bgColor = bgColorVec
+  _tintColor = tintColorVec || new Vector3(1, 1, 1)
 
   const effect = useMemo(
     () =>
@@ -516,6 +534,7 @@ export const AsciiEffect = forwardRef<unknown, AsciiEffectProps>((props, ref) =>
           : 0,
         volumeShading,
         tintColor: tintColorVec,
+        bgColor: bgColorVec,
       }),
     [
       cellSize,
@@ -529,6 +548,7 @@ export const AsciiEffect = forwardRef<unknown, AsciiEffectProps>((props, ref) =>
       characterSet,
       volumeShading,
       tintColorVec,
+      bgColorVec,
     ]
   )
 

@@ -54,7 +54,6 @@ function getResponse(input: string, isAmrita: boolean): string {
 
 const QUICK_QUESTIONS = [
   'How to report?',
-  'BBMP email?',
   'Estate Office?',
   'Campus map?',
   'Mess / food?',
@@ -63,24 +62,14 @@ const QUICK_QUESTIONS = [
 
 /**
  * CivicEye / Amrita Eye AI assistant.
- *
- * Mobile notes:
- *  - Portal to document.body so the panel is never clipped by a parent
- *    overflow:hidden or stacking context.
- *  - On small screens (<= 640px) the chat opens as a full-viewport sheet
- *    anchored to the bottom, with a generous 48px hit-area close button
- *    and room for the iOS home-indicator via safe-area-inset.
- *  - On desktop it's a floating card bottom-right as before.
- *  - z-index chosen to sit above the drawer (z-70), SOS (z-80) and
- *    PWA toasts (z-85) — the chat needs z-90 so it's reachable when
- *    any other overlay is open.
+ * PWA-Optimized Native-like Experience.
  */
 export function AIChatbot() {
   const { isAmrita } = useBrand();
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([
-    { id: '1', role: 'assistant', text: `Hi! I'm CivicEye AI 🤖 — ${isAmrita ? 'Amrita Eye campus helper' : 'city helper'}. I can help with reporting, BBMP, Estate Office, campus map, mess/food complaints, AI annotations, community.`, timestamp: new Date().toISOString() },
+    { id: '1', role: 'assistant', text: `Hi! I'm CivicEye AI 🤖 — ${isAmrita ? 'Amrita Eye campus helper' : 'city helper'}. I can help with reporting, Estate Office, campus map, mess/food complaints, AI annotations, community.`, timestamp: new Date().toISOString() },
   ]);
   const bottomRef = useRef<HTMLDivElement>(null!);
 
@@ -116,7 +105,7 @@ export function AIChatbot() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[88]"
+          className="fixed inset-0 z-[100]"
           role="dialog"
           aria-modal="true"
           aria-label="AI Assistant"
@@ -127,25 +116,21 @@ export function AIChatbot() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setOpen(false)}
-            className="absolute inset-0 bg-slate-950/55 backdrop-blur-sm"
+            className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
           />
 
-          {/* Mobile: full-width bottom sheet */}
+          {/* Mobile: full-width native-like 100dvh sheet */}
           <motion.div
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
-            transition={{ type: 'spring', stiffness: 340, damping: 32 }}
-            className="absolute inset-x-0 bottom-0 flex flex-col border-t-4 border-[#A51636] bg-white shadow-[0_-20px_50px_rgba(0,0,0,0.35)] sm:hidden"
-            style={{ height: 'calc(100dvh - 16px)', paddingBottom: 'env(safe-area-inset-bottom, 0)' }}
+            transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+            className="absolute inset-x-0 bottom-0 flex flex-col bg-slate-50 dark:bg-[#121212] sm:hidden"
+            style={{ height: '100dvh' }}
           >
-            {ChatHeader({ onClose: () => setOpen(false), isAmrita })}
+            <ChatHeader onClose={() => setOpen(false)} isAmrita={isAmrita} />
             <MessageList messages={messages} bottomRef={bottomRef} />
-            <Composer
-              input={input}
-              setInput={setInput}
-              send={send}
-            />
+            <Composer input={input} setInput={setInput} send={send} />
           </motion.div>
 
           {/* Desktop: floating card */}
@@ -154,15 +139,11 @@ export function AIChatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.96 }}
             transition={{ type: 'spring', stiffness: 340, damping: 28 }}
-            className="hidden sm:absolute sm:bottom-24 sm:right-7 sm:flex sm:h-[560px] sm:w-[380px] sm:flex-col sm:overflow-hidden sm:rounded-2xl sm:border-2 sm:border-[#A51636]/30 sm:bg-white sm:shadow-[0_20px_60px_rgba(165,22,54,0.25)]"
+            className="hidden sm:absolute sm:bottom-24 sm:right-7 sm:flex sm:h-[600px] sm:w-[400px] sm:flex-col sm:overflow-hidden sm:rounded-[2rem] sm:border sm:border-slate-200/50 sm:bg-slate-50 sm:shadow-[0_20px_60px_rgba(0,0,0,0.15)] dark:sm:border-white/10 dark:sm:bg-[#121212] dark:sm:shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
           >
-            {ChatHeader({ onClose: () => setOpen(false), isAmrita })}
+            <ChatHeader onClose={() => setOpen(false)} isAmrita={isAmrita} />
             <MessageList messages={messages} bottomRef={bottomRef} />
-            <Composer
-              input={input}
-              setInput={setInput}
-              send={send}
-            />
+            <Composer input={input} setInput={setInput} send={send} />
           </motion.div>
         </motion.div>
       ) : null}
@@ -171,17 +152,12 @@ export function AIChatbot() {
 
   return (
     <>
-      {/* FAB — raises with z-89 so it's below the panel (90) but above
-          the SOS (z-40) and navbar; sits just above the SOS on mobile. */}
       <motion.button
         onClick={() => setOpen((v) => !v)}
         whileTap={{ scale: 0.92 }}
         whileHover={{ scale: 1.06 }}
         className={cn(
-          // On mobile put the chat FAB on the LEFT bottom corner so it
-          // never collides with the SOS button on the right. On desktop
-          // it goes back to the bottom-right next to the report FAB.
-          'fixed left-4 z-[80] flex h-14 w-14 items-center justify-center rounded-full bg-[#A51636] text-white shadow-[0_8px_24px_rgba(165,22,54,0.4)]',
+          'fixed left-4 z-[80] flex h-14 w-14 items-center justify-center rounded-full bg-primary-500 text-white shadow-[0_8px_24px_rgba(0,0,0,0.22)] dark:shadow-[0_8px_24px_rgba(0,0,0,0.5)]',
           'bottom-24 sm:bottom-8 sm:left-auto sm:right-7',
         )}
         aria-label={open ? 'Close AI chat' : 'Open AI chat'}
@@ -197,22 +173,29 @@ export function AIChatbot() {
 
 function ChatHeader({ onClose, isAmrita }: { onClose: () => void; isAmrita: boolean }) {
   return (
-    <div className="flex items-center gap-3 border-b border-slate-200 bg-[#A51636] px-4 py-3 text-white">
-      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/30">
-        <Bot className="h-5 w-5" />
-      </div>
-      <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-1.5 text-sm font-bold leading-tight">
-          CivicEye AI <Sparkles className="h-3.5 w-3.5 text-amber-200" />
+    <div 
+      className="sticky top-0 z-10 flex shrink-0 items-center justify-between border-b border-slate-200/50 bg-white/80 px-4 py-3 backdrop-blur-xl dark:border-white/5 dark:bg-[#18181b]/80"
+      style={{ paddingTop: 'max(env(safe-area-inset-top, 0px), 12px)' }}
+    >
+      <div className="flex items-center gap-3">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-500 text-white shadow-sm">
+          <Bot className="h-5 w-5" />
         </div>
-        <div className="truncate text-[11px] text-white/80">{isAmrita ? 'Amrita Eye campus helper' : 'City helper'} — BBMP · Estate · Maps · Food · AI</div>
+        <div className="flex flex-col">
+          <div className="flex items-center gap-1.5 text-[15px] font-semibold tracking-tight text-slate-900 dark:text-white">
+            CivicEye AI <Sparkles className="h-3.5 w-3.5 text-amber-500" />
+          </div>
+          <div className="text-[12px] text-slate-500 dark:text-slate-400">
+            {isAmrita ? 'Amrita Eye Campus Assistant' : 'City Assistant'}
+          </div>
+        </div>
       </div>
       <button
         onClick={onClose}
         aria-label="Close chat"
-        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-white transition active:bg-white/25 sm:hover:bg-white/20"
+        className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition active:scale-95 dark:bg-white/10 dark:text-slate-300"
       >
-        <X className="h-5 w-5" strokeWidth={2.5} />
+        <X className="h-5 w-5" />
       </button>
     </div>
   );
@@ -220,28 +203,28 @@ function ChatHeader({ onClose, isAmrita }: { onClose: () => void; isAmrita: bool
 
 function MessageList({ messages, bottomRef }: { messages: Message[]; bottomRef: React.RefObject<HTMLDivElement> }) {
   return (
-    <div className="flex-1 overflow-y-auto overscroll-contain bg-[#FFF5F7] p-3 dark:bg-[#1a0f14]">
-      <div className="space-y-3">
+    <div className="flex-1 overflow-y-auto overscroll-contain px-4 py-6 scroll-smooth bg-transparent">
+      <div className="space-y-4">
         {messages.map((msg) => (
-          <div key={msg.id} className={`flex gap-2 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-            {msg.role === 'assistant' ? (
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#A51636]/15 text-[#A51636]">
+          <div key={msg.id} className={cn('flex w-full', msg.role === 'user' ? 'justify-end' : 'justify-start')}>
+            {msg.role === 'assistant' && (
+              <div className="mr-2 mt-auto flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-100 text-primary-600 shadow-sm dark:bg-primary-500/20 dark:text-primary-400">
                 <Bot className="h-4 w-4" />
               </div>
-            ) : null}
+            )}
             <div
               className={cn(
-                'max-w-[80%] rounded-2xl px-3.5 py-2.5 text-[13.5px] leading-relaxed shadow-sm',
+                'relative max-w-[85%] rounded-[1.25rem] px-4 py-2.5 text-[15px] leading-[1.45]',
                 msg.role === 'user'
-                  ? 'rounded-br-md bg-[#A51636] text-white'
-                  : 'rounded-bl-md bg-white text-slate-800 dark:bg-white/10 dark:text-slate-100',
+                  ? 'rounded-br-sm bg-primary-500 text-white shadow-sm'
+                  : 'rounded-bl-sm bg-white text-slate-800 shadow-sm ring-1 ring-slate-900/5 dark:bg-[#18181b] dark:text-slate-100 dark:ring-white/10',
               )}
             >
               {msg.text}
             </div>
           </div>
         ))}
-        <div ref={bottomRef} />
+        <div ref={bottomRef} className="h-2" />
       </div>
     </div>
   );
@@ -251,46 +234,48 @@ function Composer({
   input, setInput, send,
 }: { input: string; setInput: (s: string) => void; send: () => void }) {
   return (
-    <div className="border-t border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-900">
-      <div className="-mx-1 mb-2 flex gap-1.5 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <div 
+      className="shrink-0 border-t border-slate-200/50 bg-white/90 p-3 backdrop-blur-xl dark:border-white/5 dark:bg-[#18181b]/90" 
+      style={{ paddingBottom: 'max(env(safe-area-inset-bottom, 12px), 12px)' }}
+    >
+      <div className="-mx-1 mb-3 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {QUICK_QUESTIONS.map((q) => (
           <button
             key={q}
             onClick={() => setInput(q)}
-            className="shrink-0 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-semibold text-slate-600 transition active:bg-[#A51636]/10 dark:border-white/10 dark:bg-white/5 dark:text-slate-300"
+            className="shrink-0 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition active:bg-slate-50 dark:border-white/5 dark:bg-[#27272a] dark:text-slate-200 dark:active:bg-[#3f3f46]"
           >
             {q}
           </button>
         ))}
       </div>
       <div className="flex items-end gap-2">
-        <textarea
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-              e.preventDefault();
-              send();
-            }
-          }}
-          rows={1}
-          placeholder="Ask about BBMP, Estate, mess/food, maps..."
-          className="min-h-[42px] max-h-24 flex-1 resize-none rounded-2xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-[14px] leading-snug outline-none focus:border-[#A51636]/40 focus:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white"
-        />
+        <div className="flex min-h-[44px] flex-1 items-center rounded-[1.5rem] border border-slate-200 bg-slate-50 px-4 py-1 shadow-inner focus-within:border-primary-500/40 focus-within:bg-white dark:border-white/5 dark:bg-[#18181b] dark:focus-within:border-primary-500/40 dark:focus-within:bg-[#18181b]">
+          <textarea
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                send();
+              }
+            }}
+            rows={1}
+            placeholder="Ask a question..."
+            className="max-h-32 flex-1 resize-none bg-transparent py-2.5 text-[15px] outline-none placeholder:text-slate-400 dark:text-white"
+          />
+        </div>
         <button
           onClick={send}
           disabled={!input.trim()}
           aria-label="Send message"
           className={cn(
-            'flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-white transition',
-            input.trim() ? 'bg-[#A51636] active:bg-[#8a1230]' : 'cursor-not-allowed bg-slate-300 dark:bg-white/10',
+            'flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-white shadow-sm transition',
+            input.trim() ? 'bg-primary-500 active:scale-95' : 'bg-slate-200 text-slate-400 dark:bg-[#27272a] dark:text-slate-500',
           )}
         >
-          <Send className="h-4 w-4" strokeWidth={2.4} />
+          <Send className="h-5 w-5" strokeWidth={2.4} />
         </button>
-      </div>
-      <div className="mt-1.5 flex items-center justify-center gap-1 text-[10px] text-slate-400">
-        <Phone className="h-3 w-3" /> 112 emergency · BBMP 1533 · Estate {CAMPUS_ADDRESS.phone} · <Mail className="h-3 w-3" /> {CAMPUS_ADDRESS.email}
       </div>
     </div>
   );

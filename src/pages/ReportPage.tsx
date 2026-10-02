@@ -45,6 +45,7 @@ import { requestLocation } from '@/services/geoService';
 import { mockReverseGeocode } from '@/services/geocodeService';
 import { publishPhoto } from '@/services/syncService';
 import { uploadReportPhoto, uploadAnnotatedPhoto } from '@/lib/storage';
+import { queueReportForSync } from '@/utils/pwa';
 import { sanitizeInput, validateImageDataUrl, checkRateLimit, containsSuspiciousContent, logAudit } from '@/lib/security';
 import { displayName } from '@/services/reportService';
 import { CAMPUS_CONFIG, isInsideCampus } from '@/data/campus';
@@ -230,6 +231,14 @@ function ReportWizard() {
       toast.error('Too many reports', 'Please wait 10 minutes before submitting another report. Rate limit for security.');
       return;
     }
+
+    if (!navigator.onLine) {
+      queueReportForSync({ draft, user, profile, finalScope, timestamp: Date.now() });
+      setSubmitted(true);
+      toast.success('Saved for later', 'You are offline. We will submit this report automatically when your connection returns.');
+      return;
+    }
+
     // Security: validate image
     if (draft.photo) {
       const imgCheck = validateImageDataUrl(draft.photo);

@@ -9,6 +9,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "dev:amrita": "vite --open /amrita",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",

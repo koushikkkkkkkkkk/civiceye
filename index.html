@@ -11,12 +11,18 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="CivicEye" />
     <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-startup-image" href="/civiceye-logo.png" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https:;" />
     <!-- Google Search Console domain ownership verification. Safe to keep permanently. -->
     <meta name="google-site-verification" content="o3RftdxrPrh-mUPdczebvvmIIFuu-yphC7JvpBNBgZU" />
     <meta
       name="description"
       content="CivicEye — Making cities better, one report at a time. Report potholes, broken street lights, garbage dumps and more, then track them on a live community map."
     />
+    <meta property="og:title" content="CivicEye — Report Bengaluru" />
+    <meta property="og:description" content="Snap, pin, and report civic issues in your neighbourhood. Track fixes on a live community map." />
+    <meta property="og:image" content="/civiceye-logo.png" />
+    <link rel="canonical" href="https://civiceye.app/" />
     <title>CivicEye — Making cities better, one report at a time</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,8 +35,9 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <style>
-      /* Hide the floating civic-chat widget on auth/reset pages */
-      html[data-cve-hide="1"] #cve-root { display: none !important; }
+      /* Hide the floating civic-chat widget on auth/reset pages and Amrita Eye */
+      html[data-cve-hide="1"] #cve-root,
+      html.amrita #cve-root { display: none !important; }
     </style>
     <script>
       (function () {

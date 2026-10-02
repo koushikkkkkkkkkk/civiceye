@@ -34,7 +34,7 @@ export function AmritaEye() {
   }, [campusReports]);
 
   return (
-    <div className="relative min-h-screen bg-[#FFF5F7] dark:bg-[#1A030A] text-neutral-900 dark:text-white font-sans antialiased selection:bg-primary-500 selection:text-white overflow-x-hidden">
+    <div className="relative min-h-screen bg-primary-50 dark:bg-black text-neutral-900 dark:text-white font-sans antialiased selection:bg-primary-500 selection:text-white overflow-x-hidden">
       <AsciiAnimation />
       <div className="relative z-10 w-full">
         <div className="w-full h-full">

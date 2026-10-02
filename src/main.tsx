@@ -4,10 +4,11 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { AppProviders } from './context/AppProviders';
 import { ErrorBoundary } from './components/ErrorBoundary';
-import { registerServiceWorker } from './utils/pwa';
+import { initPwaMode, registerServiceWorker } from './utils/pwa';
 import './styles/index.css';
 
 registerServiceWorker();
+initPwaMode();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

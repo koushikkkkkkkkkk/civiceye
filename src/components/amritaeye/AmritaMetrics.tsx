@@ -14,7 +14,7 @@ export function AmritaMetrics({ stats }: AmritaMetricsProps) {
   return (
     <section className="bg-[#F5F5F7] dark:bg-[#0D0D0D] border-t border-neutral-200 dark:border-neutral-800">
       <div className="mx-auto max-w-[1920px] px-6 py-28 sm:py-36 flex flex-col items-center">
-        <div className="mb-16 flex items-center justify-center gap-3 text-sm font-semibold uppercase tracking-widest text-[#A51636] dark:text-[#E52B50]">
+        <div className="mb-16 flex items-center justify-center gap-3 text-sm font-semibold uppercase tracking-widest text-primary-500">
           <span>Real-time impact</span>
         </div>
 
@@ -43,11 +43,11 @@ export function AmritaMetrics({ stats }: AmritaMetricsProps) {
 
           {/* Metric 3 */}
           <div className="bg-[#FFFFFF] dark:bg-[#161618] p-8 sm:p-12 flex flex-col items-center text-center">
-            <div className="flex flex-col items-center gap-3 text-sm font-semibold tracking-wider text-[#A51636] dark:text-[#E52B50] uppercase mb-8">
-              <CheckCircle2 className="h-5 w-5 text-[#A51636] dark:text-[#E52B50]" />
+            <div className="flex flex-col items-center gap-3 text-sm font-semibold tracking-wider text-primary-500 uppercase mb-8">
+              <CheckCircle2 className="h-5 w-5 text-primary-500" />
               <span>Resolved</span>
             </div>
-            <div className="text-[56px] sm:text-[72px] font-bold leading-[1.05] tracking-[-0.03em] text-[#A51636] dark:text-[#E52B50] tabular-nums">
+            <div className="text-[56px] sm:text-[72px] font-bold leading-[1.05] tracking-[-0.03em] text-primary-500 tabular-nums">
               {stats.resolved}
             </div>
           </div>

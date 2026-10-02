@@ -572,7 +572,7 @@ html.amrita body {
   color: #1d1d1f;
 }
 html.amrita.dark body {
-  background-color: #1a030a;
+  background-color: #000000;
   color: #f5f5f7;
 }
 
@@ -605,9 +605,9 @@ html.amrita .card {
   box-shadow: 0 8px 30px rgba(165, 22, 54, 0.06);
 }
 html.amrita.dark .card {
-  background-color: #161618;
-  border-color: #2a2a2e;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  background-color: #0a0a0a;
+  border-color: #1a1a1a;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
 }
 html.amrita .card:hover {
   transform: none;
@@ -625,8 +625,8 @@ html.amrita .glass-strong {
 }
 html.amrita.dark .glass,
 html.amrita.dark .glass-strong {
-  background-color: rgba(22, 22, 24, 0.8);
-  border-color: rgba(229, 43, 80, 0.2);
+  background-color: rgba(10, 10, 10, 0.7);
+  border-color: rgba(229, 43, 80, 0.15);
 }
 
 /* Buttons — rounded-full pill like the home CTA (maroon → berry). */
@@ -674,8 +674,8 @@ html.amrita .input-base:focus {
   box-shadow: 0 0 0 3px rgba(165, 22, 54, 0.15);
 }
 html.amrita.dark .input-base {
-  background-color: #161618;
-  border-color: #2f2f34;
+  background-color: #0a0a0a;
+  border-color: #1f1f1f;
   color: #f5f5f7;
 }
 
@@ -811,3 +811,44 @@ html.amrita main.has-top-nav {
 .gm-style .gm-style-iw-c > button.gm-ui-hover-effect {
   display: none !important;
 }
+
+/* ------------------------------------------------------------------ */
+/* PWA Standalone & Mobile Safe-Area Layout Extensions                */
+/* ------------------------------------------------------------------ */
+
+/* Safe area padding utilities for notches & home indicator gesture bars */
+.pb-safe {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+}
+.pt-safe {
+  padding-top: max(0.75rem, env(safe-area-inset-top, 0px));
+}
+.pl-safe {
+  padding-left: max(0.5rem, env(safe-area-inset-left, 0px));
+}
+.pr-safe {
+  padding-right: max(0.5rem, env(safe-area-inset-right, 0px));
+}
+
+/* Standalone PWA Mode Optimizations */
+html.pwa-standalone {
+  /* Prevent browser bounce/elastic scroll on the outer document */
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* Allow text selection in inputs and articles */
+html.pwa-standalone input,
+html.pwa-standalone textarea,
+html.pwa-standalone [contenteditable="true"],
+html.pwa-standalone article,
+html.pwa-standalone p {
+  user-select: text;
+}
+
+/* In standalone PWA, ensure top header leaves comfortable breathing room under the dynamic island/status bar */
+html.pwa-standalone header.fixed {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+

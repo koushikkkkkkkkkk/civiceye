@@ -22,16 +22,16 @@ const itemVariants = {
 
 export function AmritaBenefits() {
   return (
-    <section className="bg-[#FFF5F7] dark:bg-[#1A030A] py-24 sm:py-36 border-t border-[#A51636]/10 dark:border-[#E52B50]/10">
+    <section className="bg-primary-50 dark:bg-black py-24 sm:py-36 border-t border-primary-500/10">
       <div className="mx-auto max-w-[1920px] px-6 lg:px-12">
         <div className="mb-16">
-          <div className="mb-6 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-[#A51636] dark:text-[#E52B50]">
-            <span className="h-2 w-2 rounded-full bg-[#A51636] dark:bg-[#E52B50]" aria-hidden="true" />
+          <div className="mb-6 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-primary-500">
+            <span className="h-2 w-2 rounded-full bg-primary-500" aria-hidden="true" />
             <span>Core Benefits</span>
           </div>
           <h2 className="text-4xl sm:text-[56px] font-bold leading-[1.1] tracking-tight text-neutral-900 dark:text-white max-w-3xl">
             A smarter campus, <br />
-            <span className="font-serif italic font-normal text-[#A51636] dark:text-[#E52B50]">built by everyone.</span>
+            <span className="font-serif italic font-normal text-primary-500">built by everyone.</span>
           </h2>
         </div>
 
@@ -51,7 +51,7 @@ export function AmritaBenefits() {
               <Eye className="h-32 w-32 text-neutral-900 dark:text-white" />
             </div>
             <div className="mb-24 flex h-16 w-16 items-center justify-center rounded-2xl bg-white dark:bg-[#0D0105] shadow-sm z-10">
-              <Eye className="h-7 w-7 text-[#A51636] dark:text-[#E52B50]" />
+              <Eye className="h-7 w-7 text-primary-500" />
             </div>
             <div className="z-10 max-w-lg">
               <h3 className="mb-4 text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-white leading-[1.2]">
@@ -84,7 +84,7 @@ export function AmritaBenefits() {
           {/* Side Bento 2 */}
           <motion.div 
             variants={itemVariants} 
-            className="flex flex-col justify-between rounded-3xl bg-[#A51636] dark:bg-[#E52B50] p-8 sm:p-12 text-white relative overflow-hidden"
+            className="flex flex-col justify-between rounded-3xl bg-primary-500 p-8 sm:p-12 text-white relative overflow-hidden"
           >
             <div className="absolute -bottom-6 -right-6 opacity-20">
               <Users className="h-40 w-40" />
@@ -110,7 +110,7 @@ export function AmritaBenefits() {
             <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center justify-between">
               <div className="flex items-center gap-4">
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white dark:bg-[#0D0105] shadow-sm">
-                  <MapPin className="h-6 w-6 text-[#A51636] dark:text-[#E52B50]" />
+                  <MapPin className="h-6 w-6 text-primary-500" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-neutral-900 dark:text-white leading-[1.2]">
@@ -123,7 +123,7 @@ export function AmritaBenefits() {
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white dark:bg-[#0D0105] shadow-sm">
-                  <ShieldCheck className="h-6 w-6 text-[#A51636] dark:text-[#E52B50]" />
+                  <ShieldCheck className="h-6 w-6 text-primary-500" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-neutral-900 dark:text-white leading-[1.2]">
